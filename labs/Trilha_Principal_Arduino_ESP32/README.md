@@ -6,8 +6,17 @@ A trilha é **incremental**: cada laboratório adiciona uma nova habilidade e ma
 
 ---
 
-## 🏗️ Sequência de Laboratórios
+## 🚀 Como utilizar estes Laboratórios?
+Se você está usando o **Wokwi Web**, não precisa desenhar o circuito do zero em todos os labs.
+1.  Abra a pasta do LAB desejado.
+2.  Copie o conteúdo de `diagram.json`.
+3.  Cole na aba correspondente no Wokwi.
+👉 **[Veja o Guia de Início Rápido detalhado aqui.](../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md)**
 
+---
+
+## 🏗️ Sequência de Laboratórios
+...
 ### Fase 0: Hardware e Lógica (Sem Código)
 1.  **[LAB 00: Introdução ao Wokwi](./LAB_00_Wokwi_Intro/)**: Interface, fios e JSON.
 2.  **[LAB 01: Lógica com Chaves](./LAB_01_Logica_Chaves/)**: Portas AND/OR manuais.

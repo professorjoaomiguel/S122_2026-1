@@ -47,6 +47,8 @@ Bem-vindo à base de conhecimento central da disciplina de Internet das Coisas. 
     `#Visualização` `#Analytics` `#Paineis`
 
 ## ⚡ Simulação e Hardware (Edge)
+*   [**Wokwi: Início Rápido (GitHub ➡️ Web)**](./Guia_Wokwi_Inicio_Rapido.md)
+    `#ComoComeçar` `#CopiarColar` `#DiagramJSON`
 *   [**Wokwi e VS Code Integration**](./Guia_Wokwi_VSCode_Integracao.md)
     `#Simulação` `#VSCode` `#Prototipagem`
 *   [**Arduino Uno (Fundamentos)**](./Guia_Arduino_Uno.md)

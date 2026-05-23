@@ -12,6 +12,7 @@ Nesta prática, exploramos a interação básica entre o mundo físico e o digit
 ---
 
 ## 🧱 Setup de Hardware
+Monte o circuito completo para todos os níveis:
 *   **LED Externo + Resistor:** Pino 12.
 *   **Pushbutton:** Pino 2 (conectado ao GND).
 
@@ -20,33 +21,56 @@ Nesta prática, exploramos a interação básica entre o mundo físico e o digit
 ## ⚙️ Workflow Passo a Passo
 
 ### Nível 1: Saída Direta
-1.  Escreva um código que apenas liga o LED no pino 12.
-2.  Valide se a fiação está correta no Wokwi.
-
-### Nível 2: Leitura de Botão e Serial
-1.  Configure o pino 2 como `INPUT_PULLUP`.
-2.  Envie para o Serial Monitor o valor lido do pino (`HIGH` ou `LOW`).
-3.  **Reflexão:** Por que o botão retorna `LOW` quando pressionado?
-
-### Nível 3: Lógica de Controle
-1.  Integre os níveis anteriores: Se o botão for pressionado, o LED liga. Caso contrário, desliga.
-
+O objetivo é apenas validar se o LED está funcionando.
 ```cpp
+// [TAG] DEFINICOES
+const int pinoLED = 12;
+
 void setup() {
-  Serial.begin(9600);
-  pinMode(12, OUTPUT);
-  pinMode(2, INPUT_PULLUP);
+  // [TAG] SETUP_PINOS
+  pinMode(pinoLED, OUTPUT);
 }
 
 void loop() {
-  bool pressionado = (digitalRead(2) == LOW);
-  
-  if (pressionado) {
-    digitalWrite(12, HIGH);
+  // --- Nível 1: Forçar Ligado ---
+  digitalWrite(pinoLED, HIGH);
+}
+```
+
+### Nível 2: Leitura de Botão e Serial
+Agora, acoplamos a entrada digital sem apagar o anterior. Use o Serial Monitor para "enxergar" o que o chip sente.
+```cpp
+// [TAG] DEFINICOES
+const int pinoBotao = 2;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(pinoLED, OUTPUT);
+  // [TAG] SETUP_PINOS
+  pinMode(pinoBotao, INPUT_PULLUP);
+}
+
+void loop() {
+  // --- Nível 2: Escuta ---
+  bool estado = digitalRead(pinoBotao);
+  Serial.print("Estado do Botao: "); Serial.println(estado);
+  delay(100);
+}
+```
+
+### Nível 3: Lógica de Controle
+Finalmente, unimos a leitura à ação. O código agora toma uma decisão baseada no botão.
+```cpp
+void loop() {
+  // --- Nível 3: Decisao ---
+  // [TAG] LOGICA_CONTROLE
+  if (digitalRead(pinoBotao) == LOW) { // Botao pressionado
+    digitalWrite(pinoLED, HIGH);
     Serial.println("Porta Aberta!");
   } else {
-    digitalWrite(12, LOW);
+    digitalWrite(pinoLED, LOW);
   }
+  delay(50);
 }
 ```
 
