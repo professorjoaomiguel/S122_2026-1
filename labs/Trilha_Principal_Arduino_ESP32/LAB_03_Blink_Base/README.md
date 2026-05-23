@@ -1,5 +1,12 @@
 # LAB 03: O Primeiro Sinal (Blink Base)
 
+---
+
+## 🚀 Como Iniciar?
+Se você está no navegador, siga o [**Guia de Início Rápido**](../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
+
+---
+
 Todo projeto de hardware começa com um sinal de vida. O "Blink" é o teste universal para garantir que o processador está alimentado, o código foi gravado e o clock está funcionando.
 
 ---

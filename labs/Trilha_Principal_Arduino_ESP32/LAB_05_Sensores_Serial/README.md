@@ -1,5 +1,12 @@
 # LAB 05: Sensores e Comunicação Serial
 
+---
+
+## 🚀 Como Iniciar?
+Se você está no navegador, siga o [**Guia de Início Rápido**](../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
+
+---
+
 Aprendemos a coletar dados do ambiente usando sinais analógicos (LDR) e digitais (DHT22). A evolução aqui é o domínio da **escala**: de valores brutos para informações úteis.
 
 ---

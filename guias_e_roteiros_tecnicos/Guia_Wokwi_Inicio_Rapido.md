@@ -20,21 +20,29 @@ Abra um projeto vazio diretamente para a placa do laboratório:
 *   🚀 [**Projeto Vazio: Raspberry Pi Pico**](https://wokwi.com/projects/new/pi-pico)
 
 ### 3. Sincronização (O "Pulo do Gato")
-Para não ter que desenhar o circuito do zero (a menos que o desafio peça), faça o seguinte:
+Para não ter que desenhar o circuito do zero e manter as instruções à mão:
 1.  No editor do Wokwi, procure a aba chamada **diagram.json**.
-2.  Apague o conteúdo atual e **cole** o que você copiou do GitHub. *Automaticamente, os componentes e fios aparecerão na tela!*
-3.  Volte para a aba do código (geralmente `sketch.ino` ou `main.py`).
-4.  Cole o código base que você copiou ou comece a digitar conforme o roteiro.
+2.  Apague o conteúdo atual e **cole** o que você copiou do GitHub. *Os componentes aparecerão na tela!*
+3.  Volte para a aba do código (geralmente `sketch.ino`). Cole o código base.
 
 ---
 
-## 🛠️ Dicas de Ouro
+## 📂 Organização Interna (Dica do Prof!)
+Para que seu projeto Wokwi fique completo e documentado, você pode criar arquivos dentro dele:
+1.  No editor do Wokwi, clique na aba da seta ao lado de "sketch.ino" e escolha **New File**.
+2.  Nomeie como **`README.md`**.
+3.  **Cole o conteúdo do roteiro do GitHub aqui dentro.**
+4.  Pronto! Agora você tem as instruções da aula diretamente no simulador, sem precisar trocar de aba.
 
-### 📂 Bibliotecas
+---
+
+## 🛠️ Outros Ajustes Necessários
+
+### 📚 Bibliotecas
 Se o laboratório usar componentes como DHT22 ou LCD I2C:
-1.  Clique no ícone de **Library Manager** (ícone de pastinha/livros na aba esquerda).
+1.  Clique no ícone de **Library Manager** (ícone de livros na aba esquerda).
 2.  Clique no botão **+** (Add).
-3.  Digite o nome da biblioteca (ex: `DHT sensor library`) e selecione-a. Sem isso, seu código dará erro de compilação.
+3.  Digite o nome da biblioteca (ex: `DHT sensor library`) e selecione-a.
 
 ### 💾 Salvando seu Progresso
 -   O Wokwi gera um link único para o seu projeto. **Salve este link!**
