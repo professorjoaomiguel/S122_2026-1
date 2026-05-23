@@ -1,5 +1,12 @@
 # LAB 04: Entradas e Saídas Digitais
 
+---
+
+## 🚀 Como Iniciar?
+Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
+
+---
+
 Nesta prática, exploramos a interação básica entre o mundo físico e o digital: como o código lê um sinal externo (botão) e como aciona um atuador (LED).
 
 ---

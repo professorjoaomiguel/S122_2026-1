@@ -1,5 +1,12 @@
 # LAB 08: Conectividade WiFi e Tempo (NTP)
 
+---
+
+## 🚀 Como Iniciar?
+Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
+
+---
+
 O sistema sai do isolamento. Nesta etapa, conectamos o cérebro da nossa solução à rede global, permitindo que ele saiba "quem ele é" (IP) e "que horas são" (NTP).
 
 ---

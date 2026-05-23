@@ -1,5 +1,12 @@
 # LAB 02: Desafio Cromático (Lógica com LED RGB)
 
+---
+
+## 🚀 Como Iniciar?
+Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
+
+---
+
 Neste laboratório, subimos o nível da lógica digital. Em vez de apenas ligar e desligar LEDs simples, vamos usar **Portas Lógicas** integradas e um **Gerador de Clock** para criar uma mistura automática de cores em um LED RGB.
 
 ---

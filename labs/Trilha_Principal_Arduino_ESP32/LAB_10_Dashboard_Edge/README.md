@@ -1,5 +1,12 @@
 # LAB 10: Dashboard de Borda (Edge Dashboard)
 
+---
+
+## 🚀 Como Iniciar?
+Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
+
+---
+
 Nesta etapa de consolidação do Módulo 02, unimos o **Monitoramento** (Sensores) com o **Controle** (Atuadores) em uma única interface web rica. O ESP32 atua como um verdadeiro **Dashboard de Borda**.
 
 ---

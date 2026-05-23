@@ -1,5 +1,12 @@
 # LAB 00: Introdução ao Wokwi e Componentes Básicos
 
+---
+
+## 🚀 Como Iniciar?
+Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
+
+---
+
 Este laboratório inicial serve para familiarização com a interface do Wokwi, manipulação de componentes e compreensão do fluxo de corrente em circuitos simples.
 
 ---

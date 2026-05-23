@@ -1,5 +1,12 @@
 # LAB 11: Mensageria IoT (Protocolo MQTT)
 
+---
+
+## 🚀 Como Iniciar?
+Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
+
+---
+
 Neste laboratório, abandonamos o modelo de requisição (HTTP) e adotamos o padrão industrial de IoT: **Publicação e Assinatura (Pub/Sub)** via protocolo **MQTT**. É aqui que o dado da sua estufa realmente ganha escala global de forma gratuita.
 
 ---

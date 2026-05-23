@@ -1,5 +1,12 @@
 # LAB 09: Controle Web Embarcado (HTTP Server)
 
+---
+
+## 🚀 Como Iniciar?
+Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
+
+---
+
 Nesta etapa, transformamos o ESP32 em um **Servidor de Páginas Web**. Isso permite que qualquer dispositivo conectado à mesma rede (Smartphone ou PC) acesse um painel de controle direto no hardware, sem depender de nuvens externas.
 
 ---
