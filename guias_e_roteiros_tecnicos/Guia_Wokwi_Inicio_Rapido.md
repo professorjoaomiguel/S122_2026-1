@@ -14,9 +14,10 @@ Navegue até a pasta do laboratório desejado (ex: `LAB_05_Sensores_Serial`).
 -   Se houver um arquivo `sketch.ino`, faça o mesmo (Copie o código).
 
 ### 2. Criação (Lado Wokwi)
-1.  Acesse [wokwi.com](https://wokwi.com).
-2.  Escolha a placa do laboratório (geralmente **Arduino Uno** ou **ESP32**).
-3.  Um projeto vazio será aberto.
+Abra um projeto vazio diretamente para a placa do laboratório:
+*   🚀 [**Projeto Vazio: Arduino Uno**](https://wokwi.com/projects/new/arduino-uno)
+*   🚀 [**Projeto Vazio: ESP32 DevKit v4**](https://wokwi.com/projects/new/esp32)
+*   🚀 [**Projeto Vazio: Raspberry Pi Pico**](https://wokwi.com/projects/new/pi-pico)
 
 ### 3. Sincronização (O "Pulo do Gato")
 Para não ter que desenhar o circuito do zero (a menos que o desafio peça), faça o seguinte:

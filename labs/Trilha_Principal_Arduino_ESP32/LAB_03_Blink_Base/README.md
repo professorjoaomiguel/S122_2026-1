@@ -14,7 +14,7 @@ Todo projeto de hardware começa com um sinal de vida. O "Blink" é o teste univ
 ## ⚙️ Workflow Passo a Passo
 
 ### Nível 1: Estrutura Base
-1.  Abra um projeto Arduino Uno vazio.
+1.  Abra um 🚀 [**Projeto Vazio: Arduino Uno**](https://wokwi.com/projects/new/arduino-uno).
 2.  Identifique as funções `void setup()` e `void loop()`.
 
 ### Nível 2: Saída Digital
