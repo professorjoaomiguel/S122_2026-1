@@ -1,0 +1,49 @@
+[
+    {
+        "id": "f6f2187d.f17c28",
+        "type": "tab",
+        "label": "LAB 01 - Desafio",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1",
+        "type": "inject",
+        "z": "f6f2187d.f17c28",
+        "name": "Olá, SENAI!",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "boas-vindas",
+        "payload": "Olá, SENAI!",
+        "payloadType": "str",
+        "x": 150,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2",
+        "type": "debug",
+        "z": "f6f2187d.f17c28",
+        "name": "Resultado",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 100,
+        "wires": []
+    }
+]

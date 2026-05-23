@@ -1,0 +1,96 @@
+[
+    {
+        "id": "f6f2187d.f17c28",
+        "type": "tab",
+        "label": "LAB 01 - Solução",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1",
+        "type": "inject",
+        "z": "f6f2187d.f17c28",
+        "name": "Olá, SENAI!",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "boas-vindas",
+        "payload": "Olá, SENAI!",
+        "payloadType": "str",
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "3",
+                "4"
+            ]
+        ]
+    },
+    {
+        "id": "2",
+        "type": "debug",
+        "z": "f6f2187d.f17c28",
+        "name": "Debug Modificado",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "3",
+        "type": "change",
+        "z": "f6f2187d.f17c28",
+        "name": "Adicionar Sufixo",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload & \" - IoT 2026\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 120,
+        "wires": [
+            [
+                "2"
+            ]
+        ]
+    },
+    {
+        "id": "4",
+        "type": "debug",
+        "z": "f6f2187d.f17c28",
+        "name": "Debug Original",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 200,
+        "wires": []
+    }
+]

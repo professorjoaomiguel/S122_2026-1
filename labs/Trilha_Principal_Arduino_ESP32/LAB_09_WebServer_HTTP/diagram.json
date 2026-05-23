@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "author": "Prof. Joao Miguel",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32",
+      "id": "esp32",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay",
+      "top": 100,
+      "left": -150,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-text",
+      "id": "lamp",
+      "top": 200,
+      "left": -150,
+      "attrs": {
+        "text": "Bulb/Lamp"
+      }
+    }
+  ],
+  "connections": [
+    [ "esp32:GND", "relay:GND", "black", [] ],
+    [ "esp32:VIN", "relay:VCC", "red", [] ],
+    [ "esp32:13", "relay:IN", "green", [] ]
+  ]
+}

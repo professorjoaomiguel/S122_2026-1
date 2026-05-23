@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "author": "Prof. Joao Miguel",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32",
+      "id": "esp32",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay",
+      "top": 100,
+      "left": -150,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht",
+      "top": -150,
+      "left": 150,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "esp32:GND", "relay:GND", "black", [] ],
+    [ "esp32:VIN", "relay:VCC", "red", [] ],
+    [ "esp32:13", "relay:IN", "green", [] ],
+    [ "esp32:GND", "dht:GND", "black", [] ],
+    [ "esp32:3V3", "dht:VCC", "red", [] ],
+    [ "esp32:15", "dht:SDA", "green", [] ]
+  ]
+}

@@ -1,40 +1,41 @@
-# ESP32 e MicroPython - Guia Técnico S122
+# ESP32 (MicroPython) - Guia Técnico S122
+`#MicroPython` `#ESP32` `#Hardware` `#Edge` `#ParallelTrack`
 
 ## 1. Visão Geral (O Básico)
-**Para que serve:** Desenvolvimento de sistemas de borda (Edge) que coletam dados de sensores e controlam atuadores em tempo real.
-**Contexto M3F:** [X] Percepção (Edge) | [ ] Transporte (Fog) | [ ] Aplicação (Cloud)
+**Para que serve:** O ESP32 é um microcontrolador robusto com WiFi e Bluetooth integrados. Nesta trilha paralela, exploramos como rodar MicroPython nele, permitindo que você aplique os conhecimentos da Pi Pico em uma placa com conectividade nativa.
+**Contexto M3F:** [X] Percepção (Edge) | [X] Transporte (Fog) | [ ] Aplicação (Cloud)
 
 ## 2. Fluxo de Dados (I/O)
-- **Entrada (Input):** Sinais analógicos/digitais de sensores, mensagens via Wi-Fi (MQTT/ESP-NOW), código via Serial.
-- **Saída (Output):** Atuadores (LEDs, Motores, Relés), dados para o Gateway via Wi-Fi.
+- **Entrada (Input):** Sensores analógicos/digitais, comandos via REPL, mensagens MQTT.
+- **Saída (Output):** Atuadores, requisições HTTP, publicação de dados em nuvem.
 
-## 3. Instalação e Configuração
+## 3. Instalação e Configuração (Flash do Firmware)
+Diferente da Pi Pico, o ESP32 exige uma ferramenta de flash específica (`esptool`).
 
-### 🪟 Windows / 🐧 Linux
-1.  **Download MicroPython Firmware:** https://micropython.org/download/esp32/
-2.  **Procedimento de Flash:** Use o Thonny IDE ou a ferramenta `esptool.py` para gravar o firmware na placa.
-3.  **Verificação:** Acesse o REPL (Terminal) e execute `import esp32; print("Conectado")`.
+1. **Firmware:** Baixe o arquivo `.bin` para o seu modelo de ESP32 em: [micropython.org/download/esp32](https://micropython.org/download/esp32/).
+2. **Ferramenta de Flash:** Utilize o **Thonny IDE** (recomendado para iniciantes):
+   * Vá em `Tools` -> `Options` -> `Interpreter`.
+   * Selecione `MicroPython (ESP32)`.
+   * Clique em `Install or update MicroPython` e siga as instruções.
+3. **Verificação:** O terminal do Thonny deve exibir a mensagem `MicroPython v... on ...; ESP32 module with ESP32`.
 
 ## 4. Integração (Ecossistema S122)
-- **Conecta com:** [./Guia_Thonny_MicroPython.md](./Guia_Thonny_MicroPython.md) para programação e [./Guia_Wokwi_VSCode_Integracao.md](./Guia_Wokwi_VSCode_Integracao.md) para simulação.
-- **Depende de:** Roteador da rede local para enviar dados ao Broker MQTT na VM.
+- **Continuidade:** Este guia faz parte da **Trilha Paralela**. Utilize-o após dominar os fundamentos na Pi Pico.
+- **Diferencial:** O foco aqui é o uso da biblioteca `network` para conectar a estufa à internet usando Python.
 
 **Links Relacionados (CORE):**
+- Guia Pi Pico: [./Guia_PiPico_MicroPython.md](./Guia_PiPico_MicroPython.md)
 - Guia Thonny: [./Guia_Thonny_MicroPython.md](./Guia_Thonny_MicroPython.md)
-- Guia Wokwi: [./Guia_Wokwi_VSCode_Integracao.md](./Guia_Wokwi_VSCode_Integracao.md)
 
 ## 5. Referências e Repositórios
-- **Documentação MicroPython:** https://docs.micropython.org
-- **Repositório ESP32 MicroPython:** https://github.com/micropython/micropython
+- **Documentação MicroPython ESP32:** https://docs.micropython.org/en/latest/esp32/quickref.html
+- **Repositório de Firmware:** https://micropython.org/download/esp32/
 
 ## 6. Solução de Problemas (Troubleshooting)
-- **Erro: Device not found:** Verifique se o cabo USB é de dados (alguns são apenas carga) e se os drivers CP210x ou CH340 estão instalados.
-- **Erro: MemoryError:** Evite carregar scripts muito grandes; tente otimizar o uso de variáveis e imports.
-
-## 7. Fontes de Consulta (AI & Web)
-- MicroPython Documentation for ESP32: https://docs.micropython.org/en/latest/esp32/quickref.html
-- Wokwi Documentation: https://docs.wokwi.com/
-- Espressif ESP32 Technical Reference: https://www.espressif.com/en/support/documents/technical-documents
+- **Erro: Device not found:** Verifique se o cabo USB é de dados e se os drivers CP210x/CH340 estão instalados.
+- **Boot Loop:** Às vezes é necessário pressionar o botão `BOOT` no ESP32 no momento do flash.
 
 ---
+**⬅️ [Voltar ao Índice](./WIKI_INDEX.md) | ➡️ Próximo: [Thonny IDE](./Guia_Thonny_MicroPython.md) | 📤 [Padrão de Entrega](./PADRAO_DE_ENTREGA_CLASSROOM.md)**
+
 *Documento em constante atualização. Versão: 2026/1*

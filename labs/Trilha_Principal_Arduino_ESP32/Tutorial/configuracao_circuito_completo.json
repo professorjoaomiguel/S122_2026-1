@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "author": "Professor João Miguel",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 100, "left": 0 },
+    { "type": "wokwi-led", "id": "ledV", "top": 0, "left": 100, "attrs": { "color": "green" } },
+    { "type": "wokwi-led", "id": "ledA", "top": 0, "left": 140, "attrs": { "color": "yellow" } },
+    { "type": "wokwi-led", "id": "ledR", "top": 0, "left": 180, "attrs": { "color": "red" } },
+    { "type": "wokwi-pushbutton", "id": "btn", "top": 200, "left": 150, "attrs": { "color": "blue" } },
+    { "type": "wokwi-potentiometer", "id": "pot", "top": 250, "left": 0, "attrs": { "value": "1000" } },
+    { "type": "wokwi-lcd1602", "id": "lcd", "top": -150, "left": 50, "attrs": { "i2c": "true" } },
+    { "type": "wokwi-dht22", "id": "dht", "top": 200, "left": -100 },
+    { "type": "wokwi-resistor", "id": "r1", "top": 40, "left": 100, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 40, "left": 140, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r3", "top": 40, "left": 180, "attrs": { "value": "220" } }
+  ],
+  "connections": [
+    [ "uno:GND.1", "r1:1", "black", [ "v0" ] ],
+    [ "uno:GND.1", "r2:1", "black", [ "v0" ] ],
+    [ "uno:GND.1", "r3:1", "black", [ "v0" ] ],
+    [ "r1:2", "ledV:C", "black", [ "v0" ] ],
+    [ "r2:2", "ledA:C", "black", [ "v0" ] ],
+    [ "r3:2", "ledR:C", "black", [ "v0" ] ],
+    [ "uno:10", "ledV:A", "green", [ "v0" ] ],
+    [ "uno:11", "ledA:A", "yellow", [ "v0" ] ],
+    [ "uno:12", "ledR:A", "red", [ "v0" ] ],
+    [ "uno:GND.2", "btn:1.l", "black", [ "v0" ] ],
+    [ "uno:2", "btn:2.r", "blue", [ "v0" ] ],
+    [ "uno:GND.3", "pot:1", "black", [ "v0" ] ],
+    [ "uno:5V", "pot:3", "red", [ "v0" ] ],
+    [ "uno:A0", "pot:2", "orange", [ "v0" ] ],
+    [ "uno:A4", "lcd:SDA", "green", [ "v0" ] ],
+    [ "uno:A5", "lcd:SCL", "yellow", [ "v0" ] ],
+    [ "lcd:GND", "uno:GND.1", "black", [ "v0" ] ],
+    [ "lcd:VCC", "uno:5V", "red", [ "v0" ] ],
+    [ "dht:GND", "uno:GND.1", "black", [ "v0" ] ],
+    [ "dht:VCC", "uno:5V", "red", [ "v0" ] ],
+    [ "dht:SDA", "uno:4", "purple", [ "v0" ] ]
+  ]
+}]

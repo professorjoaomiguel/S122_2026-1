@@ -1,4 +1,5 @@
 # Inventário de Software - Guia Técnico S122
+`#Downloads` `#Setup` `#Ambiente`
 
 ## 1. Visão Geral (O Básico)
 **Para que serve:** Documento centralizador para conferência de todas as ferramentas de software necessárias para o desenvolvimento pleno da disciplina.
@@ -17,6 +18,7 @@
 ### ⚡ Camada Edge (Hardware e Simulação)
 - **Thonny IDE:** https://thonny.org
 - **Wokwi (Web):** https://wokwi.com
+- **Wokwi CLI:** https://github.com/wokwi/wokwi-cli (Validação via `lint`)
 
 ### 🤖 Inteligência e IA
 - **Gemini CLI:** https://github.com/google/gemini-cli
@@ -40,4 +42,6 @@
 - Documentações Oficiais listadas nos guias individuais.
 
 ---
+**⬅️ [Voltar ao Índice](./WIKI_INDEX.md) | ➡️ Próximo: [Git e GitHub](./Guia_GitHub_e_Versionamento.md) | 📤 [Padrão de Entrega](./PADRAO_DE_ENTREGA_CLASSROOM.md)**
+
 *Documento em constante atualização. Versão: 2026/1*

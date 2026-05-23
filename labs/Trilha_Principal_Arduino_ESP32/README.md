@@ -1,0 +1,37 @@
+# Trilha Principal: Arduino & ESP32 (.ino)
+
+Bem-vindo à trilha principal da UC S122. Aqui construiremos a base técnica necessária para sistemas IoT profissionais. 
+
+A trilha é **incremental**: cada laboratório adiciona uma nova habilidade e mantém o circuito anterior como base para o próximo. O tema deste semestre é a **Estufa Inteligente**, mas o core técnico é focado em domínio de hardware e código C++.
+
+---
+
+## 🏗️ Sequência de Laboratórios
+
+### Fase 0: Hardware e Lógica (Sem Código)
+1.  **[LAB 00: Introdução ao Wokwi](./LAB_00_Wokwi_Intro/)**: Interface, fios e JSON.
+2.  **[LAB 01: Lógica com Chaves](./LAB_01_Logica_Chaves/)**: Portas AND/OR manuais.
+3.  **[LAB 02: Desafio Cromático RGB](./LAB_02_Logica_RGB/)**: Clock Generator e mistura de cores.
+
+### Fase 1: Percepção Local (Arduino Uno)
+4.  **[LAB 03: Blink Base](./LAB_03_Blink_Base/)**: O primeiro sinal vital.
+5.  **[LAB 04: I/O Digital](./LAB_04_IO_Digital/)**: Botões e alertas externos.
+6.  **[LAB 05: Sensores e Serial](./LAB_05_Sensores_Serial/)**: DHT22, LDR e Monitor Serial.
+7.  **[LAB 06: Interface LCD](./LAB_06_Interface_LCD/)**: Barramento I2C e IHM local.
+8.  **[LAB 07: Controle Autônomo](./LAB_07_Controle_Autonomo/)**: Lógica de decisão (Ventoinha/Thresholds).
+
+### Fase 2: Conectividade (ESP32)
+9.  **[LAB 08: WiFi ESP32](./LAB_08_WiFi_ESP32/)**: Saindo do modo offline.
+10. **[LAB 09: WebServer HTTP](./LAB_09_WebServer_HTTP/)**: Servidor de páginas local.
+11. **[LAB 10: Dashboard Edge](./LAB_10_Dashboard_Edge/)**: Interface rica embarcada.
+
+---
+
+## 🎓 Filosofia de Aprendizado
+- **Skill Core:** O nome da pasta reflete a habilidade técnica (Ex: LAB 04 - I/O Digital).
+- **Project Overlay:** O roteiro conecta essa habilidade ao projeto (Ex: Sensor de Porta da Estufa).
+- **APL Context:** Cada etapa convida à reflexão sobre a aplicação desta técnica nos **Arranjos Produtivos Locais (APLs)** do Rio Grande do Sul, preparando o aluno para resolver problemas industriais reais.
+- **Manutenibilidade:** No próximo semestre, trocaremos apenas o "Overlay" narrativo, mantendo a sequência técnica.
+
+---
+*Faculdade de Tecnologia SENAI Porto Alegre - Prof. João Miguel*
