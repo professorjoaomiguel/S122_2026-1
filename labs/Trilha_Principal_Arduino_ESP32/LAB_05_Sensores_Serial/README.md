@@ -2,6 +2,12 @@
 
 ---
 
+### 🏛️ Mapeamento M3F (Multilayer Fog/Cloud)
+*   **Camada Macro:** 🌿 Camada 1: Edge (Percepção Local)
+*   **Nível de Referência:** 📍 Nível 1: Sensor/Atuador (Leitura Física Analógica e Digital)
+
+---
+
 ## 🚀 Como Iniciar?
 Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
 
@@ -27,7 +33,7 @@ Monte a base completa. Ela será usada em todos os níveis:
 
 ## ⚙️ Workflow Passo a Passo
 
-### Nível 1: O Mundo Analógico (LDR)
+### 🚀 Passo 1: O Mundo Analógico (LDR)
 Começamos com o sensor mais simples. No código, foque apenas em ler o pino A0.
 
 ```cpp
@@ -38,7 +44,7 @@ void setup() {
 }
 
 void loop() {
-  // --- Nível 1: Leitura Bruta ---
+  // --- Etapa 1: Leitura Bruta ---
   int luzRaw = analogRead(A0);
   Serial.print("Luz Bruta: "); Serial.println(luzRaw);
   
@@ -50,11 +56,11 @@ void loop() {
 }
 ```
 
-### Nível 2: Normalização (Map)
+### 🚀 Passo 2: Normalização (Map)
 Não apague o código anterior! Use a tag `[TAG] PROCESSAMENTO` para inserir a conversão.
 
 ```cpp
-  // --- Nível 2: Conversao ---
+  // --- Etapa 2: Conversao ---
   // Insira em [TAG] PROCESSAMENTO:
   int luzPerc = map(luzRaw, 0, 1023, 0, 100);
   
@@ -62,7 +68,7 @@ Não apague o código anterior! Use a tag `[TAG] PROCESSAMENTO` para inserir a c
   Serial.print("Luz %: "); Serial.println(luzPerc);
 ```
 
-### Nível 3: Integração DHT22
+### 🚀 Passo 3: Integração DHT22
 Agora, acoplamos a biblioteca de clima. Observe como as tags ajudam a saber onde cada parte deve entrar.
 
 ```cpp
@@ -77,10 +83,10 @@ void setup() {
 }
 
 void loop() {
-  // --- Nível 1 e 2: LDR ---
+  // --- Etapa 1 e 2: LDR ---
   int luzPerc = map(analogRead(A0), 0, 1023, 0, 100);
   
-  // --- Nível 3: DHT22 ---
+  // --- Etapa 3: DHT22 ---
   // Insira apos as leituras anteriores:
   float temp = dht.readTemperature();
   

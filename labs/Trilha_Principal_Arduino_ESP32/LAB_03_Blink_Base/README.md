@@ -2,6 +2,12 @@
 
 ---
 
+### 🏛️ Mapeamento M3F (Multilayer Fog/Cloud)
+*   **Camada Macro:** 🌿 Camada 1: Edge (Percepção Local)
+*   **Nível de Referência:** 📍 Nível 1: Sensor/Atuador (LED Embutido / Sinal Vital)
+
+---
+
 ## 🚀 Como Iniciar?
 Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
 
@@ -20,15 +26,15 @@ Todo projeto de hardware começa com um sinal de vida. O "Blink" é o teste univ
 
 ## ⚙️ Workflow Passo a Passo
 
-### Nível 1: Estrutura Base
+### 🚀 Passo 1: Estrutura Base
 1.  Abra um 🚀 [**Projeto Vazio: Arduino Uno**](https://wokwi.com/projects/new/arduino-uno).
 2.  Identifique as funções `void setup()` e `void loop()`.
 
-### Nível 2: Saída Digital
+### 🚀 Passo 2: Saída Digital
 1.  Utilize o pino **13** (ligado ao LED "L" da placa).
 2.  Configure o pino como `OUTPUT`.
 
-### Nível 3: O Ciclo de Blink
+### 🚀 Passo 3: O Ciclo de Blink
 1.  Escreva o código para ligar o LED, esperar 1 segundo, desligar e esperar mais 1 segundo.
 
 ```cpp

@@ -2,6 +2,12 @@
 
 ---
 
+### 🏛️ Mapeamento M3F (Multilayer Fog/Cloud)
+*   **Camada Macro:** 🐳 Camada 2: Fog (Transporte e Borda)
+*   **Nível de Referência:** 📍 Nível 3: Borda / Gateway (Dashboard Local no Nó de Borda)
+
+---
+
 ## 🚀 Como Iniciar?
 Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
 
@@ -26,15 +32,15 @@ Nesta etapa de consolidação do Módulo 02, unimos o **Monitoramento** (Sensore
 
 ## ⚙️ Workflow Passo a Passo
 
-### Nível 1: Telemetria HTML
+### 🚀 Passo 1: Telemetria HTML
 1.  Integre a leitura do DHT22 ao código do servidor.
 2.  Exiba os valores de Temperatura e Umidade no corpo da página HTML.
 
-### Nível 2: Interface Amigável
+### 🚀 Passo 2: Interface Amigável
 1.  Utilize tags HTML como `<b>` e `<button>` para melhorar o visual.
 2.  Crie uma separação visual (`<hr>`) entre os dados e os botões.
 
-### Nível 3: Consolidação Final
+### 🚀 Passo 3: Consolidação Final
 1.  Verifique se o sistema responde rapidamente às mudanças de temperatura no simulador e se os botões acionam o relé corretamente.
 
 ```cpp

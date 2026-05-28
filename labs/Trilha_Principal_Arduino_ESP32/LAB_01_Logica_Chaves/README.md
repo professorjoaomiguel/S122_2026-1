@@ -2,6 +2,12 @@
 
 ---
 
+### 🏛️ Mapeamento M3F (Multilayer Fog/Cloud)
+*   **Camada Macro:** 🎛️ Camada 0: Fundamentos (Sem Código)
+*   **Nível de Referência:** 📍 Nível 1: Sensor/Atuador (Conceitual / Lógica Digital)
+
+---
+
 ## 🚀 Como Iniciar?
 Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
 
@@ -31,15 +37,15 @@ Neste laboratório, aplicamos os conceitos de lógica digital (Portas AND, OR e 
 
 ## ⚙️ Workflow Passo a Passo
 
-### Nível 1: A Lógica "E" (AND)
-1.  Conecte duas chaves em série entre o VCC e o LED.
+### 🚀 Passo 1: A Lógica "E" (AND)
+1.  Conecte duas chaves em série entre o VCC and o LED.
 2.  Verifique: O LED só acende quando a Chave A **E** a Chave B estão ligadas?
 
-### Nível 2: A Lógica "OU" (OR)
+### 🚀 Passo 2: A Lógica "OU" (OR)
 1.  Conecte duas chaves em paralelo.
 2.  Verifique: O LED acende se a Chave A **OU** a Chave B estiver ligada?
 
-### Nível 3: A Lógica "NÃO" (NOT)
+### 🚀 Passo 3: A Lógica "NÃO" (NOT)
 1.  Monte um circuito onde o LED permanece aceso por padrão e apaga quando a chave é pressionada.
 
 ---

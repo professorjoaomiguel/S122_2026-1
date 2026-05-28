@@ -2,6 +2,12 @@
 
 ---
 
+### 🏛️ Mapeamento M3F (Multilayer Fog/Cloud)
+*   **Camada Macro:** 🎛️ Camada 0: Fundamentos (Sem Código)
+*   **Nível de Referência:** 📍 Nível 1: Sensor/Atuador (Conceitual / Lógica Digital)
+
+---
+
 ## 🚀 Como Iniciar?
 Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
 
@@ -31,15 +37,15 @@ Neste laboratório, subimos o nível da lógica digital. Em vez de apenas ligar 
 
 ## ⚙️ Workflow Passo a Passo
 
-### Nível 1: Identificação RGB
+### 🚀 Passo 1: Identificação RGB
 1.  Conecte o Catodo (GND) do LED RGB ao terra.
 2.  Ligue o VCC em cada pino (R, G, B) e identifique as cores puras.
 
-### Nível 2: O Sinal de Clock
+### 🚀 Passo 2: O Sinal de Clock
 1.  Ligue o **Clock Generator** (frequência 1Hz) no pino **Red (R)**.
 2.  Observe o LED piscando sozinho. Isso é automação pura via hardware!
 
-### Nível 3: Lógica de Habilitação (AND)
+### 🚀 Passo 3: Lógica de Habilitação (AND)
 1.  Insira uma **Porta AND**.
 2.  Entrada 1: Clock Generator.
 3.  Entrada 2: Slide Switch.

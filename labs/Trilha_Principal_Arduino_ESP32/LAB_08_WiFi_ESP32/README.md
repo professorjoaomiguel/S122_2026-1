@@ -2,6 +2,12 @@
 
 ---
 
+### 🏛️ Mapeamento M3F (Multilayer Fog/Cloud)
+*   **Camada Macro:** 🐳 Camada 2: Fog (Transporte e Borda)
+*   **Nível de Referência:** 📍 Nível 2: Conectividade (Rede WiFi e Sincronização NTP)
+
+---
+
 ## 🚀 Como Iniciar?
 Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
 
@@ -26,15 +32,15 @@ O sistema sai do isolamento. Nesta etapa, conectamos o cérebro da nossa soluç�
 
 ## ⚙️ Workflow Passo a Passo
 
-### Nível 1: O Handshake de Rede
+### 🚀 Passo 1: O Handshake de Rede
 1.  Abra um 🚀 [**Projeto Vazio: ESP32**](https://wokwi.com/projects/new/esp32).
 2.  Utilize a biblioteca `WiFi.h`.
-2.  Inicie a conexão e faça o código "travar" com um loop `while` até que o status seja `WL_CONNECTED`.
+3.  Inicie a conexão e faça o código "travar" com um loop `while` até que o status seja `WL_CONNECTED`.
 
-### Nível 2: Identificação (IP)
+### 🚀 Passo 2: Identificação (IP)
 1.  Imprima no Serial Monitor o endereço IP que o simulador atribuiu ao seu ESP32.
 
-### Nível 3: Sincronização de Tempo
+### 🚀 Passo 3: Sincronização de Tempo
 1.  Utilize o servidor `pool.ntp.org`.
 2.  Formate a saída para exibir Data e Hora legíveis (ex: DD/MM/AAAA HH:MM:SS).
 

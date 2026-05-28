@@ -2,6 +2,12 @@
 
 ---
 
+### 🏛️ Mapeamento M3F (Multilayer Fog/Cloud)
+*   **Camada Macro:** 🐳 Camada 2: Fog (Transporte e Borda)
+*   **Nível de Referência:** 📍 Nível 3: Borda / Gateway (Servidor Web de Emergência Local)
+
+---
+
 ## 🚀 Como Iniciar?
 Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
 
@@ -26,15 +32,15 @@ Nesta etapa, transformamos o ESP32 em um **Servidor de Páginas Web**. Isso perm
 
 ## ⚙️ Workflow Passo a Passo
 
-### Nível 1: Hello Web
+### 🚀 Passo 1: Hello Web
 1.  Inicie o servidor na porta 80.
 2.  Faça o ESP32 responder "Bem-vindo ao IoT S122" para qualquer navegador que acessar seu IP.
 
-### Nível 2: HTML com Ação
+### 🚀 Passo 2: HTML com Ação
 1.  Crie dois links HTML na página: "LIGAR" e "DESLIGAR".
 2.  Associe esses links às rotas `/H` e `/L`.
 
-### Nível 3: Interpretação de Comandos
+### 🚀 Passo 3: Interpretação de Comandos
 1.  Implemente a lógica que lê a URL solicitada pelo navegador.
 2.  Se a URL terminar em `GET /H`, ligue o Relé. Se for `GET /L`, desligue.
 

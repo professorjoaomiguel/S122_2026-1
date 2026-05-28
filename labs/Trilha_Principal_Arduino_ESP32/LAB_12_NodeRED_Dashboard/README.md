@@ -1,5 +1,13 @@
 # LAB 12: Orquestração e Dashboards (Node-RED)
 
+---
+
+### 🏛️ Mapeamento M3F (Multilayer Fog/Cloud)
+*   **Camada Macro:** ☁️ Camada 3: Cloud (Aplicação e Analytics)
+*   **Nível de Referência:** 📍 Nível 6: Exibição (Orquestração e Dashboards no Node-RED)
+
+---
+
 Bem-vindo à camada de **Aplicação**. Aqui, transformamos dados brutos em interfaces visuais. O Node-RED é nossa ferramenta "Low-Code" para unir o hardware à nuvem usando os famosos "fiozinhos" lógicos.
 
 ---
@@ -18,17 +26,17 @@ Bem-vindo à camada de **Aplicação**. Aqui, transformamos dados brutos em inte
 
 ## ⚙️ Workflow Passo a Passo
 
-### Nível 1: A Escuta (MQTT In)
+### 🚀 Passo 1: A Escuta (MQTT In)
 1.  Inicie o Node-RED (`npx node-red`).
 2.  Arraste o nó **mqtt in**. Configure o servidor `broker.hivemq.com`.
 3.  Assine o tópico usado no **LAB 11**. Conecte a um nó **debug** e verifique se os dados estão chegando na aba lateral.
 
-### Nível 2: O Visual (Dashboard)
+### 🚀 Passo 2: O Visual (Dashboard)
 1.  Instale a paleta `node-red-dashboard` via "Manage Palette".
 2.  Arraste um nó **gauge** e um nó **chart**.
 3.  Conecte a saída do MQTT In em ambos.
 
-### Nível 3: Formatação
+### 🚀 Passo 3: Formatação
 1.  Configure as unidades (C, %) e as cores dos níveis (Verde = Ideal, Vermelho = Crítico) no nó de Gauge.
 
 ---

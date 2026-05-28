@@ -2,6 +2,12 @@
 
 ---
 
+### 🏛️ Mapeamento M3F (Multilayer Fog/Cloud)
+*   **Camada Macro:** 🌿 Camada 1: Edge (Percepção Local)
+*   **Nível de Referência:** 📍 Nível 1: Sensor/Atuador (Chaves e Alertas de I/O)
+
+---
+
 ## 🚀 Como Iniciar?
 Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
 
@@ -27,7 +33,7 @@ Monte o circuito completo para todos os níveis:
 
 ## ⚙️ Workflow Passo a Passo
 
-### Nível 1: Saída Direta
+### 🚀 Passo 1: Saída Direta
 O objetivo é apenas validar se o LED está funcionando.
 ```cpp
 // [TAG] DEFINICOES
@@ -39,12 +45,12 @@ void setup() {
 }
 
 void loop() {
-  // --- Nível 1: Forçar Ligado ---
+  // --- Etapa 1: Forçar Ligado ---
   digitalWrite(pinoLED, HIGH);
 }
 ```
 
-### Nível 2: Leitura de Botão e Serial
+### 🚀 Passo 2: Leitura de Botão e Serial
 Agora, acoplamos a entrada digital sem apagar o anterior. Use o Serial Monitor para "enxergar" o que o chip sente.
 ```cpp
 // [TAG] DEFINICOES
@@ -58,18 +64,18 @@ void setup() {
 }
 
 void loop() {
-  // --- Nível 2: Escuta ---
+  // --- Etapa 2: Escuta ---
   bool estado = digitalRead(pinoBotao);
   Serial.print("Estado do Botao: "); Serial.println(estado);
   delay(100);
 }
 ```
 
-### Nível 3: Lógica de Controle
+### 🚀 Passo 3: Lógica de Controle
 Finalmente, unimos a leitura à ação. O código agora toma uma decisão baseada no botão.
 ```cpp
 void loop() {
-  // --- Nível 3: Decisao ---
+  // --- Etapa 3: Decisao ---
   // [TAG] LOGICA_CONTROLE
   if (digitalRead(pinoBotao) == LOW) { // Botao pressionado
     digitalWrite(pinoLED, HIGH);

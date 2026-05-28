@@ -2,6 +2,12 @@
 
 ---
 
+### 🏛️ Mapeamento M3F (Multilayer Fog/Cloud)
+*   **Camada Macro:** 🎛️ Camada 0: Fundamentos (Sem Código)
+*   **Nível de Referência:** 📍 Nível 1: Sensor/Atuador (Conceitual / Eletricidade Básica)
+
+---
+
 ## 🚀 Como Iniciar?
 Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
 
@@ -31,15 +37,15 @@ Este laboratório inicial serve para familiarização com a interface do Wokwi, 
 
 ## ⚙️ Workflow Passo a Passo
 
-### Nível 1: Circuito Manual (Pushbutton)
+### 🚀 Passo 1: Circuito Manual (Pushbutton)
 1.  Conecte o VCC -> Pushbutton -> Resistor -> LED -> GND.
 2.  Inicie a simulação e pressione o botão. O LED deve acender apenas enquanto você pressiona.
 
-### Nível 2: Circuito com Retenção (Slide Switch)
+### 🚀 Passo 2: Circuito com Retenção (Slide Switch)
 1.  Monte um segundo circuito usando o **Slide Switch**.
 2.  Observe que o LED permanece aceso ou apagado após o clique, simulando uma chave liga/desliga.
 
-### Nível 3: Inspeção JSON
+### 🚀 Passo 3: Inspeção JSON
 1.  Clique na aba **diagram.json**.
 2.  Localize o atributo `"attrs": { "color": "red" }` do LED e mude para `"green"`. Veja a mudança no editor.
 

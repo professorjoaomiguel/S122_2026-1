@@ -2,6 +2,12 @@
 
 ---
 
+### 🏛️ Mapeamento M3F (Multilayer Fog/Cloud)
+*   **Camada Macro:** 🐳 Camada 2: Fog (Transporte e Borda)
+*   **Nível de Referência:** 📍 Nível 2: Conectividade (Protocolo de Mensageria MQTT / Transporte leve)
+
+---
+
 ## 🚀 Como Iniciar?
 Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
 
@@ -26,15 +32,15 @@ Neste laboratório, abandonamos o modelo de requisição (HTTP) e adotamos o pad
 
 ## ⚙️ Workflow Passo a Passo
 
-### Nível 1: Conexão ao Broker
+### 🚀 Passo 1: Conexão ao Broker
 1.  Importe a biblioteca `PubSubClient`.
 2.  Implemente a função `reconnect()` para garantir que o ESP32 sempre tente se reconectar ao broker se a rede cair.
 
-### Nível 2: Publicação (Telemetria)
+### 🚀 Passo 2: Publicação (Telemetria)
 1.  Defina um tópico único (ex: `s122/SEU_NOME/estufa/temp`).
 2.  Envie um valor fixo a cada 5 segundos e verifique no [Web Client do HiveMQ](http://www.hivemq.com/demos/websocket-client/).
 
-### Nível 3: Integração Real
+### 🚀 Passo 3: Integração Real
 1.  Substitua o valor fixo pela leitura real de um sensor simulado (conforme LAB 05).
 
 ```cpp

@@ -3,6 +3,12 @@
 
 ---
 
+### 🏛️ Mapeamento M3F (Multilayer Fog/Cloud)
+*   **Camada Macro:** 🌿 Camada 1: Edge (Percepção Local)
+*   **Nível de Referência:** 📍 Nível 1: Sensor/Atuador (Display LCD e Barramento I2C)
+
+---
+
 > [!IMPORTANT]
 > **A Revolução do Clean Code na IoT:**
 > Até agora, você escreveu seus códigos em um único arquivo (monolítico). Conforme adicionamos sensores, displays e futuramente WiFi e MQTT, o arquivo principal vira uma bagunça de "espaguete". Neste laboratório, você aprenderá a criar uma interface visual local (LCD) e, em seguida, fará a sua primeira **Transição Arquitetural**: fatiar o código monolítico em abas separadas baseadas na metodologia **M3F**!
@@ -27,7 +33,7 @@ Mantenha os sensores do **LAB 05** e adicione o display:
 
 ## ⚙️ Workflow Passo a Passo
 
-### 🏗️ Nível 1: O Código Monolítico (Tudo em Um)
+### 🏗️ Passo 1: O Código Monolítico (Tudo em Um)
 Primeiro, vamos construir a solução de forma clássica: um arquivo único (`sketch.ino`). Ele junta as leituras analógica/digital do LAB 05 com a biblioteca do LCD I2C.
 
 1.  No Wokwi, configure seu circuito com os componentes e crie o código abaixo no arquivo `sketch.ino`:
@@ -84,7 +90,7 @@ void loop() {
 
 ---
 
-### 🪓 Nível 2: O Fatiamento M3F (A Transição para Abas)
+### 🪓 Passo 2: O Fatiamento M3F (A Transição para Abas)
 Parabéns, seu monolítico funciona! Contudo, no **LAB 08 (WiFi)** teremos dezenas de linhas de rede, e no **LAB 11 (MQTT)** mais de 50 linhas de conexões e soquetes. Misturar isso com sensores e LCDs em um só arquivo causará bugs difíceis de rastrear.
 
 Seguindo a **Metodologia M3F**, vamos fatiar esse código em **3 abas físicas** no Wokwi para separar a **Camada Física/Edge** das outras regras.
@@ -118,7 +124,7 @@ extern int luzPerc;
 ```
 
 #### Passo 2: Criar a aba `_1_Phy.ino` (Camada Física / Edge)
-Crie uma nova aba chamada `_1_Phy.ino`. Este arquivo conterá apenas a lógica do **Nível 1 (Sensor/Atuador)** e **Nível 6 (Display Local)**, isolando o hardware local:
+Crie uma nova aba chamada `_1_Phy.ino`. Este arquivo conterá apenas a lógica física de sensoriamento, atuação e exibição no display LCD, isolando o hardware local no Edge:
 
 ```cpp
 // --- _1_Phy.ino ---
@@ -192,7 +198,7 @@ void loop() {
 
 ---
 
-### 🧪 Nível 3: Teste e Validação
+### 🧪 Passo 3: Teste e Validação
 1.  Execute a simulação com as 3 abas ativas.
 2.  Verifique se o display continua mostrando a temperatura e umidade exatamente igual ao monolítico.
 3.  **Reflexão:** Note como o `loop()` do seu arquivo principal ficou limpo e fácil de ler. 

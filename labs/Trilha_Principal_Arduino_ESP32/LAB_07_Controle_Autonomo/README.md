@@ -1,5 +1,13 @@
 # LAB 07: Lógica de Controle e Atuadores
 
+---
+
+### 🏛️ Mapeamento M3F (Multilayer Fog/Cloud)
+*   **Camada Macro:** 🌿 Camada 1: Edge (Percepção Local)
+*   **Nível de Referência:** 📍 Nível 1: Sensor/Atuador (Lógica de Controle Autônomo e Histerese)
+
+---
+
 Nesta etapa final do Módulo 01, transformamos o sistema em uma entidade autônoma. O desafio é acoplar a **Ação** (Atuadores) em resposta ao que foi lido nos ganchos de **Percepção** (Sensores).
 
 ---
@@ -21,7 +29,7 @@ Mantenha os sensores e o LCD e adicione os atuadores finais:
 
 ## ⚙️ Workflow Passo a Passo
 
-### Nível 1: Gancho de Atuação
+### 🚀 Passo 1: Gancho de Atuação
 No seu código modular, localize a tag `[TAG] LOGICA_CONTROLE` e insira a regra de negócio inicial.
 
 ```cpp
@@ -47,7 +55,7 @@ void loop() {
 }
 ```
 
-### Nível 2: Alarmes Multi-nível
+### 🚀 Passo 2: Alarmes Multi-nível
 Não altere a ventoinha. Adicione uma segunda camada de proteção sob o mesmo gancho.
 
 ```cpp
@@ -59,7 +67,7 @@ Não altere a ventoinha. Adicione uma segunda camada de proteção sob o mesmo g
   }
 ```
 
-### Nível 3: Refinamento (Histerese)
+### 🚀 Passo 3: Refinamento (Histerese)
 Aperfeiçoe o código anterior para evitar o "repique" do relé.
 
 ```cpp
