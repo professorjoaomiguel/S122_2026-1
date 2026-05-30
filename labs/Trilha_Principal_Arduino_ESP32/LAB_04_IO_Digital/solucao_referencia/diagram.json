@@ -26,6 +26,21 @@
       "attrs": { "value": "220" }
     },
     {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": -80,
+      "left": 220,
+      "attrs": { "color": "yellow" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -20,
+      "left": 220,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    {
       "type": "wokwi-pushbutton",
       "id": "btn1",
       "top": 80,
@@ -37,6 +52,9 @@
     [ "esp32:12", "led1:A", "red", [] ],
     [ "led1:C", "r1:1", "black", [] ],
     [ "r1:2", "esp32:GND", "black", [] ],
+    [ "esp32:14", "led2:A", "yellow", [] ],
+    [ "led2:C", "r2:1", "black", [] ],
+    [ "r2:2", "esp32:GND", "black", [] ],
     [ "esp32:2", "btn1:2.r", "blue", [] ],
     [ "btn1:1.l", "esp32:GND", "black", [] ]
   ],
