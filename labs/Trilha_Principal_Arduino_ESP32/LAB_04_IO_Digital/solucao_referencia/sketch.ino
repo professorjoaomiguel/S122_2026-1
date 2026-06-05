@@ -26,9 +26,9 @@ void setup() {
   pinMode(pinoLED, OUTPUT);
   pinMode(pinoLEDAlert, OUTPUT);
   
-  // O modo INPUT_PULLUP aciona o resistor interno de pull-up do ESP32 (aprox. 47k Ohms).
-  // Isso mantém a porta em nível ALTO (HIGH) por padrão e vai a BAIXO (LOW) quando o botão é pressionado.
-  pinMode(pinoBotao, INPUT_PULLUP);
+  // Configurado como INPUT comum devido ao resistor físico de Pull-Up de 10k externo no circuito.
+  // O resistor de Pull-Up mantém o pino em nível ALTO (HIGH) por padrão, caindo para BAIXO (LOW) quando pressionado.
+  pinMode(pinoBotao, INPUT);
 }
 
 void loop() {

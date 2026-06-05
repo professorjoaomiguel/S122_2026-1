@@ -31,6 +31,14 @@
       "top": 80,
       "left": -120,
       "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 80,
+      "left": -220,
+      "rotate": 90,
+      "attrs": { "value": "10000" }
     }
   ],
   "connections": [
@@ -38,6 +46,8 @@
     [ "led1:C", "r1:1", "black", [] ],
     [ "r1:2", "esp32:GND", "black", [] ],
     [ "esp32:2", "btn1:2.r", "blue", [] ],
+    [ "btn1:2.r", "r2:2", "blue", [] ],
+    [ "r2:1", "esp32:3V3", "red", [] ],
     [ "btn1:1.l", "esp32:GND", "black", [] ]
   ],
   "dependencies": {}

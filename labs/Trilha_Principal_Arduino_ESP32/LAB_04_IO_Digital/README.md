@@ -19,7 +19,8 @@ Nesta prática, exploramos a interação básica entre o mundo físico e o digit
 ---
 
 ## 🎯 Objetivos Técnicos
-*   Configurar pinos como entrada (`INPUT_PULLUP`) e saída (`OUTPUT`).
+*   Configurar pinos como entrada digital (`INPUT`) e saída (`OUTPUT`).
+*   Compreender e montar o circuito elétrico de **resistor de Pull-Up externo**.
 *   Implementar estruturas de decisão (`if/else`).
 *   Monitorar estados internos via **Serial Monitor**.
 
@@ -27,8 +28,8 @@ Nesta prática, exploramos a interação básica entre o mundo físico e o digit
 
 ## 🧱 Setup de Hardware
 Monte o circuito completo para todos os níveis:
-*   **LED Externo + Resistor:** Pino 12.
-*   **Pushbutton:** Pino 2 (conectado ao GND).
+*   **LED Externo + Resistor:** Pino 12 (resistor limitador de 220Ω).
+*   **Pushbutton:** Pino 2 (conectado ao GND e ao pino 3.3V através de um resistor físico de Pull-Up de 10kΩ).
 
 ---
 
@@ -61,7 +62,7 @@ void setup() {
   Serial.begin(9600);
   pinMode(pinoLED, OUTPUT);
   // [TAG] SETUP_PINOS
-  pinMode(pinoBotao, INPUT_PULLUP);
+  pinMode(pinoBotao, INPUT); // Configurado como INPUT devido ao pull-up externo de 10k
 }
 
 void loop() {
@@ -101,7 +102,7 @@ void setup() {
   
   // [TAG] SETUP_PINOS
   pinMode(pinoLED, OUTPUT);
-  pinMode(pinoBotao, INPUT_PULLUP); // Habilita o resistor interno do ESP32
+  pinMode(pinoBotao, INPUT); // Configurado como INPUT (Pull-Up físico externo)
 }
 
 void loop() {
@@ -150,7 +151,7 @@ Agora que você domina as entradas e saídas digitais básicas, aplique seu conh
     4.  **Reset de Segurança:** Para resetar o alarme e desligar os LEDs, o operador deve manter o botão pressionado continuamente por **3 segundos**. Apenas após esse tempo o alarme desarma.
 
 ### ❓ Reflexão Técnica
-1.  **O que aconteceria se esquecêssemos de definir o pino como `INPUT_PULLUP` no `setup()`?** Se declarássemos apenas `INPUT` e não conectássemos resistores físicos externos, qual comportamento de leitura aleatória seria observado no pino 2 (*Floating State*)?
+1.  O que aconteceria se removêssemos o resistor de 10k físico do circuito e declarássemos o pino apenas como `INPUT` comum sem habilitar o pull-up interno no firmware? Qual comportamento de leitura instável e aleatória seria observado no pino 2 (*Floating State*)?
 2.  **O que é o fenômeno do Bouncing (Ruído Mecânico)?** Por que botões físicos geram dezenas de falsos sinais de liga/desliga nos microssegundos iniciais de toque e como a nossa instrução `delay(50)` no loop ajuda a mitigar isso (Debounce por Software)?
 
 ---

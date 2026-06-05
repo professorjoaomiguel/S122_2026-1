@@ -22,9 +22,8 @@ void setup() {
   // ====================================================================
   pinMode(pinoLED, OUTPUT);
   
-  // ATENÇÃO: Qual modo usar no pino do botão para evitar resistores externos?
-  // Dica: Use INPUT_PULLUP para acionar a resistência interna de Pull-up.
-  pinMode(pinoBotao, INPUT_PULLUP);
+  // Como o circuito possui um resistor físico de Pull-Up de 10k externo, configuramos como INPUT comum!
+  pinMode(pinoBotao, INPUT);
 }
 
 void loop() {
