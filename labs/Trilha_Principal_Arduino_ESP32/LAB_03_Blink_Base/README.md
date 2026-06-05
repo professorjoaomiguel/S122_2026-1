@@ -9,7 +9,7 @@
 ---
 
 ## 🚀 Como Iniciar?
-1. Abra um projeto em branco no simulador: 🚀 [**Wokwi Blank (Sem placa)**](https://wokwi.com/projects/new/blank).
+1. Abra um projeto vazio para Arduino Uno no simulador: 🚀 [**Projeto Vazio: Arduino Uno**](https://wokwi.com/projects/new/arduino-uno).
 2. Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
 
 ---
@@ -28,7 +28,7 @@ Todo projeto de hardware começa com um sinal de vida. O "Blink" é o teste univ
 ## ⚙️ Workflow Passo a Passo
 
 ### 🚀 Passo 1: Estrutura Base
-1.  Abra um 🚀 [**Projeto Vazio: Arduino Uno**](https://wokwi.com/projects/new/arduino-uno) (ou inicie a partir do [**Wokwi Blank (Sem placa)**](https://wokwi.com/projects/new/blank) e adicione a placa manualmente).
+1.  Abra um 🚀 [**Projeto Vazio: Arduino Uno**](https://wokwi.com/projects/new/arduino-uno).
 2.  Identifique as funções `void setup()` e `void loop()`.
 
 ### 🚀 Passo 2: Saída Digital
