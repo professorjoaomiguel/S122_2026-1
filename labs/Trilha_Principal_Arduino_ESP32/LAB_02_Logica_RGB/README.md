@@ -9,7 +9,8 @@
 ---
 
 ## 🚀 Como Iniciar?
-Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
+1. Abra um projeto em branco no simulador: 🚀 [**Wokwi Blank (Sem placa)**](https://wokwi.com/projects/new/blank).
+2. Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
 
 ---
 
