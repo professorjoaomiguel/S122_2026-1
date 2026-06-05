@@ -12,6 +12,12 @@ Nesta etapa final do Módulo 01, transformamos o sistema em uma entidade autôno
 
 ---
 
+## 🚀 Como Iniciar?
+1. Abra um projeto vazio para ESP32 (Arduino C++) no simulador: 🚀 [**Projeto Vazio: ESP32 (Arduino)**](https://wokwi.com/projects/new/esp32).
+2. Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
+
+---
+
 ## 🎯 Objetivos Técnicos
 *   Implementar estruturas de decisão (`if/else`).
 *   Introduzir o conceito de **Histerese**.
@@ -80,10 +86,72 @@ Aperfeiçoe o código anterior para evitar o "repique" do relé.
   }
 ```
 
+### 🚀 Passo 4: Código Consolidado Final (Aba _1_Phy.ino)
+Ao final das etapas do laboratório, a sua aba física **`_1_Phy.ino`** unificada deverá conter a lógica de leitura, normalização, controle com histerese e acionamento dos alarmes:
+
+```cpp
+// --- _1_Phy.ino ---
+#include "Bibliotecas.h"
+
+bool ventoinhaLigada = false; // Estado interno do atuador
+
+void setupEdge() {
+  dht.begin();
+  lcd.init();
+  lcd.backlight();
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Controle IoT!");
+  
+  pinMode(PINO_VENTOINHA, OUTPUT);
+  pinMode(PINO_BUZZER, OUTPUT);
+  
+  digitalWrite(PINO_VENTOINHA, LOW);
+  noTone(PINO_BUZZER);
+  delay(1500);
+}
+
+void loopEdge() {
+  temp = dht.readTemperature();
+  umid = dht.readHumidity();
+  int luzRaw = analogRead(LDRPIN);
+  luzPerc = map(luzRaw, 0, 4095, 0, 100);
+
+  if (isnan(temp) || isnan(umid)) {
+    Serial.println("Erro na leitura física!");
+    return;
+  }
+
+  // --- LÓGICA DE CONTROLE DA VENTOINHA COM HISTERESE ---
+  if (temp > 30.0) {
+    ventoinhaLigada = true;
+    digitalWrite(PINO_VENTOINHA, HIGH);
+  } 
+  else if (temp < 28.0) {
+    ventoinhaLigada = false;
+    digitalWrite(PINO_VENTOINHA, LOW);
+  }
+
+  // --- ALARME CRÍTICO COM BUZZER ---
+  if (temp > 40.0) {
+    tone(PINO_BUZZER, 1000);
+  } else {
+    noTone(PINO_BUZZER);
+  }
+
+  // --- ATUALIZAÇÃO DO LCD ---
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.printf("Temp: %.1f C", temp);
+  lcd.setCursor(0, 1);
+  lcd.printf("Umid: %.1f %%", umid);
+}
+```
+
 ---
 
 ## 🌿 Conexão com o Projeto (Opcional)
-Na **Estufa Inteligente**, esta é a **Automação Climática**. O sistema agora possui instinto de preservação: ele "sente" o calor e "age" ligando a refrigeração antes que as plantas murcharem.
+Na **Estufa Inteligente**, esta é a **Automação Climática**. O sistema agora possui instinto de preservação: ele "sente" o calor e "age" ligando a refrigeração antes que as plantas murchem.
 
 ---
 
@@ -93,9 +161,21 @@ Na **Estufa Inteligente**, esta é a **Automação Climática**. O sistema agora
 
 ---
 
-## 🧠 Desafio e Reflexão Técnica
-1.  **Desafio:** Use a tag `[TAG] DISPLAY_LOCAL` (do LAB 06) para exibir o status "FAN: ON" ou "FAN: OFF" no LCD junto com a temperatura.
-2.  Por que a modularização via ganchos (tags) facilitou a adição da ventoinha sem estragar a leitura do sensor?
+## 🧠 Atividades de Desafio Prático e Reflexão
+Agora que você construiu um sistema de controle de ciclo fechado, implemente um feedback visual para o usuário local!
+
+### 🚨 Desafio: Feedback no Display Local
+*   **Missão:** Use o display LCD para sinalizar o estado dos atuadores em tempo real.
+    *   Modifique a exibição no LCD in `_1_Phy.ino` para alternar ou exibir na segunda linha a informação do status da ventoinha (ex: `FAN: ON` ou `FAN: OFF`), facilitando o diagnóstico visual para o operador local de campo.
+
+### ❓ Reflexão Técnica
+1.  **Por que usamos a lógica de Histerese (margem de 2°C) no controle da ventoinha?** O que aconteceria se definíssemos apenas um valor rígido de 30°C para ligar e desligar, e a temperatura ambiente ficasse oscilando em torno de 30.01°C e 29.99°C? Como isso afeta a vida útil de relés e motores elétricos na indústria?
+2.  Como o barramento I2C simplificou a pinagem necessária para ligar o LCD ao ESP32 (quantos pinos seriam necessários se usássemos o modo paralelo clássico)?
+
+---
+
+## 📂 Solução de Referência e Recursos
+O professor disponibilizou uma pasta chamada [**`solucao_referencia/`**](./solucao_referencia/) neste laboratório. Ela contém o circuito físico configurado e a lógica modular 100% implementada para o laboratório, bem como a resolução do desafio no display LCD. Use-a para validar sua lógica depois de tentar resolver sozinho!
 
 ---
 
@@ -105,8 +185,8 @@ Deseja versionar este código no seu GitHub? Siga o [**Guia Profissional de VS C
 ---
 
 ## 📤 Entrega (Classroom)
-*   **Link Wokwi:** [Seu Link]
-*   **Reflexão:** Explique a lógica de Histerese que você implementou.
+*   **Link Wokwi:** Link do simulador (com as abas separadas).
+*   **Reflexão:** Explique com suas palavras a lógica de Histerese implementada no seu relatório.
 
 ---
 *UC S122 - Internet das Coisas*

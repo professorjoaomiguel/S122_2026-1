@@ -15,6 +15,12 @@
 
 ---
 
+## 🚀 Como Iniciar?
+1. Abra um projeto vazio para ESP32 (Arduino C++) no simulador: 🚀 [**Projeto Vazio: ESP32 (Arduino)**](https://wokwi.com/projects/new/esp32).
+2. Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
+
+---
+
 ## 🎯 Objetivos Técnicos
 1.  Compreender o barramento de comunicação industrial **I2C**.
 2.  Manipular a biblioteca `LiquidCrystal_I2C`.
@@ -216,15 +222,30 @@ Na **Estufa Inteligente**, a modularização fatiada representa a arquitetura co
 
 ---
 
-## 🧠 Desafio e Reflexão Técnica
-1.  **Desafio:** Adicione um LED vermelho ao circuito. Altere a aba `Bibliotecas.h` (definindo o pino do LED) e a aba `_1_Phy.ino` (para acender o LED se a temperatura passar de 32°C). Perceba como você **não precisou mexer em nada** no coordenador principal `sketch.ino`!
-2.  Qual a utilidade do comando `extern` nas variáveis dentro de `Bibliotecas.h`?
+## 🧠 Atividades de Desafio Prático e Reflexão
+Agora que seu código está fatiado de forma profissional, vamos realizar uma alteração e testar a modularidade do seu projeto!
+
+### 🚨 Desafio: Alerta Visual Modular
+*   **Missão:** Adicione um LED Vermelho de alerta ao circuito (no **pino 12**).
+    1.  Abra a aba `Bibliotecas.h` e defina o pino do LED (`#define PINO_LED_ALERTA 12`).
+    2.  Na aba `_1_Phy.ino`, configure o pino do LED como `OUTPUT` no `setupEdge()`.
+    3.  Ainda em `_1_Phy.ino`, no `loopEdge()`, implemente a lógica para acender o LED se a temperatura ultrapassar **32°C**. Caso contrário, o LED deve apagar.
+    4.  **Reflexão de Arquitetura:** Observe como você realizou toda a manutenção de hardware e lógica do LED nas abas físicas sem precisar alterar sequer uma linha no arquivo coordenador principal `sketch.ino`!
+
+### ❓ Reflexão Técnica
+1.  **Qual a grande utilidade do comando `extern`** na declaração de objetos e variáveis dentro de `Bibliotecas.h`? Como isso impede o erro de duplicidade de compilação (*multiple definition*)?
+2.  Como a arquitetura M3F em abas ajuda uma equipe de desenvolvimento real de IoT a trabalhar em paralelo (ex: um desenvolvedor na nuvem e outro nos sensores)?
+
+---
+
+## 📂 Solução de Referência e Recursos
+O professor disponibilizou uma pasta chamada [**`solucao_referencia/`**](./solucao_referencia/) neste laboratório. Ela contém o circuito físico completo montado e o firmware fatiado em abas 100% resolvido, incluindo o desafio do LED de alerta. Use-a para validar sua lógica depois de tentar fazer por conta própria!
 
 ---
 
 ## 📤 Entrega (Classroom)
-*   **Link Wokwi:** Link do circuito simulado (com as abas separadas).
-*   **Printscreen:** Foto do editor com as abas `sketch.ino`, `Bibliotecas.h` e `_1_Phy.ino` abertas e funcionando.
+*   **Link Wokwi:** Link do simulador (com as abas separadas).
+*   **Captura de tela:** Imagem do editor mostrando as abas `sketch.ino`, `Bibliotecas.h` e `_1_Phy.ino` funcionais.
 
 ---
 *UC S122 - Internet das Coisas*
