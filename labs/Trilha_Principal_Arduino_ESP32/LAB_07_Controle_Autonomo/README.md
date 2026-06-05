@@ -8,6 +8,16 @@
 
 ---
 
+### 🔌 Hardware Requerido
+*   **Placa:** **ESP32 DevKit v4**
+*   **Finalidade:** Processamento em borda (Edge), I/O avançado e IoT
+
+<p align="center">
+  <img src="https://wokwi.com/images/boards-photos/esp32.svg" alt="ESP32 DevKit v4" width="160">
+</p>
+
+---
+
 Nesta etapa final do Módulo 01, transformamos o sistema em uma entidade autônoma. O desafio é acoplar a **Ação** (Atuadores) em resposta ao que foi lido nos ganchos de **Percepção** (Sensores).
 
 ---

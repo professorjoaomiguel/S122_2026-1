@@ -8,6 +8,16 @@
 
 ---
 
+### 🔌 Hardware Requerido
+*   **Placa:** **ESP32 DevKit v4**
+*   **Finalidade:** Processamento em borda (Edge), I/O avançado e IoT
+
+<p align="center">
+  <img src="https://wokwi.com/images/boards-photos/esp32.svg" alt="ESP32 DevKit v4" width="160">
+</p>
+
+---
+
 ## 🚀 Como Iniciar?
 1. Abra um projeto vazio para ESP32 (Arduino C++) no simulador: 🚀 [**Projeto Vazio: ESP32 (Arduino)**](https://wokwi.com/projects/new/esp32).
 2. Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.

@@ -9,6 +9,16 @@
 
 ---
 
+### 🔌 Hardware Requerido
+*   **Placa:** **ESP32 DevKit v4**
+*   **Finalidade:** Processamento em borda (Edge), I/O avançado e IoT
+
+<p align="center">
+  <img src="https://wokwi.com/images/boards-photos/esp32.svg" alt="ESP32 DevKit v4" width="160">
+</p>
+
+---
+
 > [!IMPORTANT]
 > **A Revolução do Clean Code na IoT:**
 > Até agora, você escreveu seus códigos em um único arquivo (monolítico). Conforme adicionamos sensores, displays e futuramente WiFi e MQTT, o arquivo principal vira uma bagunça de "espaguete". Neste laboratório, você aprenderá a criar uma interface visual local (LCD) e, em seguida, fará a sua primeira **Transição Arquitetural**: fatiar o código monolítico em abas separadas baseadas na metodologia **M3F**!

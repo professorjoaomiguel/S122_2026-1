@@ -8,6 +8,16 @@
 
 ---
 
+### 🔌 Hardware Requerido
+*   **Placa:** **Arduino Uno Rev3**
+*   **Finalidade:** Fundamentos de microcontroladores e programação em C++
+
+<p align="center">
+  <img src="https://wokwi.com/images/boards-photos/arduino-uno.svg" alt="Arduino Uno Rev3" width="180">
+</p>
+
+---
+
 ## 🚀 Como Iniciar?
 1. Abra um projeto vazio para Arduino Uno no simulador: 🚀 [**Projeto Vazio: Arduino Uno**](https://wokwi.com/projects/new/arduino-uno).
 2. Se você está no navegador, siga o [**Guia de Início Rápido**](../../../guias_e_roteiros_tecnicos/Guia_Wokwi_Inicio_Rapido.md) para configurar seu hardware e documentação em segundos.
