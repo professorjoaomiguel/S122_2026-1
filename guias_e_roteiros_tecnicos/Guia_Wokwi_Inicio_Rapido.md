@@ -14,7 +14,8 @@ Navegue até a pasta do laboratório desejado (ex: `LAB_05_Sensores_Serial`).
 -   Se houver um arquivo `sketch.ino`, faça o mesmo (Copie o código).
 
 ### 2. Criação (Lado Wokwi)
-Abra um projeto vazio diretamente para a placa do laboratório ou um projeto em branco para circuitos puros:
+Abra a página de seleção do simulador ou use um link direto para a placa do seu laboratório:
+*   🌐 [**Seleção de Placas (Escolha qualquer placa)**](https://wokwi.com/projects/new/)
 *   🚀 [**Projeto Vazio: Wokwi Blank (Sem placa)**](https://wokwi.com/projects/new/blank)
 *   🚀 [**Projeto Vazio: Arduino Uno**](https://wokwi.com/projects/new/arduino-uno)
 *   🚀 [**Projeto Vazio: ESP32 DevKit v4**](https://wokwi.com/projects/new/esp32)
