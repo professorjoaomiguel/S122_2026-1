@@ -52,8 +52,11 @@ void loop() {
 }
 ```
 
-### 🚀 Passo 2: Leitura de Botão e Serial
-Agora, acoplamos a entrada digital sem apagar o anterior. Use o Serial Monitor para "enxergar" o que o chip sente.
+### 🚀 Passo 2: O Fenômeno do Pino Flutuante (Floating State)
+Antes de estabilizarmos o circuito, vamos experimentar na prática o que acontece se o hardware não tiver uma referência elétrica clara.
+
+1.  **Montagem direta (Sem resistor):** Mantenha o botão conectado entre o **Pino 2** e o **GND** no Wokwi, mas remova/delete temporariamente o resistor de $10\text{ k}\Omega$ e as conexões dele com o 3.3V.
+2.  **Código de Teste:** Configure o pino como entrada comum (modo `INPUT` sem pull-up):
 ```cpp
 // [TAG] DEFINICOES
 const int pinoBotao = 2;
@@ -62,26 +65,37 @@ void setup() {
   Serial.begin(9600);
   pinMode(pinoLED, OUTPUT);
   // [TAG] SETUP_PINOS
-  pinMode(pinoBotao, INPUT); // Configurado como INPUT devido ao pull-up externo de 10k
+  pinMode(pinoBotao, INPUT); // Entrada comum
 }
 
 void loop() {
   // --- Etapa 2: Escuta ---
   bool estado = digitalRead(pinoBotao);
   Serial.print("Estado do Botao: "); Serial.println(estado);
-  delay(100);
+  delay(50);
 }
 ```
+3.  **A Simulação e os Glitchs:** Inicie a simulação e abra o Serial Monitor.
+    *   *O que acontece?* Mesmo sem pressionar o botão, o valor exibido na Serial fica oscilando aleatoriamente entre `0` e `1` (ou travado em um estado falso). Isso ocorre porque o pino está em **estado flutuante (Floating State / Alta Impedância)**, agindo como uma antena que capta o menor ruído eletrostático do ambiente.
 
-### 🚀 Passo 3: Lógica de Controle
-Finalmente, unimos a leitura à ação. O código agora toma uma decisão baseada no botão.
+---
+
+### 🚀 Passo 3: Estabilizando com Pull-Up Externo (Circuito)
+Para dar uma referência de tensão fixa ao pino quando o botão estiver aberto, usaremos um resistor de pull-up externo de hardware.
+
+1.  **Conexão do Resistor de Pull-Up:** Reconecte o resistor de **$10\text{ k}\Omega$** no Wokwi:
+    *   Um lado do resistor ligado ao **3.3V (VCC)** da placa.
+    *   O outro lado do resistor ligado ao pino da chave (conectado ao **Pino 2**).
+2.  **Lógica do Código:** Mantenha o código configurado como `INPUT` no setup.
+3.  **Comportamento:**
+    *   *Botão Solto:* O pino 2 recebe 3.3V diretamente do resistor de Pull-up. A leitura estabiliza em `1` (HIGH) de forma segura.
+    *   *Botão Pressionado:* O contato se fecha com o GND. A corrente flui para a terra e o pino cai limpo para `0` (LOW).
 ```cpp
 void loop() {
-  // --- Etapa 3: Decisao ---
-  // [TAG] LOGICA_CONTROLE
-  if (digitalRead(pinoBotao) == LOW) { // Botao pressionado
+  // --- Etapa 3: Decisao com Pull-Up Externo ---
+  if (digitalRead(pinoBotao) == LOW) { // Botao pressionado (aterrado)
     digitalWrite(pinoLED, HIGH);
-    Serial.println("Porta Aberta!");
+    Serial.println("Porta Aberta! LED LIGADO.");
   } else {
     digitalWrite(pinoLED, LOW);
   }
@@ -89,8 +103,27 @@ void loop() {
 }
 ```
 
-### 🚀 Passo 4: Código Consolidado Final
-Ao final das etapas anteriores, o seu código estará completo e estruturado da seguinte forma, integrando todas as fases:
+---
+
+### 🚀 Passo 4: Evolução para o Pull-Up Interno (Firmware)
+Para economizar peças e reduzir o custo físico da placa, os microcontroladores modernos possuem resistores internos que podem ser ativados via software.
+
+1.  **Remoção Física:** Remova/delete novamente o resistor de $10\text{ k}\Omega$ e seus fios do simulador Wokwi.
+2.  **Ativação via Software:** Modifique a inicialização do pino no setup de `INPUT` para **`INPUT_PULLUP`**:
+```cpp
+void setup() {
+  Serial.begin(9600);
+  pinMode(pinoLED, OUTPUT);
+  // [TAG] SETUP_PINOS
+  pinMode(pinoBotao, INPUT_PULLUP); // Aciona o resistor interno do ESP32 (aprox. 45k Ohms)
+}
+```
+3.  **Resultado:** O circuito funciona de forma idêntica à etapa anterior (LOW quando pressionado e HIGH quando solto), mas sem a necessidade do resistor externo físico na matriz!
+
+---
+
+### 🚀 Passo 5: Código Consolidado Final (Versão Recomendada com Pull-Up Interno)
+Ao final, o seu código estará completo e estruturado da seguinte forma (usando a vantagem do pull-up por firmware):
 ```cpp
 // [TAG] DEFINICOES
 const int pinoLED = 12;   // LED Vermelho Externo
@@ -102,14 +135,14 @@ void setup() {
   
   // [TAG] SETUP_PINOS
   pinMode(pinoLED, OUTPUT);
-  pinMode(pinoBotao, INPUT); // Configurado como INPUT (Pull-Up físico externo)
+  pinMode(pinoBotao, INPUT_PULLUP); // Habilita o resistor interno de pull-up do ESP32
 }
 
 void loop() {
   // [TAG] LOGICA_CONTROLE
   bool estado = digitalRead(pinoBotao); // Le o estado lógico do botao
   
-  if (estado == LOW) { // Botao conecta ao GND, ou seja, pressionado = LOW
+  if (estado == LOW) { // Botao pressionado = LOW
     digitalWrite(pinoLED, HIGH);
     Serial.println("Porta ABERTA! LED LIGADO 🔴");
   } else {
@@ -151,8 +184,10 @@ Agora que você domina as entradas e saídas digitais básicas, aplique seu conh
     4.  **Reset de Segurança:** Para resetar o alarme e desligar os LEDs, o operador deve manter o botão pressionado continuamente por **3 segundos**. Apenas após esse tempo o alarme desarma.
 
 ### ❓ Reflexão Técnica
-1.  O que aconteceria se removêssemos o resistor de 10k físico do circuito e declarássemos o pino apenas como `INPUT` comum sem habilitar o pull-up interno no firmware? Qual comportamento de leitura instável e aleatória seria observado no pino 2 (*Floating State*)?
-2.  **O que é o fenômeno do Bouncing (Ruído Mecânico)?** Por que botões físicos geram dezenas de falsos sinais de liga/desliga nos microssegundos iniciais de toque e como a nossa instrução `delay(50)` no loop ajuda a mitigar isso (Debounce por Software)?
+1.  **Por que nem sempre podemos depender do Pull-Up Interno?**
+    *   *Resposta para estudo:* Os resistores integrados no silício possuem alta tolerância física e resistência muito elevada (em torno de $30\text{ k}\Omega$ a $50\text{ k}\Omega$ no ESP32). Em ambientes industriais com alto ruído eletromagnético (próximo a contatores e motores), essa alta resistência pode permitir o acoplamento de interferências eletromagnéticas. Nesses cenários, os engenheiros usam resistores físicos de Pull-Up externos menores (ex: $1\text{ k}\Omega$ ou $4.7\text{ k}\Omega$) para garantir a estabilidade do sinal. Além disso, chips legados ou pinos exclusivamente analógicos não possuem essa opção interna.
+2.  **O que aconteceria se o pino ficasse em estado flutuante (Floating State)?** Explique o papel físico do resistor de Pull-Up (tanto interno quanto externo) para evitar leituras espúrias.
+3.  **O que é o fenômeno do Bouncing (Ruído Mecânico)?** Por que chaves mecânicas geram dezenas de falsos contatos de liga/desliga nos microssegundos iniciais do toque e como o `delay(50)` (Debounce por Software) ajuda a mitigar isso?
 
 ---
 
