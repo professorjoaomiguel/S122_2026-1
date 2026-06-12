@@ -46,5 +46,9 @@
     [ "r2:1", "esp32:3V3", "red", [ "v-38.4", "v-19.2" ] ],
     [ "btn1:1.l", "esp32:GND.1", "black", [ "h19.2", "v-115.1" ] ]
   ],
-  "dependencies": {}
+  "dependencies": {},
+  "serialMonitor": {
+    "display": "always",
+    "newline": "lf"
+  }
 }

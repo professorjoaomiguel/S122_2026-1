@@ -68,5 +68,9 @@
     [ "r3:1", "esp32:3V3", "red", [] ],
     [ "btn1:1.l", "esp32:GND.1", "black", [] ]
   ],
-  "dependencies": {}
+  "dependencies": {},
+  "serialMonitor": {
+    "display": "always",
+    "newline": "lf"
+  }
 }
