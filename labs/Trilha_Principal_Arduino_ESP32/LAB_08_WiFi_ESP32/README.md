@@ -33,7 +33,7 @@ O sistema sai do isolamento. Nesta etapa, conectamos o cérebro da nossa soluç�
 ## ⚙️ Workflow Passo a Passo
 
 ### 🚀 Passo 1: O Handshake de Rede
-1.  Abra um 🚀 [**Projeto Vazio: ESP32**](https://wokwi.com/projects/new/esp32).
+1.  Abra um 🚀 <a href="https://wokwi.com/projects/new/esp32" target="_blank" title="Abrir em uma nova aba">**Projeto Vazio: ESP32**</a>.
 2.  Utilize a biblioteca `WiFi.h`.
 3.  Inicie a conexão e faça o código "travar" com um loop `while` até que o status seja `WL_CONNECTED`.
 
