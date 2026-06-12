@@ -17,7 +17,7 @@ const int pinoBotao = 2;  // Pushbutton no pino 2
 
 void setup() {
   // Inicializa o Monitor Serial para logs
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("S122 - Seguranca Iniciado!");
   
   // =======================================================

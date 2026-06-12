@@ -72,7 +72,7 @@ Antes de estabilizarmos o circuito, vamos experimentar na prática o que acontec
 const int pinoBotao = 2;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   pinMode(pinoLED, OUTPUT);
   // [TAG] SETUP_PINOS
   pinMode(pinoBotao, INPUT); // Entrada comum
@@ -122,7 +122,7 @@ Para economizar peças e reduzir o custo físico da placa, os microcontroladores
 2.  **Ativação via Software:** Modifique a inicialização do pino no setup de `INPUT` para **`INPUT_PULLUP`**:
 ```cpp
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   pinMode(pinoLED, OUTPUT);
   // [TAG] SETUP_PINOS
   pinMode(pinoBotao, INPUT_PULLUP); // Aciona o resistor interno do ESP32 (aprox. 45k Ohms)
@@ -140,7 +140,7 @@ const int pinoLED = 12;   // LED Vermelho Externo
 const int pinoBotao = 2;  // Pushbutton (Sensor de Porta)
 
 void setup() {
-  Serial.begin(9600); // Inicializa a comunicacao Serial
+  Serial.begin(115200); // Inicializa a comunicacao Serial
   Serial.println("S122 - Sistema de Seguranca Iniciado!");
   
   // [TAG] SETUP_PINOS
