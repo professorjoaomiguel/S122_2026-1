@@ -1,11 +1,9 @@
 // LAB 04B - Solucao de Referencia
-// Demonstra: Blink + Serial Monitor + informacoes do chip ESP32
-
-#include "esp_system.h" // Necessario para getCpuFrequencyMhz() e ESP.getFreeHeap()
+// Demonstra: Blink + Serial Monitor + dados do ESP32
 
 void setup() {
   Serial.begin(115200);
-  delay(1000); // Aguarda a Serial estabilizar
+  delay(1000); // Aguarda estabilizacao da Serial
 
   Serial.println("========================================");
   Serial.println("  LAB 04B - Apresentacao do ESP32");
@@ -13,10 +11,10 @@ void setup() {
 
   // Informacoes do chip
   Serial.print("Nucleo em execucao: ");
-  Serial.println(xPortGetCoreID()); // Core 0 ou Core 1
+  Serial.println(xPortGetCoreID()); // Core 0 ou 1
 
   Serial.print("Frequencia do CPU: ");
-  Serial.print(getCpuFrequencyMhz());
+  Serial.print(ESP.getCpuFreqMHz());
   Serial.println(" MHz");
 
   Serial.print("Memoria Heap livre: ");
@@ -28,7 +26,7 @@ void setup() {
   Serial.println(" MB");
 
   Serial.println("========================================");
-  Serial.println("Iniciando Blink no GPIO 2 (LED azul)...");
+  Serial.println("Iniciando Blink no GPIO 2...");
   Serial.println("========================================");
 
   pinMode(2, OUTPUT); // Pino 2 como saida (LED azul)

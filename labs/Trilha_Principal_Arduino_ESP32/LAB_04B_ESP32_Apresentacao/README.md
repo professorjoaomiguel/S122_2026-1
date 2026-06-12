@@ -6,6 +6,16 @@
 *   **Camada Macro:** 🌿 Camada 1: Edge (Percepção Local)
 *   **Nível de Referência:** 📍 Nível 1: Sensor/Atuador (Anatomia da Placa ESP32 e Primeiro Programa)
 
+```mermaid
+graph TD
+    C[Nuvem / Cloud API] <-->|Protocolo MQTT| F[Fog Server / Gateway Local]
+    F <-->|Protocolo HTTP/MQTT| E[Edge Node / ESP32]
+    subgraph Camada Edge (Percepção Local)
+        E --- S[Sensores / Atuadores]
+    end
+    style E fill:#f9f,stroke:#333,stroke-width:2px
+```
+
 ---
 
 ### 🔌 Hardware Requerido
@@ -41,9 +51,23 @@ O **ESP32** foi criado pela Espressif Systems exatamente para isso. Ele não é 
 
 ## 🔍 Anatomia do ESP32 DevKit v4 — Comparação com o Arduino Uno
 
-<p align="center">
-  <img src="https://wokwi.com/images/boards-photos/esp32.svg" alt="ESP32 DevKit v4" width="320">
-</p>
+```mermaid
+graph LR
+    subgraph Arduino Uno (Fundamentos)
+        U_CPU[ATmega328P 8-bit]
+        U_FREQ[16 MHz]
+        U_RAM[2 KB SRAM]
+        U_VOLT[5V Lógico]
+        U_CONN[Sem Conectividade]
+    end
+    subgraph ESP32 DevKit v4 (Projetos IoT)
+        E_CPU[Xtensa Dual-Core 32-bit]
+        E_FREQ[240 MHz]
+        E_RAM[520 KB SRAM]
+        E_VOLT[3.3V Lógico]
+        E_CONN[WiFi & Bluetooth Embutidos]
+    end
+```
 
 | Característica | Arduino Uno | ESP32 DevKit v4 |
 | :--- | :---: | :---: |
@@ -72,7 +96,7 @@ Diferente do Arduino Uno, onde os pinos são numerados sequencialmente (0 a 13),
 | Região da Placa | Pinos | Observação |
 | :--- | :--- | :--- |
 | **GPIOs Digitais** | GPIO 0–39 | Entrada e saída digital |
-| **ADC (Analógico)** | GPIO 32–39 (ADC1), GPIO 0–15 (ADC2) | ADC2 não funciona com Wi-Fi ativo! |
+| **ADC (Analógico)** | GPIO 32–39 (ADC1), GPIO 0, 2, 4, 12-15, 25-27 (ADC2) | ADC2 não funciona com Wi-Fi ativo! |
 | **DAC (Saída Analógica Real)** | GPIO 25, 26 | Converte digital para tensão analógica |
 | **Touch Capacitivo** | GPIO 0, 2, 4, 12–15, 27, 32, 33 | Detecta toque sem botão mecânico |
 | **LED Interno** | **GPIO 2** | O LED azul embutido no DevKit v4 |
@@ -147,16 +171,14 @@ void loop() {
 Modifique o código para imprimir a frequência do clock da CPU — uma informação que o ESP32 conhece sobre si mesmo:
 
 ```cpp
-#include "esp_system.h" // Biblioteca interna do ESP32
-
 void setup() {
   Serial.begin(115200);
   Serial.print("Frequencia do CPU: ");
-  Serial.print(getCpuFrequencyMhz()); // Função exclusiva do ESP32
+  Serial.print(ESP.getCpuFreqMHz());  // Metodo padronizado da classe ESP
   Serial.println(" MHz");
   
   Serial.print("Memoria Heap livre: ");
-  Serial.print(ESP.getFreeHeap());    // Memória RAM disponível em bytes
+  Serial.print(ESP.getFreeHeap());    // Memória RAM livre em bytes
   Serial.println(" bytes");
 }
 
