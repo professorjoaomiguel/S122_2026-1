@@ -4,7 +4,7 @@
 void setup() {
   // TODO: Inicialize a Serial em 115200 baud
   // TODO: Imprima uma mensagem de boas-vindas
-  // TODO: Configure o pino LED_BUILTIN como saida
+  // TODO: Configure o pino 2 como saida
 }
 
 void loop() {

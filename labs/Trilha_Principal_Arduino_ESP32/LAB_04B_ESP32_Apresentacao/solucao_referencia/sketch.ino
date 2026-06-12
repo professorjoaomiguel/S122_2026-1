@@ -31,15 +31,15 @@ void setup() {
   Serial.println("Iniciando Blink no GPIO 2 (LED azul)...");
   Serial.println("========================================");
 
-  pinMode(LED_BUILTIN, OUTPUT); // LED_BUILTIN = GPIO 2 no DevKit v4
+  pinMode(2, OUTPUT); // Pino 2 como saida (LED azul)
 }
 
 void loop() {
   Serial.println("LED ligado!");
-  digitalWrite(LED_BUILTIN, HIGH);
+  digitalWrite(2, HIGH);
   delay(1000);
 
   Serial.println("LED desligado!");
-  digitalWrite(LED_BUILTIN, LOW);
+  digitalWrite(2, LOW);
   delay(1000);
 }

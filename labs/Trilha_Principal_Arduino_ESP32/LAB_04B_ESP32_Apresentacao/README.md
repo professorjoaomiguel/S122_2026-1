@@ -95,18 +95,18 @@ Diferente do Arduino Uno, onde os pinos são numerados sequencialmente (0 a 13),
 
 ### 🚀 Passo 2: Blink no ESP32 — Mesma lógica, nova placa
 
-O Blink no ESP32 usa a **mesma estrutura** do Arduino. A única diferença é que `LED_BUILTIN` aponta para o **GPIO 2**:
+O Blink no ESP32 usa a **mesma estrutura** do Arduino, referenciando o pino **2** diretamente (que corresponde ao LED azul integrado da placa):
 
 ```cpp
-// No ESP32 DevKit v4, LED_BUILTIN = GPIO 2 (LED azul)
+// No ESP32 DevKit v4, o LED azul está no GPIO 2
 void setup() {
-  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(2, OUTPUT);
 }
 
 void loop() {
-  digitalWrite(LED_BUILTIN, HIGH); // Liga o LED azul
+  digitalWrite(2, HIGH); // Liga o LED azul
   delay(500);
-  digitalWrite(LED_BUILTIN, LOW);  // Desliga o LED azul
+  digitalWrite(2, LOW);  // Desliga o LED azul
   delay(500);
 }
 ```
@@ -124,16 +124,16 @@ O ESP32 tem a mesma comunicação serial. Mas atenção: a velocidade padrão re
 void setup() {
   Serial.begin(115200); // ESP32 usa 115200 por padrão
   Serial.println("ESP32 iniciado! Ola, mundo IoT!");
-  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(2, OUTPUT);
 }
 
 void loop() {
   Serial.println("LED ligado!");
-  digitalWrite(LED_BUILTIN, HIGH);
+  digitalWrite(2, HIGH);
   delay(1000);
 
   Serial.println("LED desligado!");
-  digitalWrite(LED_BUILTIN, LOW);
+  digitalWrite(2, LOW);
   delay(1000);
 }
 ```
