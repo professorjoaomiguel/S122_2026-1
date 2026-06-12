@@ -1,89 +1,89 @@
 /**
- * LAB 04: Entradas e Saídas Digitais (GABARITO / SOLUÇÃO DE REFERÊNCIA)
+ * LAB 04: Entradas e Saídas Digitais
+ * (GABARITO / SOLUÇÃO DE REFERÊNCIA)
  * UC S122 - Internet das Coisas | SENAI Porto Alegre
  * 
- * Este arquivo contém o código completo consolidado das etapas do laboratório e
- * a solução dos desafios propostos.
+ * Este arquivo contém o código completo consolidado das
+ * etapas do laboratório e a solução dos desafios.
  */
 
-// ==========================================
+// =========================================================
 // DEFINIÇÕES E CONSTANTES
-// ==========================================
-const int pinoLED = 12;      // LED Vermelho Externo (Alerta)
-const int pinoBotao = 2;     // Pushbutton (Sensor de Porta)
-const int pinoLEDAlert = 14; // LED de Alerta Secundário (Opcional para o Desafio 2)
+// =========================================================
+const int pinoLED = 12;      // LED Vermelho (Alerta)
+const int pinoBotao = 2;     // Botão (Sensor de Porta)
+const int pinoLEDAlert = 14; // LED Amarelo (Desafio 2)
 
 // Variáveis para Lógica dos Desafios
-bool modoDesafioAtivo = false;  // Altere para 'true' para testar a solução dos Desafios!
-bool alarmeTravado = false;      // Estado de trava do alarme (Desafio 2)
-unsigned long tempoBotaoPressionado = 0; // Temporização para reset (Desafio 2)
+bool modoDesafioAtivo = false; // true para testar desafios
+bool alarmeTravado = false;     // Trava do alarme
+unsigned long tempoBotaoPressionado = 0; // Para reset
 
 void setup() {
-  Serial.begin(115200); // Uso recomendado de velocidade alta em ESP32
-  Serial.println("\n=== [S122] LAB 04 - SOLUCAO INICIADA ===");
+  Serial.begin(115200); // Velocidade recomendada ESP32
+  Serial.println("\n=== S122 - SOLUCAO INICIADA ===");
   
   // Configuração dos Pinos
   pinMode(pinoLED, OUTPUT);
   pinMode(pinoLEDAlert, OUTPUT);
   
-  // Configurado como INPUT comum devido ao resistor físico de Pull-Up de 10k externo no circuito.
-  // O resistor de Pull-Up mantém o pino em nível ALTO (HIGH) por padrão, caindo para BAIXO (LOW) quando pressionado.
+  // Configurado como INPUT devido ao resistor de Pull-Up
+  // físico de 10k externo no circuito.
   pinMode(pinoBotao, INPUT);
 }
 
 void loop() {
-  // Seletor para testar a lógica normal do lab ou os desafios avançados
   if (!modoDesafioAtivo) {
-    // -------------------------------------------------------------
+    // -----------------------------------------------------
     // SOLUÇÃO DO LABORATÓRIO (PASSO 3 - CONSOLIDADO)
-    // -------------------------------------------------------------
+    // -----------------------------------------------------
     
     // Leitura digital direta do pino
     bool estadoBotao = digitalRead(pinoBotao);
     
-    // O botão conecta ao GND. Logo, quando pressionado, lê LOW.
+    // O botão conecta ao GND. Ao pressionar, lê LOW.
     if (estadoBotao == LOW) { 
       digitalWrite(pinoLED, HIGH);
-      Serial.println("[LOG] Porta ABERTA! Sensor Ativo (LOW) -> LED LIGADO.");
+      Serial.println("[LOG] Porta ABERTA! LED ligado.");
     } else {
       digitalWrite(pinoLED, LOW);
     }
     
-    delay(50); // Delay suave para estabilização de leitura
+    delay(50); // Estabilização de leitura
     
   } else {
-    // -------------------------------------------------------------
+    // -----------------------------------------------------
     // SOLUÇÃO DOS DESAFIOS AVANÇADOS
-    // -------------------------------------------------------------
+    // -----------------------------------------------------
     
     bool estadoBotao = digitalRead(pinoBotao);
     
-    // --- LÓGICA DO DESAFIO 2: TRAVA DE SEGURANÇA COM RESET TEMPORAL ---
+    // --- DESAFIO 2: TRAVA COM RESET TEMPORAL ---
     if (estadoBotao == LOW) {
       if (!alarmeTravado) {
         alarmeTravado = true;
-        Serial.println("[ALERTA] Invasao detectada! Alarme TRAVADO.");
+        Serial.println("[ALERTA] Invasao! Alarme TRAVADO.");
       }
       
-      // Monitora o tempo que o botão está pressionado para realizar o RESET
+      // Monitora o tempo pressionado para RESET
       if (tempoBotaoPressionado == 0) {
         tempoBotaoPressionado = millis();
       } else if (millis() - tempoBotaoPressionado >= 3000) {
-        // Se mantiver pressionado por mais de 3 segundos, desliga o alarme
+        // Reset após 3 segundos continuamente
         alarmeTravado = false;
         tempoBotaoPressionado = 0;
         digitalWrite(pinoLED, LOW);
         digitalWrite(pinoLEDAlert, LOW);
-        Serial.println("[SISTEMA] Alarme RESETADO pelo operador local.");
+        Serial.println("[SISTEMA] Alarme RESETADO.");
         delay(1000); // Evita reativação imediata
       }
     } else {
-      tempoBotaoPressionado = 0; // Reseta contador se soltar o botão
+      tempoBotaoPressionado = 0; // Reseta se soltar botão
     }
     
-    // --- LÓGICA DO DESAFIO 1: BLINK CONDICIONAL DE ALERTA ---
+    // --- DESAFIO 1: BLINK CONDICIONAL DE ALERTA ---
     if (alarmeTravado) {
-      // Pisca os LEDs alternadamente enquanto estiver travado
+      // Pisca alternadamente enquanto travado
       digitalWrite(pinoLED, HIGH);
       digitalWrite(pinoLEDAlert, LOW);
       delay(200);
