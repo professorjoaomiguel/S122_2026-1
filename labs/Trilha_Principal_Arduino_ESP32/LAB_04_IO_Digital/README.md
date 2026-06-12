@@ -201,6 +201,35 @@ Agora que você domina as entradas e saídas digitais básicas, aplique seu conh
 
 ---
 
+## 🛠️ Resolução de Problemas (Serial Monitor)
+
+Se o Monitor Serial do ESP32 não estiver aparecendo ou exibindo dados no Wokwi, verifique este checklist:
+
+1.  **Velocidade do Baud Rate (115200)**:
+    Certifique-se de que seu código inicializa a comunicação com `Serial.begin(115200);`. O uso de velocidades como `9600` pode causar lentidão ou exibir caracteres corrompidos no ESP32.
+2.  **Configuração de Exibição no `diagram.json`**:
+    Para forçar a abertura imediata da aba Serial quando a simulação começar, adicione a configuração do monitor no seu [diagram.json](file:///C:/GitHub/S122_2026-1/labs/Trilha_Principal_Arduino_ESP32/LAB_04_IO_Digital/diagram.json):
+    ```json
+    "serialMonitor": {
+      "display": "always",
+      "newline": "lf"
+    }
+    ```
+3.  **Adicionar o Componente Físico (Alternativo)**:
+    Se o terminal não abrir sozinho em alguns navegadores, você pode declarar o componente visual na seção `"parts"` do seu [diagram.json](file:///C:/GitHub/S122_2026-1/labs/Trilha_Principal_Arduino_ESP32/LAB_04_IO_Digital/diagram.json):
+    ```json
+    {
+      "type": "wokwi-serial-monitor",
+      "id": "serial1",
+      "top": 0,
+      "left": 0
+    }
+    ```
+4.  **Travamento do Loop (`setup` ou `loop`)**:
+    Se o monitor serial parou de responder, verifique se seu código não está congelado em algum loop infinito (como um `while (!sensor.begin())`) antes de chegar nos comandos `Serial.println()`.
+
+---
+
 ## 📂 Solução de Referência e Recursos
 O professor disponibilizou uma pasta chamada [**`solucao_referencia/`**](./solucao_referencia/) neste laboratório. Ela contém o circuito e o código consolidados em pleno funcionamento, além da solução modular completa para os Desafios Técnicos propostos. Use-a para autoavaliação após finalizar sua própria tentativa!
 
