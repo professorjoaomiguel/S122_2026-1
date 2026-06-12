@@ -4,7 +4,7 @@
   "editor": "wokwi",
   "parts": [
     {
-      "type": "wokwi-esp32-devkit-v1",
+      "type": "board-esp32-devkit-c-v4",
       "id": "esp32",
       "top": 0,
       "left": 0,
@@ -57,16 +57,18 @@
     }
   ],
   "connections": [
-    [ "esp32:D12", "led1:A", "red", [] ],
+    [ "esp32:12", "led1:A", "red", [] ],
     [ "led1:C", "r1:1", "black", [] ],
     [ "r1:2", "esp32:GND.1", "black", [] ],
-    [ "esp32:D14", "led2:A", "yellow", [] ],
+    [ "esp32:14", "led2:A", "yellow", [] ],
     [ "led2:C", "r2:1", "black", [] ],
     [ "r2:2", "esp32:GND.1", "black", [] ],
-    [ "esp32:D2", "btn1:2.r", "blue", [] ],
+    [ "esp32:2", "btn1:2.r", "blue", [] ],
     [ "btn1:2.r", "r3:2", "blue", [] ],
     [ "r3:1", "esp32:3V3", "red", [] ],
-    [ "btn1:1.l", "esp32:GND.1", "black", [] ]
+    [ "btn1:1.l", "esp32:GND.1", "black", [] ],
+    [ "esp32:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp32:RX", "$serialMonitor:TX", "", [] ]
   ],
   "dependencies": {},
   "serialMonitor": {
