@@ -35,7 +35,7 @@ void loop() {
   float temp = dht.readTemperature();
   float umid = dht.readHumidity();
   int luzRaw = analogRead(LDRPIN);
-  int luzPerc = map(luzRaw, 0, 4095, 0, 100); // ADC do ESP32 vai de 0 a 4095
+  int luzPerc = map(luzRaw, 0, 4095, 0, 100);
 
   if (isnan(temp) || isnan(umid)) {
     Serial.println("Erro ao ler dados dos sensores!");
@@ -44,7 +44,10 @@ void loop() {
   }
 
   // Envio Serial (Debug)
-  Serial.printf("T: %.1f C | U: %.1f %% | Luz: %d%%\n", temp, umid, luzPerc);
+  Serial.printf(
+    "T: %.1f C | U: %.1f %% | Luz: %d%%\n", 
+    temp, umid, luzPerc
+  );
 
   // Exibição no LCD (Visualização Local)
   lcd.clear();
