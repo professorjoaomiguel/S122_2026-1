@@ -174,11 +174,13 @@ Modifique o código para imprimir a frequência do clock da CPU — uma informa�
 void setup() {
   Serial.begin(115200);
   Serial.print("Frequencia do CPU: ");
-  Serial.print(ESP.getCpuFreqMHz());  // Metodo padronizado da classe ESP
+  // Metodo padronizado da classe ESP
+  Serial.print(ESP.getCpuFreqMHz());  
   Serial.println(" MHz");
   
   Serial.print("Memoria Heap livre: ");
-  Serial.print(ESP.getFreeHeap());    // Memória RAM livre em bytes
+  // Memoria RAM livre em bytes
+  Serial.print(ESP.getFreeHeap());    
   Serial.println(" bytes");
 }
 

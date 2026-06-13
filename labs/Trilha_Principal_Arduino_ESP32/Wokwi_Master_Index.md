@@ -11,7 +11,9 @@ Este índice organiza sua jornada do nível zero ao sistema IoT completo no Wokw
 | **LAB 00** | Interface Wokwi | Anatomia do Hardware | [Acessar](./LAB_00_Wokwi_Intro/) |
 | **LAB 01** | Lógica Combinacional | Lógica de Segurança | [Acessar](./LAB_01_Logica_Chaves/) |
 | **LAB 02** | Lógica de Temporização | Status Multinível (RGB) | [Acessar](./LAB_02_Logica_RGB/) |
-| **LAB 03** | Estrutura de Código | Sinal Vital (Heartbeat) | [Acessar](./LAB_03_Blink_Base/) |
+| **LAB 03B** ⭐ | **Apresentação: Arduino Uno** | Anatomia, Blink e Hello World embarcado | [Acessar](./LAB_03B_Arduino_Apresentacao/) |
+| **LAB 03** | Estrutura de Código (Avançado) | Sinal Vital SOS (Código Morse) | [Acessar](./LAB_03_Blink_Base/) |
+| **LAB 04B** ⭐ | **Apresentação: ESP32** | Do Uno ao ESP32 — Anatomia e Diferenças | [Acessar](./LAB_04B_ESP32_Apresentacao/) |
 | **LAB 04** | I/O Digital / Pullups | Monitoramento de Porta | [Acessar](./LAB_04_IO_Digital/) |
 | **LAB 05** | ADC / Bibliotecas | Monitoramento de Clima | [Acessar](./LAB_05_Sensores_Serial/) |
 | **LAB 06** | Barramento I2C | Painel de Status Local | [Acessar](./LAB_06_Interface_LCD/) |

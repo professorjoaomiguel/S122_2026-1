@@ -18,9 +18,9 @@ void setupEdge() {
   lcd.setCursor(0, 0);
   lcd.print("Controle IoT!");
   
-  // ====================================================================
-  // [TAG] SETUP_PINOS: configure os pinos dos atuadores como saída
-  // ====================================================================
+  // ======================================================
+  // [TAG] SETUP_PINOS: configure atuadores como saida
+  // ======================================================
   // PASSO 1: Configure o pino da ventoinha
   
   // PASSO 2: Configure o pino do buzzer (caso necessário)
@@ -42,25 +42,25 @@ void loopEdge() {
     return;
   }
 
-  // ====================================================================
-  // [TAG] LOGICA_CONTROLE: implemente a lógica condicional de controle
-  // ====================================================================
+  // ======================================================
+  // [TAG] LOGICA_CONTROLE: implemente regras de atuacao
+  // ======================================================
   
-  // PASSO 1: Lógica de controle liga/desliga simples para a ventoinha (PINO_VENTOINHA)
-  // Se temp > 30.0 liga; caso contrário desliga.
+  // PASSO 1: Controle liga/desliga simples da ventoinha
+  // Se temp > 30.0 liga; senao desliga.
   
-  // PASSO 2: Adicione o alarme crítico sonoro com o Buzzer (PINO_BUZZER)
-  // Se temp > 40.0, emita um tom de 1000Hz; caso contrário silencie.
+  // PASSO 2: Alarme sonoro critico com Buzzer
+  // Se temp > 40.0 emite tom 1000Hz; senao silencie.
   
-  // PASSO 3: Refine o controle da ventoinha aplicando Histerese!
-  // Evite ligar/desligar rápido demais na borda (ex: liga se temp > 30.0, desliga se temp < 28.0)
+  // PASSO 3: Refine o controle aplicando Histerese!
+  // Evite repiques (liga se > 30.0, desliga se < 28.0)
   
-  // ====================================================================
-  // [TAG] DISPLAY_LOCAL: exiba os dados e status dos atuadores no LCD
-  // ====================================================================
+  // ======================================================
+  // [TAG] DISPLAY_LOCAL: status dos atuadores no LCD
+  // ======================================================
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.printf("Temp: %.1f C", temp);
+  lcd.print("Temp: "); lcd.print(temp, 1); lcd.print(" C");
   lcd.setCursor(0, 1);
-  lcd.printf("Umid: %.1f %%", umid);
+  lcd.print("Umid: "); lcd.print(umid, 1); lcd.print(" %");
 }

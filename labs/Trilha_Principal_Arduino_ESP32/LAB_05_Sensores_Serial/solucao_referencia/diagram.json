@@ -4,7 +4,7 @@
   "editor": "wokwi",
   "parts": [
     {
-      "type": "board-esp32",
+      "type": "board-esp32-devkit-c-v4",
       "id": "esp32",
       "top": 0,
       "left": 0,
@@ -26,12 +26,18 @@
     }
   ],
   "connections": [
-    [ "esp32:GND", "dht:GND", "black", [] ],
+    [ "esp32:GND.1", "dht:GND", "black", [] ],
     [ "esp32:3V3", "dht:VCC", "red", [] ],
     [ "esp32:15", "dht:SDA", "green", [] ],
-    [ "esp32:GND", "ldr:GND", "black", [] ],
+    [ "esp32:GND.1", "ldr:GND", "black", [] ],
     [ "esp32:3V3", "ldr:VCC", "red", [] ],
-    [ "ldr:AO", "esp32:34", "blue", [] ]
+    [ "ldr:AO", "esp32:34", "blue", [] ],
+    [ "esp32:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp32:RX", "$serialMonitor:TX", "", [] ]
   ],
-  "dependencies": {}
+  "dependencies": {},
+  "serialMonitor": {
+    "display": "always",
+    "newline": "lf"
+  }
 }

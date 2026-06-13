@@ -37,8 +37,8 @@ Nesta etapa final do Módulo 01, transformamos o sistema em uma entidade autôno
 
 ## 🧱 Setup de Hardware
 Mantenha os sensores e o LCD e adicione os atuadores finais:
-*   **LED Azul (Ventoinha):** Pino 11.
-*   **Buzzer (Alarme):** Pino 8.
+*   **LED Azul (Ventoinha):** Pino 12.
+*   **Buzzer (Alarme):** Pino 4.
 *   **Sensores/LCD:** Conforme LAB 05 e 06.
 
 ---
@@ -50,7 +50,7 @@ No seu código modular, localize a tag `[TAG] LOGICA_CONTROLE` e insira a regra 
 
 ```cpp
 // [TAG] DEFINICOES
-const int PINO_VENTOINHA = 11;
+const int PINO_VENTOINHA = 12;
 const float LIMITE_TEMP = 30.0;
 
 void setup() {
@@ -75,11 +75,11 @@ void loop() {
 Não altere a ventoinha. Adicione uma segunda camada de proteção sob o mesmo gancho.
 
 ```cpp
-  // Abaixo da lógica da ventoinha em [TAG] LOGICA_CONTROLE:
+  // Abaixo da logica da ventoinha em [TAG] LOGICA_CONTROLE:
   if (t > 40.0) {
-    tone(8, 1000); // Som de Alerta Crítico
+    tone(4, 1000); // Som de Alerta Critico
   } else {
-    noTone(8);
+    noTone(4);
   }
 ```
 
@@ -91,7 +91,7 @@ Aperfeiçoe o código anterior para evitar o "repique" do relé.
   if (t > 30.0) {
     digitalWrite(PINO_VENTOINHA, HIGH);
   } 
-  else if (t < 28.0) { // Histerese: margem de 2 graus
+  else if (t < 28.0) { // Histerese de 2 graus
     digitalWrite(PINO_VENTOINHA, LOW);
   }
 ```
@@ -128,11 +128,11 @@ void loopEdge() {
   luzPerc = map(luzRaw, 0, 4095, 0, 100);
 
   if (isnan(temp) || isnan(umid)) {
-    Serial.println("Erro na leitura física!");
+    Serial.println("Erro na leitura fisica!");
     return;
   }
 
-  // --- LÓGICA DE CONTROLE DA VENTOINHA COM HISTERESE ---
+  // --- CONTROLE DA VENTOINHA COM HISTERESE ---
   if (temp > 30.0) {
     ventoinhaLigada = true;
     digitalWrite(PINO_VENTOINHA, HIGH);
@@ -149,12 +149,12 @@ void loopEdge() {
     noTone(PINO_BUZZER);
   }
 
-  // --- ATUALIZAÇÃO DO LCD ---
+  // --- ATUALIZACAO DO LCD ---
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.printf("Temp: %.1f C", temp);
+  lcd.print("Temp: "); lcd.print(temp, 1); lcd.print(" C");
   lcd.setCursor(0, 1);
-  lcd.printf("Umid: %.1f %%", umid);
+  lcd.print("Umid: "); lcd.print(umid, 1); lcd.print(" %");
 }
 ```
 

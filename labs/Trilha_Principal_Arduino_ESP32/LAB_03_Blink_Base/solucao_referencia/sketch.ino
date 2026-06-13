@@ -11,18 +11,21 @@
 // ==========================================
 const int pinoLED = 13;          // LED "L" embutido na placa Arduino Uno
 
-// Unidade básica de tempo do Código Morse (em milissegundos)
+// Unidade basica de tempo (milissegundos)
 const int tempoPonto = 200;      // T = 200ms
 
-// Tempos proporcionais calculados a partir da unidade básica
-const int tempoTraco = tempoPonto * 3;          // 3T = 600ms
-const int tempoEspacoPartes = tempoPonto;       // T  = 200ms (entre pontos/traços da mesma letra)
-const int tempoEspacoLetras = tempoPonto * 3;   // 3T = 600ms (entre as letras S e O)
-const int tempoEspacoPalavras = tempoPonto * 7; // 7T = 1400ms (entre repetições do SOS)
+// Tempos calculados a partir da unidade
+const int tempoTraco = tempoPonto * 3;
+// Espaco na mesma letra
+const int tempoEspacoPartes = tempoPonto;
+// Espaco entre as letras
+const int tempoEspacoLetras = tempoPonto * 3;
+// Espaco entre as palavras (repeticoes)
+const int tempoEspacoPalavras = tempoPonto * 7;
 
-// Chaveador para testar a solução:
-// false = Lógica Hardcoded (Valores manuais repetidos)
-// true  = Lógica Parametrizada (Usa as constantes calculadas acima)
+// Chaveador para testar a solucao:
+// false = Logica Hardcoded (Valores manuais)
+// true  = Logica Parametrizada (Usa constantes)
 const bool usarLogicaParametrizada = true;
 
 void setup() {
@@ -37,9 +40,9 @@ void emitirTraco();
 
 void loop() {
   if (usarLogicaParametrizada) {
-    // -------------------------------------------------------------
-    // ETAPA 2: SOLUÇÃO PARAMETRIZADA (RECOMENDADA)
-    // -------------------------------------------------------------
+    // ----------------------------------------------------
+    // ETAPA 2: SOLUCAO PARAMETRIZADA (RECOMENDADA)
+    // ----------------------------------------------------
     
     // --- Letra S (· · ·) ---
     emitirPonto();
@@ -66,40 +69,49 @@ void loop() {
     delay(tempoEspacoPartes);
     emitirPonto();
     
-    // Espaço longo antes de iniciar a próxima transmissão do SOS completo
+    // Espaco antes de reiniciar a transmissao
     delay(tempoEspacoPalavras);
-    Serial.println("[LOG] SOS Parametrizado enviado!");
+    Serial.println("[LOG] SOS Parametrizado!");
     
   } else {
-    // -------------------------------------------------------------
-    // ETAPA 1: SOLUÇÃO HARDCODED (VALORES RÍGIDOS)
-    // -------------------------------------------------------------
+    // ----------------------------------------------------
+    // ETAPA 1: SOLUCAO HARDCODED (VALORES RIGIDOS)
+    // ----------------------------------------------------
     
-    // Letra S (· · ·)
-    digitalWrite(13, HIGH); delay(200); digitalWrite(13, LOW); delay(200);
-    digitalWrite(13, HIGH); delay(200); digitalWrite(13, LOW); delay(200);
-    digitalWrite(13, HIGH); delay(200); digitalWrite(13, LOW);
+    // Letra S (. . .)
+    digitalWrite(13, HIGH); delay(200); 
+    digitalWrite(13, LOW); delay(200);
+    digitalWrite(13, HIGH); delay(200); 
+    digitalWrite(13, LOW); delay(200);
+    digitalWrite(13, HIGH); delay(200); 
+    digitalWrite(13, LOW);
     
-    delay(600); // Espaço entre S e O
+    delay(600); // Espaco entre S e O
     
     // Letra O (- - -)
-    digitalWrite(13, HIGH); delay(600); digitalWrite(13, LOW); delay(200);
-    digitalWrite(13, HIGH); delay(600); digitalWrite(13, LOW); delay(200);
-    digitalWrite(13, HIGH); delay(600); digitalWrite(13, LOW);
+    digitalWrite(13, HIGH); delay(600); 
+    digitalWrite(13, LOW); delay(200);
+    digitalWrite(13, HIGH); delay(600); 
+    digitalWrite(13, LOW); delay(200);
+    digitalWrite(13, HIGH); delay(600); 
+    digitalWrite(13, LOW);
     
-    delay(600); // Espaço entre O e S
+    delay(600); // Espaco entre O e S
     
-    // Letra S (· · ·)
-    digitalWrite(13, HIGH); delay(200); digitalWrite(13, LOW); delay(200);
-    digitalWrite(13, HIGH); delay(200); digitalWrite(13, LOW); delay(200);
-    digitalWrite(13, HIGH); delay(200); digitalWrite(13, LOW);
+    // Letra S (. . .)
+    digitalWrite(13, HIGH); delay(200); 
+    digitalWrite(13, LOW); delay(200);
+    digitalWrite(13, HIGH); delay(200); 
+    digitalWrite(13, LOW); delay(200);
+    digitalWrite(13, HIGH); delay(200); 
+    digitalWrite(13, LOW);
     
-    delay(1400); // Espaço entre repetições do SOS
-    Serial.println("[LOG] SOS Hardcoded enviado!");
+    delay(1400); // Espaco repeticoes SOS
+    Serial.println("[LOG] SOS Hardcoded!");
   }
 }
 
-// Funções que tornam o loop infinitamente mais limpo e legível!
+// Funcoes para deixar o loop legivel
 void emitirPonto() {
   digitalWrite(pinoLED, HIGH);
   delay(tempoPonto);

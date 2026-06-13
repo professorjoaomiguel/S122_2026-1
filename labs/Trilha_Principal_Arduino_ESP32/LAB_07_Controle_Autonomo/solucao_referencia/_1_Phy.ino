@@ -7,7 +7,7 @@
 
 #include "Bibliotecas.h"
 
-// Variável local para manter o estado da ventoinha (usada na lógica de Histerese)
+// Variavel local do estado da ventoinha (Histerese)
 bool ventoinhaLigada = false;
 
 // Inicialização dos dispositivos físicos locais
@@ -49,9 +49,9 @@ void loopEdge() {
   // -------------------------------------------------------------
   // REGRA DE ATUAÇÃO E HISTERESE (PASSO 1 E 3)
   // -------------------------------------------------------------
-  // Implementação da histerese para proteger o relé/motor da ventoinha contra oscilações rápidas:
-  // - Liga a ventoinha se a temperatura subir acima de 30.0°C.
-  // - Mantém ligada até que a temperatura caia abaixo de 28.0°C (margem de 2 graus).
+  // Histerese para proteger contra oscilacoes:
+  // - Liga a ventoinha se a temp > 30.0 C.
+  // - Mantem ligada ate temp cair abaixo de 28.0 C.
   if (temp > 30.0) {
     ventoinhaLigada = true;
     digitalWrite(PINO_VENTOINHA, HIGH);
@@ -64,21 +64,23 @@ void loopEdge() {
   // -------------------------------------------------------------
   // REGRA DE ALARME CRÍTICO (PASSO 2)
   // -------------------------------------------------------------
-  // Se a temperatura passar do limite crítico industrial (40°C), dispara o buzzer de forma ativa.
+  // Se a temperatura passar do limite critico
+  // dispara o alarme.
   if (temp > 40.0) {
     tone(PINO_BUZZER, 1000); // Emite tom de 1000Hz
   } else {
     noTone(PINO_BUZZER);     // Silencia o buzzer
   }
 
-  // -------------------------------------------------------------
-  // ATUALIZAÇÃO DO DISPLAY LCD COM STATUS DA VENTOINHA (DESAFIO)
-  // -------------------------------------------------------------
+  // ---------------------------------------------------
+  // ATUALIZACAO DO LCD COM STATUS DA VENTOINHA
+  // ---------------------------------------------------
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.printf("T:%.1fC U:%.1f%%", temp, umid);
+  lcd.print("T:"); lcd.print(temp, 1);
+  lcd.print("C U:"); lcd.print(umid, 1); lcd.print("%");
   
-  // Exibição do estado da ventoinha na segunda linha do display
+  // Status da ventoinha na segunda linha do display
   lcd.setCursor(0, 1);
   if (ventoinhaLigada) {
     lcd.print("FAN: LIGADA (ON) ");

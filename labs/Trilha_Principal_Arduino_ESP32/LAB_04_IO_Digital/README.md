@@ -130,7 +130,8 @@ Para dar uma referência de tensão fixa ao pino quando o botão estiver aberto,
 ```cpp
 void loop() {
   // --- Etapa 3: Decisao com Pull-Up Externo ---
-  if (digitalRead(pinoBotao) == LOW) { // Botao pressionado (aterrado)
+  // Se o botao for pressionado (aterrado)
+  if (digitalRead(pinoBotao) == LOW) {
     digitalWrite(pinoLED, HIGH);
     Serial.println("Porta Aberta! LED LIGADO.");
   } else {
@@ -154,7 +155,8 @@ void setup() {
   Serial.println("S122 - Sistema de Seguranca Iniciado!");
   pinMode(pinoLED, OUTPUT);
   // [TAG] SETUP_PINOS
-  pinMode(pinoBotao, INPUT_PULLUP); // Aciona o resistor interno do ESP32 (aprox. 45k Ohms)
+  // Aciona pull-up interno do ESP32 (~45k Ohms)
+  pinMode(pinoBotao, INPUT_PULLUP);
 }
 ```
 3.  **Resultado:** O circuito funciona de forma idêntica à etapa anterior (LOW quando pressionado e HIGH quando solto), mas sem a necessidade do resistor externo físico na matriz!
@@ -174,12 +176,14 @@ void setup() {
   
   // [TAG] SETUP_PINOS
   pinMode(pinoLED, OUTPUT);
-  pinMode(pinoBotao, INPUT_PULLUP); // Habilita o resistor interno de pull-up do ESP32
+  // Habilita o resistor interno de pull-up do ESP32
+  pinMode(pinoBotao, INPUT_PULLUP);
 }
 
 void loop() {
   // [TAG] LOGICA_CONTROLE
-  bool estado = digitalRead(pinoBotao); // Le o estado lógico do botao
+  // Le o estado logico do botao
+  bool estado = digitalRead(pinoBotao);
   
   if (estado == LOW) { // Botao pressionado = LOW
     digitalWrite(pinoLED, HIGH);

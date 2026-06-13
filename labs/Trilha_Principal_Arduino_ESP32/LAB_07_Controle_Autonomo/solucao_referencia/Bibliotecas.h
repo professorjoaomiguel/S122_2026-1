@@ -5,8 +5,8 @@
  * Arquivo: Bibliotecas.h (Declaração de Pinos, Objetos e Externs)
  */
 
-#ifndef BIBLIOTECAS_H
-#define BIBLIOTECAS_H
+#ifndef _BIBLIOTECAS_H_
+#define _BIBLIOTECAS_H_
 
 #include <DHT.h>
 #include <Wire.h>
@@ -18,8 +18,8 @@
 #define LDRPIN 34
 
 // Atuadores
-#define PINO_VENTOINHA 11
-#define PINO_BUZZER 8
+#define PINO_VENTOINHA 12
+#define PINO_BUZZER 4
 
 // Declarações extern para objetos globais
 extern DHT dht;

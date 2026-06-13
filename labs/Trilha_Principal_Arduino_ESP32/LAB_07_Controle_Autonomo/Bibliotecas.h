@@ -5,8 +5,8 @@
  * Arquivo: Bibliotecas.h (Declaração de Pinos, Objetos e Externs)
  */
 
-#ifndef BIBLIOTECAS_H
-#define BIBLIOTECAS_H
+#ifndef _BIBLIOTECAS_H_
+#define _BIBLIOTECAS_H_
 
 #include <DHT.h>
 #include <Wire.h>
@@ -17,9 +17,9 @@
 #define DHTTYPE DHT22
 #define LDRPIN 34
 
-// Atuadores adicionados neste laboratório
-#define PINO_VENTOINHA 11 // LED Azul que simula a ventoinha no pino 11
-#define PINO_BUZZER 8     // Buzzer do Alarme Crítico no pino 8
+// Atuadores adicionados neste laboratorio
+#define PINO_VENTOINHA 12 // LED (Ventoinha) no pino 12
+#define PINO_BUZZER 4     // Buzzer do Alarme no pino 4
 
 // Declarações extern para objetos globais
 extern DHT dht;
