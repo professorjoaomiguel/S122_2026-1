@@ -79,15 +79,16 @@ Na **Estufa Inteligente**, o LED RGB atua como um **Indicador de Status Multiní
 
 ---
 
-## 🧠 Desafio e Reflexão Técnica
+### ❓ Reflexão Técnica (Obrigatória para Entrega)
 1.  **Desafio:** Como você faria para o LED RGB brilhar na cor **Branca** de forma constante usando os componentes disponíveis?
 2.  Qual a diferença prática entre um LED RGB de **Anodo Comum** e um de **Catodo Comum** na hora de ligar os fios?
 
 ---
 
 ## 📤 Entrega (Classroom)
-*   **Link Wokwi:** [Seu Link]
-*   **Reflexão:** Explique a lógica que você usou para misturar as cores no seu circuito.
+A sua entrega será avaliada pelos seguintes itens. Marque um check mental antes de enviar:
+- [ ] **Link Wokwi:** O seu circuito deve mostrar a cor Branca (resolução do Desafio 1) sendo gerada ou as portas lógicas testadas.
+- [ ] **Respostas (Reflexão):** Responda as 2 perguntas da seção Reflexão Técnica na área de texto/comentários da entrega (explicando a lógica das cores e a diferença de Anodo/Catodo).
 
 ---
 *UC S122 - Internet das Coisas*

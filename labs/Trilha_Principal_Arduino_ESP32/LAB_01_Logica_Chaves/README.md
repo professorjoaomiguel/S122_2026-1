@@ -75,15 +75,17 @@ Na **Estufa Inteligente**, a lógica digital é usada para segurança redundante
 
 ---
 
-## 🧠 Desafio e Reflexão Técnica
+### ❓ Reflexão Técnica (Obrigatória para Entrega)
 1.  **Desafio:** Como você faria para criar uma função **NAND** (NOT AND) usando apenas chaves e LEDs?
 2.  Na função **AND**, o que acontece se apenas uma das chaves estiver ligada? Explique fisicamente o que acontece com a corrente.
 
 ---
 
 ## 📤 Entrega (Classroom)
-*   **Link Wokwi:** [Seu Link]
-*   **Relatório:** Preencha a Tabela Verdade observada para cada nível.
+A sua entrega será avaliada pelos seguintes itens. Marque um check mental antes de enviar:
+- [ ] **Link Wokwi:** O circuito deve conter as portas lógicas passivas montadas.
+- [ ] **Relatório:** Preencha a Tabela Verdade observada para cada nível de chaves.
+- [ ] **Respostas (Reflexão):** Responda as 2 perguntas da seção Reflexão Técnica na área de texto/comentários da entrega (incluindo o raciocínio do Desafio NAND).
 
 ---
 *UC S122 - Internet das Coisas*
