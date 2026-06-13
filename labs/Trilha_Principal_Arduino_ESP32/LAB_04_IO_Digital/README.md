@@ -6,6 +6,17 @@
 *   **Camada Macro:** 🌿 Camada 1: Edge (Percepção Local)
 *   **Nível de Referência:** 📍 Nível 1: Sensor/Atuador (Chaves e Alertas de I/O)
 
+```mermaid
+graph TD
+    C[Nuvem / Cloud API] <-->|Protocolo MQTT| F[Fog Server / Gateway Local]
+    F <-->|Protocolo HTTP/MQTT| E[Edge Node / ESP32]
+    subgraph Camada Edge (Percepção Local)
+        E --- Btn[Sensor de Porta / Botao]
+        E --- Led[Alerta Visual / LED]
+    end
+    style E fill:#f9f,stroke:#333,stroke-width:2px
+```
+
 ---
 
 ### 🔌 Hardware Requerido
@@ -47,6 +58,10 @@ Monte o circuito completo para todos os níveis:
 
 ### 🚀 Passo 1: Saída Direta
 O objetivo é apenas validar se o LED está funcionando.
+
+> [!IMPORTANT]
+> **Substituição de Código**: Ao realizar cada passo, substitua todo o código anterior (ou a função correspondente) por esta nova versão para evitar erros de funções duplicadas no compilador do Wokwi.
+
 ```cpp
 // [TAG] DEFINICOES
 const int pinoLED = 12;
@@ -67,12 +82,17 @@ Antes de estabilizarmos o circuito, vamos experimentar na prática o que acontec
 
 1.  **Montagem direta (Sem resistor):** Mantenha o botão conectado entre o **Pino 2** e o **GND** no Wokwi, mas remova/delete temporariamente o resistor de $10\text{ k}\Omega$ e as conexões dele com o 3.3V.
 2.  **Código de Teste:** Configure o pino como entrada comum (modo `INPUT` sem pull-up):
+
+> [!IMPORTANT]
+> **Substituição de Código**: Substitua todo o conteúdo do seu arquivo pelo código de teste a seguir. Note a inicialização de boas-vindas na Serial para continuidade lógica.
+
 ```cpp
 // [TAG] DEFINICOES
 const int pinoBotao = 2;
 
 void setup() {
   Serial.begin(115200);
+  Serial.println("S122 - Sistema de Seguranca Iniciado!");
   pinMode(pinoLED, OUTPUT);
   // [TAG] SETUP_PINOS
   pinMode(pinoBotao, INPUT); // Entrada comum
@@ -96,10 +116,17 @@ Para dar uma referência de tensão fixa ao pino quando o botão estiver aberto,
 1.  **Conexão do Resistor de Pull-Up:** Reconecte o resistor de **$10\text{ k}\Omega$** no Wokwi:
     *   Um lado do resistor ligado ao **3.3V (VCC)** da placa.
     *   O outro lado do resistor ligado ao pino da chave (conectado ao **Pino 2**).
-2.  **Lógica do Código:** Mantenha o código configurado como `INPUT` no setup.
-3.  **Comportamento:**
-    *   *Botão Solto:* O pino 2 recebe 3.3V diretamente do resistor de Pull-up. A leitura estabiliza em `1` (HIGH) de forma segura.
-    *   *Botão Pressionado:* O contato se fecha com o GND. A corrente flui para a terra e o pino cai limpo para `0` (LOW).
+
+    ```mermaid
+    graph LR
+        VCC[3.3V / VCC] --- R1[Resistor 10k]
+        R1 --- Pino2[GPIO 2 / Sinal]
+        Pino2 --- Button[Botao / Chave]
+        Button --- GND[GND]
+    ```
+
+2.  **Lógica do Código:** Mantenha o setup idêntico ao anterior (com a inicialização da Serial e a mensagem de boas-vindas). Substitua a função `loop()` antiga por esta nova versão que implementa a decisão:
+
 ```cpp
 void loop() {
   // --- Etapa 3: Decisao com Pull-Up Externo ---
@@ -119,10 +146,12 @@ void loop() {
 Para economizar peças e reduzir o custo físico da placa, os microcontroladores modernos possuem resistores internos que podem ser ativados via software.
 
 1.  **Remoção Física:** Remova/delete novamente o resistor de $10\text{ k}\Omega$ e seus fios do simulador Wokwi.
-2.  **Ativação via Software:** Modifique a inicialização do pino no setup de `INPUT` para **`INPUT_PULLUP`**:
+2.  **Ativação via Software:** Substitua a função `setup()` por esta nova versão para ativar o pull-up interno e manter a mensagem de boas-vindas da Serial:
+
 ```cpp
 void setup() {
   Serial.begin(115200);
+  Serial.println("S122 - Sistema de Seguranca Iniciado!");
   pinMode(pinoLED, OUTPUT);
   // [TAG] SETUP_PINOS
   pinMode(pinoBotao, INPUT_PULLUP); // Aciona o resistor interno do ESP32 (aprox. 45k Ohms)
@@ -208,7 +237,7 @@ Se o Monitor Serial do ESP32 não estiver aparecendo ou exibindo dados no Wokwi,
 1.  **Velocidade do Baud Rate (115200)**:
     Certifique-se de que seu código inicializa a comunicação com `Serial.begin(115200);`. O uso de velocidades como `9600` pode causar lentidão ou exibir caracteres corrompidos no ESP32.
 2.  **Configuração de Exibição no `diagram.json`**:
-    Para forçar a abertura imediata da aba Serial quando a simulação começar, adicione a configuração do monitor no seu [diagram.json](file:///C:/GitHub/S122_2026-1/labs/Trilha_Principal_Arduino_ESP32/LAB_04_IO_Digital/diagram.json):
+    Para forçar a abertura imediata da aba Serial quando a simulação começar, adicione a configuração do monitor no seu [diagram.json](./diagram.json):
     ```json
     "serialMonitor": {
       "display": "always",
@@ -216,7 +245,7 @@ Se o Monitor Serial do ESP32 não estiver aparecendo ou exibindo dados no Wokwi,
     }
     ```
 3.  **Adicionar o Componente Físico (Alternativo)**:
-    Se o terminal não abrir sozinho em alguns navegadores, você pode declarar o componente visual na seção `"parts"` do seu [diagram.json](file:///C:/GitHub/S122_2026-1/labs/Trilha_Principal_Arduino_ESP32/LAB_04_IO_Digital/diagram.json):
+    Se o terminal não abrir sozinho em alguns navegadores, você pode declarar o componente visual na seção `"parts"` do seu [diagram.json](./diagram.json):
     ```json
     {
       "type": "wokwi-serial-monitor",
