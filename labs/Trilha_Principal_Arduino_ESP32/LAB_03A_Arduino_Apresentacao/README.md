@@ -186,7 +186,7 @@ Pasta [**`solucao_referencia/`**](./solucao_referencia/) disponível com o códi
 ---
 
 ## 🛣️ Próximo Passo
-Após dominar o Blink, avance para o [**LAB 03 — O Primeiro Sinal (SOS Blink Avançado)**](../LAB_03_Blink_Base/), onde você aplicará esse conhecimento em um desafio real de código Morse!
+Após dominar o Blink, avance para o [**LAB 03B — O Primeiro Sinal (SOS Blink Avançado)**](../LAB_03B_Blink_Base/), onde você aplicará esse conhecimento em um desafio real de código Morse!
 
 ---
 

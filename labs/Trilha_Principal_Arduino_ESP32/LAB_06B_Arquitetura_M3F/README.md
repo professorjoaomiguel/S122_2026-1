@@ -1,4 +1,4 @@
-# LAB 06: Comunicação I2C e a Transição Monolítico ➡️ M3F Sliced
+# LAB 06B: Transição Arquitetural (M3F Sliced)
 **Módulo 01: Fundamentos da Borda (Edge)**  
 
 ---
@@ -58,92 +58,21 @@ graph TD
 ---
 
 ## 🎯 Objetivos Técnicos
-1.  Compreender o barramento de comunicação industrial **I2C**.
-2.  Manipular a biblioteca `LiquidCrystal_I2C`.
-3.  **Transição Monolítico-Estruturado:** Fatiar o firmware em arquivos modulares separando a Camada Física/Edge do resto do fluxo.
+1.  Compreender os problemas de escalabilidade do código monolítico em IoT.
+2.  **Transição M3F:** Fatiar o firmware em arquivos modulares separando a Camada Física/Edge da inteligência central.
+3.  Utilizar abas (`.h` e `.ino`) e a diretiva `extern` no Arduino IDE/Wokwi para compartilhamento de recursos.
 
 ---
 
-## 🧱 Setup de Hardware
-Mantenha os sensores do **LAB 05** e adicione o display:
-*   **ESP32 DevKit v4**
-*   **DHT22 (Sensor Clima):** Pino 15.
-*   **LDR (Luz):** Pino analógico 34.
-*   **LCD 16x2 (I2C):** Pinos SDA (Pino 21 do ESP32) e SCL (Pino 22 do ESP32).
+## 🧱 Setup Inicial
+Mantenha exatamente o mesmo hardware montado e o mesmo código final produzido no **LAB 06A**. 
 
 ---
 
 ## ⚙️ Workflow Passo a Passo
 
-### 🏗️ Passo 1: O Código Monolítico (Tudo em Um)
-Primeiro, vamos construir a solução de forma clássica: um arquivo único (`sketch.ino`). Ele junta as leituras analógica/digital do LAB 05 com a biblioteca do LCD I2C.
-
-1.  No Wokwi, configure seu circuito com os componentes e crie o código abaixo no arquivo `sketch.ino`:
-
-```cpp
-#include <DHT.h>
-#include <Wire.h>
-#include <LiquidCrystal_I2C.h>
-
-#define DHTPIN 15
-#define DHTTYPE DHT22
-#define LDRPIN 34
-
-DHT dht(DHTPIN, DHTTYPE);
-LiquidCrystal_I2C lcd(0x27, 16, 2);
-
-void setup() {
-  Serial.begin(115200);
-  dht.begin();
-  
-  lcd.init();
-  lcd.backlight();
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Estufa IoT Monol");
-  delay(1500);
-}
-
-void loop() {
-  float temp = dht.readTemperature();
-  float umid = dht.readHumidity();
-  int luzRaw = analogRead(LDRPIN);
-  
-  // ADC do ESP32 vai até 4095
-  int luzPerc = map(luzRaw, 0, 4095, 0, 100);
-
-  if (isnan(temp) || isnan(umid)) {
-    Serial.println("Erro de leitura!");
-    return;
-  }
-
-  // Print Serial (Debug)
-  Serial.printf(
-    "T: %.1f C | U: %.1f %% | Luz: %d%%\n",
-    temp, umid, luzPerc
-  );
-
-  // Print LCD (Visualização Local)
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Temp: ");
-  lcd.print(temp, 1);
-  lcd.print(" C");
-  
-  lcd.setCursor(0, 1);
-  lcd.print("Umid: ");
-  lcd.print(umid, 1);
-  lcd.print(" %");
-
-  delay(2000);
-}
-```
-2.  **Rode a simulação.** Verifique se a temperatura e a umidade aparecem perfeitamente no LCD.
-
----
-
-### 🪓 Passo 2: O Fatiamento M3F (A Transição para Abas)
-Parabéns, seu monolítico funciona! Contudo, no **LAB 08 (WiFi)** teremos dezenas de linhas de rede, e no **LAB 11 (MQTT)** mais de 50 linhas de conexões e soquetes. Misturar isso com sensores e LCDs em um só arquivo causará bugs difíceis de rastrear.
+### 🪓 Passo 1: O Fatiamento M3F (A Transição para Abas)
+Parabéns, seu código do LAB 06A funciona! Contudo, no **LAB 08 (WiFi)** teremos dezenas de linhas de rede, e no **LAB 11 (MQTT)** mais de 50 linhas de conexões e soquetes. Misturar isso com sensores e LCDs em um só arquivo causará bugs difíceis de rastrear.
 
 Seguindo a **Metodologia M3F**, vamos fatiar esse código em **3 abas físicas** no Wokwi para separar a **Camada Física/Edge** das outras regras.
 

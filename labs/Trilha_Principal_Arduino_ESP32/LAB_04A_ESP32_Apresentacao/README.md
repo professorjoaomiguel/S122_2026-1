@@ -227,7 +227,7 @@ Pasta [**`solucao_referencia/`**](./solucao_referencia/) disponível com o Blink
 ---
 
 ## 🛣️ Próximo Passo
-Agora que você conhece o ESP32, avance para o [**LAB 04 — Entradas e Saídas Digitais**](../LAB_04_IO_Digital/), onde você vai conectar botões e LEDs externos ao ESP32 e aprender sobre resistores de Pull-Up!
+Agora que você conhece o ESP32, avance para o [**LAB 04B — Entradas e Saídas Digitais**](../LAB_04B_IO_Digital/), onde você vai conectar botões e LEDs externos ao ESP32 e aprender sobre resistores de Pull-Up!
 
 ---
 

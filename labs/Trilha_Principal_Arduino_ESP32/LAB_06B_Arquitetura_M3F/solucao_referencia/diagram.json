@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "author": "Prof. Joao Miguel & Tutor Gemini",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32",
+      "id": "esp32",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht",
+      "top": -150,
+      "left": -150,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr",
+      "top": 100,
+      "left": -150,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd",
+      "top": 120,
+      "left": 150,
+      "attrs": {
+        "pins": "i2c"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -100,
+      "left": 160,
+      "attrs": {
+        "color": "red"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -40,
+      "left": 160,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    }
+  ],
+  "connections": [
+    [ "esp32:GND", "dht:GND", "black", [] ],
+    [ "esp32:3V3", "dht:VCC", "red", [] ],
+    [ "esp32:15", "dht:SDA", "green", [] ],
+    [ "esp32:GND", "ldr:GND", "black", [] ],
+    [ "esp32:3V3", "ldr:VCC", "red", [] ],
+    [ "ldr:AO", "esp32:34", "blue", [] ],
+    [ "esp32:GND", "lcd:GND", "black", [] ],
+    [ "esp32:VIN", "lcd:VCC", "red", [] ],
+    [ "esp32:21", "lcd:SDA", "blue", [] ],
+    [ "esp32:22", "lcd:SCL", "yellow", [] ],
+    [ "esp32:12", "led1:A", "red", [] ],
+    [ "led1:C", "r1:1", "black", [] ],
+    [ "r1:2", "esp32:GND", "black", [] ],
+    [ "esp32:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp32:RX", "$serialMonitor:TX", "", [] ]
+  ],
+  "dependencies": {},
+  "serialMonitor": {
+    "display": "always",
+    "newline": "lf"
+  }
+}

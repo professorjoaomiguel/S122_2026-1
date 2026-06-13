@@ -11,12 +11,13 @@ Este índice organiza sua jornada do nível zero ao sistema IoT completo no Wokw
 | **LAB 00** | Interface Wokwi | Anatomia do Hardware | [Acessar](./LAB_00_Wokwi_Intro/) |
 | **LAB 01** | Lógica Combinacional | Lógica de Segurança | [Acessar](./LAB_01_Logica_Chaves/) |
 | **LAB 02** | Lógica de Temporização | Status Multinível (RGB) | [Acessar](./LAB_02_Logica_RGB/) |
-| **LAB 03B** ⭐ | **Apresentação: Arduino Uno** | Anatomia, Blink e Hello World embarcado | [Acessar](./LAB_03B_Arduino_Apresentacao/) |
-| **LAB 03** | Estrutura de Código (Avançado) | Sinal Vital SOS (Código Morse) | [Acessar](./LAB_03_Blink_Base/) |
-| **LAB 04B** ⭐ | **Apresentação: ESP32** | Do Uno ao ESP32 — Anatomia e Diferenças | [Acessar](./LAB_04B_ESP32_Apresentacao/) |
-| **LAB 04** | I/O Digital / Pullups | Monitoramento de Porta | [Acessar](./LAB_04_IO_Digital/) |
+| **LAB 03A** ⭐ | **Apresentação: Arduino Uno** | Anatomia, Blink e Hello World embarcado | [Acessar](./LAB_03A_Arduino_Apresentacao/) |
+| **LAB 03B** | Estrutura de Código (Avançado) | Sinal Vital SOS (Código Morse) | [Acessar](./LAB_03B_Blink_Base/) |
+| **LAB 04A** ⭐ | **Apresentação: ESP32** | Do Uno ao ESP32 — Anatomia e Diferenças | [Acessar](./LAB_04A_ESP32_Apresentacao/) |
+| **LAB 04B** | I/O Digital / Pullups | Monitoramento de Porta | [Acessar](./LAB_04B_IO_Digital/) |
 | **LAB 05** | ADC / Bibliotecas | Monitoramento de Clima | [Acessar](./LAB_05_Sensores_Serial/) |
-| **LAB 06** | Barramento I2C | Painel de Status Local | [Acessar](./LAB_06_Interface_LCD/) |
+| **LAB 06A** | Barramento I2C | Painel de Status Local | [Acessar](./LAB_06A_Interface_LCD/) |
+| **LAB 06B** | Arquitetura M3F | Clean Code / Fatiamento | [Acessar](./LAB_06B_Arquitetura_M3F/) |
 | **LAB 07** | Controle / Histerese | Automação de Ventoinha | [Acessar](./LAB_07_Controle_Autonomo/) |
 | **LAB 08** | Protocolo IP (WiFi) | Gateway de Borda | [Acessar](./LAB_08_WiFi_ESP32/) |
 | **LAB 09** | Protocolo HTTP | Modo de Manutenção Web | [Acessar](./LAB_09_WebServer_HTTP/) |
