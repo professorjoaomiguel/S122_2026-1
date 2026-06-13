@@ -226,7 +226,7 @@ Agora que você domina as entradas e saídas digitais básicas, aplique seu conh
     3.  Mesmo que a porta seja fechada (botão solto), os LEDs devem continuar piscando!
     4.  **Reset de Segurança:** Para resetar o alarme e desligar os LEDs, o operador deve manter o botão pressionado continuamente por **3 segundos**. Apenas após esse tempo o alarme desarma.
 
-### ❓ Reflexão Técnica
+### ❓ Reflexão Técnica (Obrigatória para Entrega)
 1.  **Por que nem sempre podemos depender do Pull-Up Interno?**
     *   *Resposta para estudo:* Os resistores integrados no silício possuem alta tolerância física e resistência muito elevada (em torno de $30\text{ k}\Omega$ a $50\text{ k}\Omega$ no ESP32). Em ambientes industriais com alto ruído eletromagnético (próximo a contatores e motores), essa alta resistência pode permitir o acoplamento de interferências eletromagnéticas. Nesses cenários, os engenheiros usam resistores físicos de Pull-Up externos menores (ex: $1\text{ k}\Omega$ ou $4.7\text{ k}\Omega$) para garantir a estabilidade do sinal. Além disso, chips legados ou pinos exclusivamente analógicos não possuem essa opção interna.
 2.  **O que aconteceria se o pino ficasse em estado flutuante (Floating State)?** Explique o papel físico do resistor de Pull-Up (tanto interno quanto externo) para evitar leituras espúrias.
@@ -274,8 +274,10 @@ Deseja versionar este código no seu GitHub? Siga o [**Guia Profissional de VS C
 ---
 
 ## 📤 Entrega (Classroom)
-*   **Link Wokwi:** [Seu Link do Simulador]
-*   **Log:** Captura de tela do Serial Monitor demonstrando os logs de detecção da porta.
+A sua entrega será avaliada pelos seguintes itens. Marque um check mental antes de enviar:
+- [ ] **Link Wokwi:** Seu código deve conter o **Desafio 1 (Blink Condicional)** resolvido. O Desafio 2 (Latch) é bônus.
+- [ ] **Log:** Captura de tela do Serial Monitor demonstrando a leitura de porta.
+- [ ] **Respostas (Reflexão):** Responda as perguntas 2 e 3 da seção Reflexão Técnica na área de texto/comentários da entrega (a primeira pergunta já está respondida no roteiro).
 
 ---
 *UC S122 - Internet das Coisas*

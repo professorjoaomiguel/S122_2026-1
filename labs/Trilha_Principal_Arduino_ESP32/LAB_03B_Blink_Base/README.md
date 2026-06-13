@@ -111,7 +111,7 @@ Refatore o seu código para utilizar **constantes ou variáveis** no topo do pro
 
 ---
 
-### ❓ Reflexão Técnica
+### ❓ Reflexão Técnica (Obrigatória para Entrega)
 1.  **O que acontece se colocarmos o comando `pinMode` dentro do `loop()` em vez do `setup()`?** O circuito continuará funcionando? Por que isso consome ciclos de processamento desnecessários da CPU?
 2.  **Qual a grande vantagem pedagógica e de manutenção do princípio DRY (Don't Repeat Yourself)** que experimentamos ao migrar da Etapa 1 para a Etapa 2?
 

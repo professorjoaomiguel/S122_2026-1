@@ -238,7 +238,7 @@ Agora que seu código está fatiado de forma profissional, vamos realizar uma al
     3.  Ainda em `_1_Phy.ino`, no `loopEdge()`, implemente a lógica para acender o LED se a temperatura ultrapassar **32°C**. Caso contrário, o LED deve apagar.
     4.  **Reflexão de Arquitetura:** Observe como você realizou toda a manutenção de hardware e lógica do LED nas abas físicas sem precisar alterar sequer uma linha no arquivo coordenador principal `sketch.ino`!
 
-### ❓ Reflexão Técnica
+### ❓ Reflexão Técnica (Obrigatória para Entrega)
 1.  **Qual a grande utilidade do comando `extern`** na declaração de objetos e variáveis dentro de `Bibliotecas.h`? Como isso impede o erro de duplicidade de compilação (*multiple definition*)?
 2.  Como a arquitetura M3F em abas ajuda uma equipe de desenvolvimento real de IoT a trabalhar em paralelo (ex: um desenvolvedor na nuvem e outro nos sensores)?
 
@@ -250,8 +250,10 @@ O professor disponibilizou uma pasta chamada [**`solucao_referencia/`**](./soluc
 ---
 
 ## 📤 Entrega (Classroom)
-*   **Link Wokwi:** Link do simulador (com as abas separadas).
-*   **Captura de tela:** Imagem do editor mostrando as abas `sketch.ino`, `Bibliotecas.h` e `_1_Phy.ino` funcionais.
+A sua entrega será avaliada pelos seguintes itens. Marque um check mental antes de enviar:
+- [ ] **Link Wokwi:** Link do simulador contendo as **3 abas criadas** e o **Desafio do LED Alerta Modular** implementado.
+- [ ] **Captura de tela:** Imagem mostrando o código rodando sem erros e as abas abertas no editor do Wokwi.
+- [ ] **Respostas (Reflexão):** Responda as 2 perguntas da seção Reflexão Técnica na área de texto/comentários da entrega.
 
 ---
 *UC S122 - Internet das Coisas*

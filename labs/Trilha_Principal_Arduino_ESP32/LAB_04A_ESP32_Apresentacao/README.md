@@ -214,15 +214,18 @@ Na **Estufa Inteligente**, o ESP32 é o **nó de borda** (edge node): ele lê os
 
 3.  **(Avançado)** O que é o **Watchdog Timer (WDT)** do ESP32 e por que sistemas embarcados precisam dele? Pesquise e escreva 3 linhas explicando em português.
 
-### ❓ Reflexão Técnica
+### ❓ Reflexão Técnica (Obrigatória para Entrega)
 1.  **Por que os pinos do ESP32 são de 3,3V e não de 5V** como no Arduino Uno? Qual o impacto disso ao conectar sensores e módulos que foram projetados para 5V?
 2.  O ADC do Arduino Uno tem **10 bits de resolução** (valores de 0 a 1023). O ESP32 tem **12 bits** (0 a 4095). Em que situação prática essa diferença de resolução faz diferença para um sensor de temperatura?
 3.  O ESP32 tem **dois núcleos** de processamento. O Arduino Uno tem **um**. Por que sistemas IoT com comunicação de rede se beneficiam de múltiplos núcleos?
 
 ---
 
-## 📂 Solução de Referência
-Pasta [**`solucao_referencia/`**](./solucao_referencia/) disponível com o Blink comentado e o código com Serial Monitor mostrando informações do chip.
+## 📤 Entrega (Classroom)
+A sua entrega será avaliada pelos seguintes itens. Marque um check mental antes de enviar:
+- [ ] **Link Wokwi:** Código com o teste de detecção do Dual-Core (Desafio) implementado.
+- [ ] **Print:** Captura do Serial Monitor mostrando a frequência, memória e o ID do Core em que o loop está rodando.
+- [ ] **Respostas (Reflexão):** Responda as 3 perguntas da seção Reflexão Técnica na área de texto/comentários da entrega.
 
 ---
 

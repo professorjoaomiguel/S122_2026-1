@@ -226,7 +226,7 @@ Agora que você domina a leitura de sensores analógicos e digitais, aplique seu
     1.  Se a temperatura for **maior que 35°C**, imprima uma mensagem de alerta no Monitor Serial: `[ALERTA DE SUPERAQUECIMENTO!] 🚨`.
     2.  Opcionalmente, observe a taxa de atualização dos sensores. Como o DHT22 precisa de $2\text{ s}$ para atualizar, o que acontece se tentarmos ler o sensor a cada $100\text{ ms}$?
 
-### ❓ Reflexão Técnica
+### ❓ Reflexão Técnica (Obrigatória para Entrega)
 1.  **Por que as tags de organização (como `[TAG] DEFINICOES`) são fundamentais** quando o código começa a crescer?
 2.  Por que o comando `analogRead` no ESP32 retorna valores de $0$ a $4095$, enquanto no Arduino Uno clássico retornava de $0$ a $1023$? Como isso impacta a precisão das nossas medições de luminosidade?
 
@@ -243,8 +243,10 @@ Deseja versionar este código no seu GitHub? Siga o [**Guia Profissional de VS C
 ---
 
 ## 📤 Entrega (Classroom)
-*   **Link Wokwi:** [Seu Link do Simulador]
-*   **Log:** Captura de tela do Serial Monitor exibindo a telemetria com temperatura, umidade e luminosidade normalizadas.
+A sua entrega será avaliada pelos seguintes itens. Marque um check mental antes de enviar:
+- [ ] **Link Wokwi:** O código deve conter o **Desafio: Alerta de Segurança** resolvido.
+- [ ] **Log:** Captura de tela do Serial Monitor exibindo a telemetria (e o log de superaquecimento, se você forçou a temperatura acima de 35°C).
+- [ ] **Respostas (Reflexão):** Responda as 2 perguntas da seção Reflexão Técnica na área de texto/comentários da entrega.
 
 ---
 *UC S122 - Internet das Coisas*

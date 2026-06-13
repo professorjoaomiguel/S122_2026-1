@@ -167,21 +167,22 @@ Na **Estufa Inteligente**, este LED representa o **Sinal Vital (Heartbeat)** do 
 
 ### 🚨 Desafio: A Marcação de Compasso
 
-Imagine que você está desenvolvendo um metrônomo eletrônico para músicos. O dispositivo precisa emitir pulsos visuais em tempos musicais precisos.
-
 1.  **Compasso 4/4 a 60 BPM (batidas por minuto):** Calcule o intervalo entre cada batida e programe o LED para piscar exatamente nessa frequência.
 2.  **Compasso 4/4 a 120 BPM:** Dobre a velocidade. Quantas linhas você precisa alterar?
 3.  **(Avançado)** Refatore o código para que você possa mudar o BPM alterando **uma única variável** no topo do código. Dica: `int bpm = 60;` e então calcule o `delay` a partir disso.
 
-### ❓ Reflexão Técnica
+### ❓ Reflexão Técnica (Obrigatória para Entrega)
 1.  O que acontece se você colocar `pinMode()` dentro do `loop()` em vez do `setup()`? O LED continuará piscando? Por que isso é ineficiente?
 2.  `digitalWrite(13, HIGH)` envia 5V no pino. Qual é a corrente máxima que o pino digital do Arduino Uno suporta? Por que isso importa ao conectar um LED externo sem resistor limitador?
 3.  Qual seria o comportamento do seu programa se o `delay()` não existisse? O LED chegaria a apagar visualmente?
 
 ---
 
-## 📂 Solução de Referência
-Pasta [**`solucao_referencia/`**](./solucao_referencia/) disponível com o código do Blink base e a versão com BPM parametrizado.
+## 📤 Entrega (Classroom)
+A sua entrega será avaliada pelos seguintes itens. Marque um check mental antes de enviar:
+- [ ] **Link Wokwi:** O código deve conter a alteração pedida no **Desafio do Metrônomo (120 BPM)**.
+- [ ] **Print:** Screenshot do simulador com o LED "L" aceso ou piscando.
+- [ ] **Respostas (Reflexão):** Responda as 3 perguntas da seção Reflexão Técnica na área de texto/comentários da entrega.
 
 ---
 

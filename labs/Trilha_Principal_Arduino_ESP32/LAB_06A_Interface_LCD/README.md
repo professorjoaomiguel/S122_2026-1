@@ -167,7 +167,7 @@ Agora que seu display I2C está funcionando, vamos testar sua capacidade lógica
     2.  Se a temperatura registrada for **maior que 32°C**, o display deve ser limpo e exibir a mensagem `"ALERTA: QUENTE!"` na primeira linha.
     3.  Se a temperatura estiver abaixo ou igual a 32°C, o display deve operar normalmente mostrando Temperatura e Umidade.
 
-### ❓ Reflexão Técnica
+### ❓ Reflexão Técnica (Obrigatória para Entrega)
 1.  **A "Mágica" dos 2 Fios:** Displays LCD antigos exigiam até 16 pinos para funcionarem, ocupando quase todo o microcontrolador. O que o protocolo **I2C** fez e qual a função do pequeno "chip mochila" soldado na traseira do LCD para resolver isso usando apenas SDA e SCL?
 2.  **O Problema do Flicker:** O que ocorre com os cristais líquidos se você remover completamente o `delay` do seu código e tentar reescrever os dados na tela milhares de vezes por segundo?
 
@@ -184,8 +184,10 @@ Seu display está lindo! Agora avance diretamente para o [**LAB 06B — Arquitet
 ---
 
 ## 📤 Entrega (Classroom)
-*   **Link Wokwi:** Link do simulador com o código monolítico e o desafio de alerta concluído.
-*   **Print:** Captura de tela do display mostrando o "ALERTA: QUENTE!".
+A sua entrega será avaliada pelos seguintes itens. Marque um check mental antes de enviar:
+- [ ] **Link Wokwi:** Link do simulador contendo o código monolítico e o **Desafio de Alerta Direto na IHM** implementado.
+- [ ] **Print:** Captura de tela do display LCD mostrando a mensagem `"ALERTA: QUENTE!"`.
+- [ ] **Respostas (Reflexão):** Responda as 2 perguntas da seção Reflexão Técnica na área de texto/comentários da entrega.
 
 ---
 *UC S122 - Internet das Coisas*

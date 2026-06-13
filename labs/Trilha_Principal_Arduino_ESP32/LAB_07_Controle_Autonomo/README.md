@@ -178,7 +178,7 @@ Agora que você construiu um sistema de controle de ciclo fechado, implemente um
 *   **Missão:** Use o display LCD para sinalizar o estado dos atuadores em tempo real.
     *   Modifique a exibição no LCD in `_1_Phy.ino` para alternar ou exibir na segunda linha a informação do status da ventoinha (ex: `FAN: ON` ou `FAN: OFF`), facilitando o diagnóstico visual para o operador local de campo.
 
-### ❓ Reflexão Técnica
+### ❓ Reflexão Técnica (Obrigatória para Entrega)
 1.  **Por que usamos a lógica de Histerese (margem de 2°C) no controle da ventoinha?** O que aconteceria se definíssemos apenas um valor rígido de 30°C para ligar e desligar, e a temperatura ambiente ficasse oscilando em torno de 30.01°C e 29.99°C? Como isso afeta a vida útil de relés e motores elétricos na indústria?
 2.  Como o barramento I2C simplificou a pinagem necessária para ligar o LCD ao ESP32 (quantos pinos seriam necessários se usássemos o modo paralelo clássico)?
 
@@ -195,8 +195,9 @@ Deseja versionar este código no seu GitHub? Siga o [**Guia Profissional de VS C
 ---
 
 ## 📤 Entrega (Classroom)
-*   **Link Wokwi:** Link do simulador (com as abas separadas).
-*   **Reflexão:** Explique com suas palavras a lógica de Histerese implementada no seu relatório.
+A sua entrega será avaliada pelos seguintes itens. Marque um check mental antes de enviar:
+- [ ] **Link Wokwi:** O código deve conter as abas separadas e o **Desafio: Feedback no Display Local** implementado.
+- [ ] **Respostas (Reflexão):** Responda as 2 perguntas da seção Reflexão Técnica na área de texto/comentários da entrega (a sua explicação da histerese para a professora cobre a pergunta 1).
 
 ---
 *UC S122 - Internet das Coisas*
