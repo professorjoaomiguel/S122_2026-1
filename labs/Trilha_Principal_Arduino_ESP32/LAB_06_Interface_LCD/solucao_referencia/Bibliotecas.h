@@ -5,8 +5,8 @@
  * Arquivo: Bibliotecas.h (Declaração de Pinos, Objetos e Externs)
  */
 
-#ifndef BIBLIOTECAS_H
-#define BIBLIOTECAS_H
+#ifndef _BIBLIOTECAS_H_
+#define _BIBLIOTECAS_H_
 
 #include <DHT.h>
 #include <Wire.h>

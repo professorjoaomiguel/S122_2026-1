@@ -7,6 +7,14 @@
 
 #include "Bibliotecas.h"
 
+// Instanciação física das variáveis globais locais
+DHT dht(DHTPIN, DHTTYPE);
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+float temp = 0.0;
+float umid = 0.0;
+int luzPerc = 0;
+
 // Inicialização dos dispositivos físicos locais
 void setupEdge() {
   dht.begin();
@@ -18,7 +26,7 @@ void setupEdge() {
   lcd.setCursor(0, 0);
   lcd.print("Estufa Sliced!");
   
-  // Configuração dos pinos dos atuadores locais (LED de Alerta do Desafio)
+  // Configuração do LED de Alerta do Desafio
   pinMode(PINO_LED_ALERTA, OUTPUT);
   digitalWrite(PINO_LED_ALERTA, LOW);
   
@@ -35,12 +43,12 @@ void loopEdge() {
   luzPerc = map(luzRaw, 0, 4095, 0, 100);
 
   if (isnan(temp) || isnan(umid)) {
-    Serial.println("[ERRO] Falha ao ler sensores locais!");
+    Serial.println("[ERRO] Falha ao ler sensores!");
     return;
   }
 
   // --- SOLUÇÃO DO DESAFIO ---
-  // Controle local autônomo do LED vermelho de temperatura crítica
+  // Controle local do LED vermelho
   if (temp > 32.0) {
     digitalWrite(PINO_LED_ALERTA, HIGH);
   } else {
@@ -50,7 +58,11 @@ void loopEdge() {
   // Atualização da visualização local no display LCD
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.printf("Temp: %.1f C", temp);
+  lcd.print("Temp: ");
+  lcd.print(temp, 1);
+  lcd.print(" C");
   lcd.setCursor(0, 1);
-  lcd.printf("Umid: %.1f %%", umid);
+  lcd.print("Umid: ");
+  lcd.print(umid, 1);
+  lcd.print(" %");
 }

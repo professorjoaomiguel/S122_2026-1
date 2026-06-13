@@ -66,7 +66,13 @@
     [ "esp32:22", "lcd:SCL", "yellow", [] ],
     [ "esp32:12", "led1:A", "red", [] ],
     [ "led1:C", "r1:1", "black", [] ],
-    [ "r1:2", "esp32:GND", "black", [] ]
+    [ "r1:2", "esp32:GND", "black", [] ],
+    [ "esp32:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp32:RX", "$serialMonitor:TX", "", [] ]
   ],
-  "dependencies": {}
+  "dependencies": {},
+  "serialMonitor": {
+    "display": "always",
+    "newline": "lf"
+  }
 }

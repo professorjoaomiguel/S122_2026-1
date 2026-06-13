@@ -49,9 +49,13 @@ void loop() {
   // Exibição no LCD (Visualização Local)
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.printf("Temp: %.1f C", temp);
+  lcd.print("Temp: ");
+  lcd.print(temp, 1);
+  lcd.print(" C");
   lcd.setCursor(0, 1);
-  lcd.printf("Umid: %.1f %%", umid);
+  lcd.print("Umid: ");
+  lcd.print(umid, 1);
+  lcd.print(" %");
 
   delay(2000); // O DHT22 necessita de pelo menos 2s
 }

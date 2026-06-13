@@ -9,13 +9,39 @@
 
 ---
 
-### 🔌 Hardware Requerido
+### 🔌 Hardware Requerido e Conexões
 *   **Placa:** **ESP32 DevKit v4**
-*   **Finalidade:** Processamento em borda (Edge), I/O avançado e IoT
+*   **Display:** **LCD 16x2 com Módulo I2C**
+*   **Finalidade:** Visualização local de dados no Edge
 
-<p align="center">
-  <img src="https://wokwi.com/images/boards-photos/esp32.svg" alt="ESP32 DevKit v4" width="160">
-</p>
+#### 📌 Diagrama de Ligação Física (I2C)
+O display LCD I2C deve ser conectado ao barramento padrão
+de pinos I2C do ESP32 (GPIO 21 e GPIO 22) conforme abaixo:
+
+```mermaid
+graph TD
+  subgraph ESP32 [ESP32 DevKit v4]
+    GND[GND]
+    VIN[VIN / 5V]
+    SDA[GPIO 21 - SDA]
+    SCL[GPIO 22 - SCL]
+  end
+
+  subgraph LCD [Display LCD 16x2 I2C]
+    LGND[GND]
+    LVCC[VCC]
+    LSDA[SDA]
+    LSCL[SCL]
+  end
+
+  GND ---> LGND
+  VIN ---> LVCC
+  SDA ---> LSDA
+  SCL ---> LSCL
+
+  style ESP32 fill:#1f2937,stroke:#3b82f6,color:#fff
+  style LCD fill:#111827,stroke:#10b981,color:#fff
+```
 
 ---
 
@@ -82,7 +108,9 @@ void loop() {
   float temp = dht.readTemperature();
   float umid = dht.readHumidity();
   int luzRaw = analogRead(LDRPIN);
-  int luzPerc = map(luzRaw, 0, 4095, 0, 100); // ADC do ESP32 vai até 4095
+  
+  // ADC do ESP32 vai até 4095
+  int luzPerc = map(luzRaw, 0, 4095, 0, 100);
 
   if (isnan(temp) || isnan(umid)) {
     Serial.println("Erro de leitura!");
@@ -90,14 +118,22 @@ void loop() {
   }
 
   // Print Serial (Debug)
-  Serial.printf("T: %.1f C | U: %.1f %% | Luz: %d%%\n", temp, umid, luzPerc);
+  Serial.printf(
+    "T: %.1f C | U: %.1f %% | Luz: %d%%\n",
+    temp, umid, luzPerc
+  );
 
   // Print LCD (Visualização Local)
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.printf("Temp: %.1f C", temp);
+  lcd.print("Temp: ");
+  lcd.print(temp, 1);
+  lcd.print(" C");
+  
   lcd.setCursor(0, 1);
-  lcd.printf("Umid: %.1f %%", umid);
+  lcd.print("Umid: ");
+  lcd.print(umid, 1);
+  lcd.print(" %");
 
   delay(2000);
 }
@@ -111,13 +147,34 @@ Parabéns, seu monolítico funciona! Contudo, no **LAB 08 (WiFi)** teremos dezen
 
 Seguindo a **Metodologia M3F**, vamos fatiar esse código em **3 abas físicas** no Wokwi para separar a **Camada Física/Edge** das outras regras.
 
+#### 🏛️ Arquitetura e Dependências de Software (M3F)
+O organograma a seguir ilustra a separação de responsabilidades
+e a hierarquia de inclusões no firmware fatiado:
+
+```mermaid
+graph TD
+  SK[sketch.ino - Coordenador]
+  BIB[Bibliotecas.h - Cabeçalho]
+  PHY[_1_Phy.ino - Hardware/Edge]
+
+  SK -->|#include| BIB
+  PHY -->|#include| BIB
+  SK -.->|Chama setupEdge/loopEdge| PHY
+  PHY -.->|Instancia & atualiza dados| BIB
+  SK -.->|Consome dados globais| BIB
+
+  style SK fill:#1f2937,stroke:#3b82f6,color:#fff
+  style BIB fill:#111827,stroke:#f59e0b,color:#fff
+  style PHY fill:#111827,stroke:#10b981,color:#fff
+```
+
 #### Passo 1: Criar a aba `Bibliotecas.h`
 Clique no botão de adicionar arquivo no Wokwi (ou crie no VS Code) e nomeie como `Bibliotecas.h`. Mova para lá todas as inclusões de bibliotecas, definições de pinos e declarações de variáveis globais que serão compartilhadas usando `extern`:
 
 ```cpp
 // --- Bibliotecas.h ---
-#ifndef BIBLIOTECAS_H
-#define BIBLIOTECAS_H
+#ifndef _BIBLIOTECAS_H_
+#define _BIBLIOTECAS_H_
 
 #include <DHT.h>
 #include <Wire.h>
@@ -127,7 +184,7 @@ Clique no botão de adicionar arquivo no Wokwi (ou crie no VS Code) e nomeie com
 #define DHTTYPE DHT22
 #define LDRPIN 34
 
-// Objetos globais (declarados como extern para que todas as abas enxerguem)
+// Objetos globais (extern para acesso compartilhado)
 extern DHT dht;
 extern LiquidCrystal_I2C lcd;
 
@@ -145,6 +202,14 @@ Crie uma nova aba chamada `_1_Phy.ino`. Este arquivo conterá apenas a lógica f
 ```cpp
 // --- _1_Phy.ino ---
 #include "Bibliotecas.h"
+
+// Instanciação física no contexto do hardware (Edge)
+DHT dht(DHTPIN, DHTTYPE);
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+float temp = 0.0;
+float umid = 0.0;
+int luzPerc = 0;
 
 void setupEdge() {
   dht.begin();
@@ -167,29 +232,26 @@ void loopEdge() {
     return;
   }
 
-  // Exibição local
+  // Exibição local no display LCD
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.printf("Temp: %.1f C", temp);
+  lcd.print("Temp: ");
+  lcd.print(temp, 1);
+  lcd.print(" C");
+  
   lcd.setCursor(0, 1);
-  lcd.printf("Umid: %.1f %%", umid);
+  lcd.print("Umid: ");
+  lcd.print(umid, 1);
+  lcd.print(" %");
 }
 ```
 
 #### Passo 3: Limpar o arquivo principal `sketch.ino`
-Agora, o seu arquivo principal se torna o **Coordenador Geral** do sistema, mantendo a estrutura limpa e sem detalhes de hardware:
+Agora, o seu arquivo principal se torna o **Coordenador Geral** do sistema, mantendo a estrutura limpa, sem detalhes de hardware e sem riscos de linkagem:
 
 ```cpp
 // --- sketch.ino ---
 #include "Bibliotecas.h"
-
-// Instanciação física das variáveis globais
-DHT dht(DHTPIN, DHTTYPE);
-LiquidCrystal_I2C lcd(0x27, 16, 2);
-
-float temp = 0.0;
-float umid = 0.0;
-int luzPerc = 0;
 
 // Declaração das funções do Edge
 void setupEdge();
@@ -197,7 +259,9 @@ void loopEdge();
 
 void setup() {
   Serial.begin(115200);
-  Serial.println("--- [M3F] Inicializando Sistema Sliced ---");
+  Serial.println(
+    "--- [M3F] Inicializando Sistema Sliced ---"
+  );
   
   setupEdge(); // Inicializa sensores e LCD
 }
@@ -206,7 +270,10 @@ void loop() {
   loopEdge(); // Executa leitura física local
   
   // Debug Serial
-  Serial.printf("[Debug] T: %.1fC | U: %.1f%% | Luz: %d%%\n", temp, umid, luzPerc);
+  Serial.printf(
+    "[Debug] T: %.1fC | U: %.1f%% | Luz: %d%%\n",
+    temp, umid, luzPerc
+  );
   
   delay(2000);
 }

@@ -7,30 +7,27 @@
 
 #include "Bibliotecas.h"
 
-// Instanciação física das variáveis globais declaradas como extern em Bibliotecas.h
-DHT dht(DHTPIN, DHTTYPE);
-LiquidCrystal_I2C lcd(0x27, 16, 2);
-
-float temp = 0.0;
-float umid = 0.0;
-int luzPerc = 0;
-
 // Declaração de escopo das funções implementadas na aba _1_Phy.ino
 void setupEdge();
 void loopEdge();
 
 void setup() {
   Serial.begin(115200);
-  Serial.println("\n=== [M3F] Inicializando Sistema Sliced (LAB 06) ===");
+  Serial.println(
+    "\n=== [M3F] Inicializando Sistema Sliced ==="
+  );
   
   setupEdge(); // Inicializa os pinos, sensores e LCD
 }
 
 void loop() {
-  loopEdge(); // Executa a lógica de leitura física e controle de I/O local
+  loopEdge(); // Executa leitura física local
   
-  // Mensagem de log na Serial para monitoramento remoto / debug
-  Serial.printf("[Debug] T: %.1fC | U: %.1f%% | Luz: %d%%\n", temp, umid, luzPerc);
+  // Mensagem de log na Serial para monitoramento
+  Serial.printf(
+    "[Debug] T: %.1fC | U: %.1f%% | Luz: %d%%\n",
+    temp, umid, luzPerc
+  );
   
   delay(2000); // Intervalo exigido pelo DHT22
 }
