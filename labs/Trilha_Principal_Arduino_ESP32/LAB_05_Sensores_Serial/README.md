@@ -6,15 +6,43 @@
 *   **Camada Macro:** 🌿 Camada 1: Edge (Percepção Local)
 *   **Nível de Referência:** 📍 Nível 1: Sensor/Atuador (Leitura Física Analógica e Digital)
 
+```mermaid
+graph TD
+    C[Nuvem / Cloud API] <-->|Protocolo MQTT| F[Fog Server / Gateway Local]
+    F <-->|Protocolo HTTP/MQTT| E[Edge Node / ESP32]
+    subgraph Camada Edge (Percepção Local)
+        E --- LDR[Sensor LDR / Luz]
+        E --- DHT[Sensor DHT22 / Clima]
+    end
+    style E fill:#f9f,stroke:#333,stroke-width:2px
+```
+
 ---
 
 ### 🔌 Hardware Requerido
 *   **Placa:** **ESP32 DevKit v4**
 *   **Finalidade:** Processamento em borda (Edge), I/O avançado e IoT
 
-<p align="center">
-  <img src="https://wokwi.com/images/boards-photos/esp32.svg" alt="ESP32 DevKit v4" width="160">
-</p>
+```mermaid
+graph TD
+    subgraph ESP32 DevKitC V4
+        GPIO15[GPIO 15]
+        GPIO34[GPIO 34]
+        3V3[3V3]
+        GND[GND]
+    end
+    subgraph Circuito LDR (Luminosidade)
+        3V3 --- LDR[LDR]
+        LDR --- GPIO34
+        GPIO34 --- R1[Resistor 10k]
+        R1 --- GND
+    end
+    subgraph Circuito DHT22 (Clima)
+        3V3 --- DHT_VCC[VCC]
+        GPIO15 --- DHT_SDA[SDA / Data]
+        DHT_GND[GND] --- GND
+    end
+```
 
 ---
 
@@ -40,114 +68,140 @@ Monte a base completa. Ela será usada em todos os níveis:
 *   **DHT22 (Sensor Clima):** Pino 15.
 *   **LDR (Luz):** Pino analógico 34 (ADC1_CH6).
 
+#### 🔌 Divisor de Tensão do LDR (Lógica Direta)
+Para que a leitura analógica seja diretamente proporcional à luz (valores maiores para ambientes mais claros), conectamos o LDR em pull-up e um resistor fixo de $10\text{ k}\Omega$ em pull-down:
+
+```mermaid
+graph TD
+    VCC[3.3V / VCC] --- LDR[LDR]
+    LDR --- Pino34[GPIO 34 / ADC]
+    Pino34 --- R[Resistor 10k]
+    R --- GND[GND]
+```
+*   **Escuridão**: LDR alta resistência ➡️ Pino lê próximo a 0V ➡️ ADC lê ~0 ➡️ 0%.
+*   **Luz Intensa**: LDR baixa resistência ➡️ Pino lê próximo a 3.3V ➡️ ADC lê ~4095 ➡️ 100%.
+
 ---
 
 ## ⚙️ Workflow Passo a Passo
 
+> [!IMPORTANT]
+> **Substituição de Código**: Ao realizar cada etapa, substitua por completo o código antigo (ou a função correspondente) do seu arquivo no Wokwi para evitar erros de funções duplicadas no compilador.
+
 ### 🚀 Passo 1: O Mundo Analógico (LDR)
-Começamos com o sensor mais simples. No código, foque apenas em ler o pino A0.
+Começamos com a leitura bruta do LDR.
 
 ```cpp
 // [TAG] DEFINICOES
+const int pinoLDR = 34; // Pino analógico do LDR
+
 void setup() {
-  Serial.begin(115200); // Uso recomendado de velocidade alta em ESP32
-  // [TAG] SETUP_INICIAL
+  Serial.begin(115200);
+  Serial.println("S122 - Estufa Iniciada!");
 }
 
 void loop() {
   // --- Etapa 1: Leitura Bruta ---
-  int luzRaw = analogRead(34); // Pino 34 do ESP32
-  Serial.print("Luz Bruta: "); Serial.println(luzRaw);
-  
-  // [TAG] PROCESSAMENTO
-  
-  // [TAG] SAIDA_SERIAL
+  int luzRaw = analogRead(pinoLDR);
+  Serial.print("Bruta: "); 
+  Serial.println(luzRaw);
   
   delay(500);
 }
 ```
 
 ### 🚀 Passo 2: Normalização (Map)
-Não apague o código anterior! Use a tag `[TAG] PROCESSAMENTO` para inserir a conversão.
-
-```cpp
-  // --- Etapa 2: Conversao ---
-  // Insira em [TAG] PROCESSAMENTO:
-  // Dica: O ADC do ESP32 tem resolução de 12 bits (0 a 4095)
-  int luzPerc = map(luzRaw, 0, 4095, 0, 100);
-  
-  // Atualize [TAG] SAIDA_SERIAL:
-  Serial.print("Luz %: "); Serial.println(luzPerc);
-```
-
-### 🚀 Passo 3: Integração DHT22
-Agora, acoplamos a biblioteca de clima. Observe como as tags ajudam a saber onde cada parte deve entrar.
+Converta a leitura de 12 bits (0 a 4095) para escala percentual (0 a 100%).
 
 ```cpp
 // [TAG] DEFINICOES
-#include "DHT.h"
-DHT dht(15, DHT22); // Pino 15 para o DHT22
+const int pinoLDR = 34;
 
 void setup() {
   Serial.begin(115200);
-  // [TAG] SETUP_INICIAL
+  Serial.println("S122 - Estufa Iniciada!");
+}
+
+void loop() {
+  int luzRaw = analogRead(pinoLDR);
+  
+  // --- Etapa 2: Conversao ---
+  int luzPerc = map(luzRaw, 0, 4095, 0, 100);
+  
+  Serial.print("Luz %: "); 
+  Serial.println(luzPerc);
+  delay(500);
+}
+```
+
+### 🚀 Passo 3: Integração DHT22
+Acoplamos a leitura digital de clima usando a biblioteca oficial.
+
+```cpp
+// [TAG] DEFINICOES
+#include <DHT.h>
+const int pinoLDR = 34;
+const int pinoDHT = 15;
+DHT dht(pinoDHT, DHT22);
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("S122 - Estufa Iniciada!");
   dht.begin(); 
 }
 
 void loop() {
-  // --- Etapa 1 e 2: LDR ---
-  int luzPerc = map(analogRead(34), 0, 4095, 0, 100);
+  // --- Etapas 1 e 2: LDR ---
+  int luzRaw = analogRead(pinoLDR);
+  int luzPerc = map(luzRaw, 0, 4095, 0, 100);
   
   // --- Etapa 3: DHT22 ---
   float temp = dht.readTemperature();
   
-  // [TAG] SAIDA_SERIAL
   Serial.print("T: "); Serial.print(temp);
-  Serial.print("C | Luz: "); Serial.print(luzPerc); Serial.println("%");
+  Serial.print("C | L: "); Serial.print(luzPerc); 
+  Serial.println("%");
   
-  delay(2000); // Intervalo exigido pelo DHT
+  delay(2000); // Delay do DHT
 }
 ```
 
 ### 🚀 Passo 4: Código Consolidado Final
-Ao final de todos os passos, o seu código estará completo e estruturado da seguinte forma, integrando todas as fases de leitura e normalização:
+Versão completa integrando temperatura, umidade e luminosidade.
+
 ```cpp
 // [TAG] DEFINICOES
 #include <DHT.h>
-
-#define DHTPIN 15
-#define DHTTYPE DHT22
-#define LDRPIN 34
-
-DHT dht(DHTPIN, DHTTYPE);
+const int pinoLDR = 34;
+const int pinoDHT = 15;
+DHT dht(pinoDHT, DHT22);
 
 void setup() {
   Serial.begin(115200);
-  // [TAG] SETUP_INICIAL
+  Serial.println("S122 - Estufa Iniciada!");
   dht.begin();
-  Serial.println("S122 - Estufa IoT: Sistema de Leituras Iniciado!");
 }
 
 void loop() {
-  // --- Etapa 1 e 2: LDR ---
-  int luzRaw = analogRead(LDRPIN);
-  // [TAG] PROCESSAMENTO
-  int luzPerc = map(luzRaw, 0, 4095, 0, 100); // ADC do ESP32 vai até 4095
+  // --- Etapas 1 e 2: LDR ---
+  int luzRaw = analogRead(pinoLDR);
+  int luzPerc = map(luzRaw, 0, 4095, 0, 100);
   
   // --- Etapa 3: DHT22 ---
   float temp = dht.readTemperature();
   float umid = dht.readHumidity();
 
   if (isnan(temp) || isnan(umid)) {
-    Serial.println("Erro ao ler dados do DHT22!");
+    Serial.println("Erro no DHT22!");
     delay(2000);
     return;
   }
 
   // [TAG] SAIDA_SERIAL
-  Serial.printf("Luz: %d%% | Temp: %.1f C | Umid: %.1f %%\n", luzPerc, temp, umid);
+  Serial.printf("Luz: %d%% | T: %.1fC | U: %.1f%%\n",
+                luzPerc, temp, umid);
   
-  delay(2000); // Intervalo necessário entre as leituras do sensor
+  delay(2000); // Delay necessário
 }
 ```
 
