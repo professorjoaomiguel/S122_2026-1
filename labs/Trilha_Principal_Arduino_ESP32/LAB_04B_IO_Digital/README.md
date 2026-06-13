@@ -274,10 +274,10 @@ Deseja versionar este código no seu GitHub? Siga o [**Guia Profissional de VS C
 ---
 
 ## 📤 Entrega (Classroom)
-A sua entrega será avaliada pelos seguintes itens. Marque um check mental antes de enviar:
+Abra o **Documento de Entrega** anexado à sua atividade no Classroom e preencha os seguintes requisitos:
 - [ ] **Link Wokwi:** Seu código deve conter o **Desafio 1 (Blink Condicional)** resolvido. O Desafio 2 (Latch) é bônus.
 - [ ] **Log:** Captura de tela do Serial Monitor demonstrando a leitura de porta.
-- [ ] **Respostas (Reflexão):** Responda as perguntas 2 e 3 da seção Reflexão Técnica na área de texto/comentários da entrega (a primeira pergunta já está respondida no roteiro).
+- [ ] **Respostas (Reflexão):** Responda as perguntas 2 e 3 da seção Reflexão Técnica diretamente no documento da atividade (a primeira pergunta já está respondida no roteiro).
 
 ---
 *UC S122 - Internet das Coisas*

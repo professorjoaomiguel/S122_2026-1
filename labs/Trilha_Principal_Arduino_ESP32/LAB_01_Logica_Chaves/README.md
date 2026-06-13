@@ -82,10 +82,10 @@ Na **Estufa Inteligente**, a lógica digital é usada para segurança redundante
 ---
 
 ## 📤 Entrega (Classroom)
-A sua entrega será avaliada pelos seguintes itens. Marque um check mental antes de enviar:
+Abra o **Documento de Entrega** anexado à sua atividade no Classroom e preencha os seguintes requisitos:
 - [ ] **Link Wokwi:** O circuito deve conter as portas lógicas passivas montadas.
 - [ ] **Relatório:** Preencha a Tabela Verdade observada para cada nível de chaves.
-- [ ] **Respostas (Reflexão):** Responda as 2 perguntas da seção Reflexão Técnica na área de texto/comentários da entrega (incluindo o raciocínio do Desafio NAND).
+- [ ] **Respostas (Reflexão):** Responda as 2 perguntas da seção Reflexão Técnica diretamente no documento da atividade (incluindo o raciocínio do Desafio NAND).
 
 ---
 *UC S122 - Internet das Coisas*

@@ -86,9 +86,9 @@ Na **Estufa Inteligente**, o LED RGB atua como um **Indicador de Status Multiní
 ---
 
 ## 📤 Entrega (Classroom)
-A sua entrega será avaliada pelos seguintes itens. Marque um check mental antes de enviar:
+Abra o **Documento de Entrega** anexado à sua atividade no Classroom e preencha os seguintes requisitos:
 - [ ] **Link Wokwi:** O seu circuito deve mostrar a cor Branca (resolução do Desafio 1) sendo gerada ou as portas lógicas testadas.
-- [ ] **Respostas (Reflexão):** Responda as 2 perguntas da seção Reflexão Técnica na área de texto/comentários da entrega (explicando a lógica das cores e a diferença de Anodo/Catodo).
+- [ ] **Respostas (Reflexão):** Responda as 2 perguntas da seção Reflexão Técnica diretamente no documento da atividade (explicando a lógica das cores e a diferença de Anodo/Catodo).
 
 ---
 *UC S122 - Internet das Coisas*

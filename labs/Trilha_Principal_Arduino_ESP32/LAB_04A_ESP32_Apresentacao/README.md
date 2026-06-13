@@ -222,10 +222,10 @@ Na **Estufa Inteligente**, o ESP32 é o **nó de borda** (edge node): ele lê os
 ---
 
 ## 📤 Entrega (Classroom)
-A sua entrega será avaliada pelos seguintes itens. Marque um check mental antes de enviar:
+Abra o **Documento de Entrega** anexado à sua atividade no Classroom e preencha os seguintes requisitos:
 - [ ] **Link Wokwi:** Código com o teste de detecção do Dual-Core (Desafio) implementado.
 - [ ] **Print:** Captura do Serial Monitor mostrando a frequência, memória e o ID do Core em que o loop está rodando.
-- [ ] **Respostas (Reflexão):** Responda as 3 perguntas da seção Reflexão Técnica na área de texto/comentários da entrega.
+- [ ] **Respostas (Reflexão):** Responda as 3 perguntas da seção Reflexão Técnica diretamente no documento da atividade .
 
 ---
 

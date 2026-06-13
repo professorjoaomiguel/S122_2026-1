@@ -179,10 +179,10 @@ Na **Estufa Inteligente**, este LED representa o **Sinal Vital (Heartbeat)** do 
 ---
 
 ## 📤 Entrega (Classroom)
-A sua entrega será avaliada pelos seguintes itens. Marque um check mental antes de enviar:
+Abra o **Documento de Entrega** anexado à sua atividade no Classroom e preencha os seguintes requisitos:
 - [ ] **Link Wokwi:** O código deve conter a alteração pedida no **Desafio do Metrônomo (120 BPM)**.
 - [ ] **Print:** Screenshot do simulador com o LED "L" aceso ou piscando.
-- [ ] **Respostas (Reflexão):** Responda as 3 perguntas da seção Reflexão Técnica na área de texto/comentários da entrega.
+- [ ] **Respostas (Reflexão):** Responda as 3 perguntas da seção Reflexão Técnica diretamente no documento da atividade .
 
 ---
 

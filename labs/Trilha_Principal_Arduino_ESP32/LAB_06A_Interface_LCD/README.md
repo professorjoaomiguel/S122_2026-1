@@ -184,10 +184,10 @@ Seu display está lindo! Agora avance diretamente para o [**LAB 06B — Arquitet
 ---
 
 ## 📤 Entrega (Classroom)
-A sua entrega será avaliada pelos seguintes itens. Marque um check mental antes de enviar:
+Abra o **Documento de Entrega** anexado à sua atividade no Classroom e preencha os seguintes requisitos:
 - [ ] **Link Wokwi:** Link do simulador contendo o código monolítico e o **Desafio de Alerta Direto na IHM** implementado.
 - [ ] **Print:** Captura de tela do display LCD mostrando a mensagem `"ALERTA: QUENTE!"`.
-- [ ] **Respostas (Reflexão):** Responda as 2 perguntas da seção Reflexão Técnica na área de texto/comentários da entrega.
+- [ ] **Respostas (Reflexão):** Responda as 2 perguntas da seção Reflexão Técnica diretamente no documento da atividade .
 
 ---
 *UC S122 - Internet das Coisas*
