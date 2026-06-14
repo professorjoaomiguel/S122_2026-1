@@ -1,28 +1,26 @@
 /**
  * @fileoverview API REST invisível para integração do Google Classroom com o Terminal do Agente.
  * Pode ser reutilizada em outras disciplinas alterando o bloco de configurações.
- * @version 2.1.0
+ * @version 2.5.0
  * 
  * =====================================================================
  * ENDPOINTS DA API
  * =====================================================================
  * 
  * 1. GET /exec
- *    - Descrição: Retorna a lista de atividades (PUBLISHED e DRAFT).
+ *    - Descrição: Retorna dados da turma.
  *    - Parâmetros (Querystring):
- *      - courseId (opcional): Sobrescreve o ID padrão da turma configurado abaixo.
+ *      - courseId (opcional): Sobrescreve o ID padrão da turma.
+ *      - action (opcional): 
+ *        - "list_assignments" (padrão): Lista as atividades.
+ *        - "list_announcements": Lista as mensagens do mural.
+ *        - "list_students": Lista os alunos e e-mails matriculados.
+ *        - "get_course": Retorna detalhes da turma (código de inscrição, etc).
  * 
  * 2. POST /exec
- *    - Descrição: Cria novas atividades dinamicamente.
- *    - Body (JSON):
- *      {
- *        "courseId": "856497169680",
- *        "action": "create_assignments",
- *        "includeTemplate": true,
- *        "assignments": [
- *          { "title": "Nome do LAB", "description": "Instruções", "state": "DRAFT", "githubUrl": "https://..." }
- *        ]
- *      }
+ *    - Descrição: Cria novos recursos dinamicamente.
+ *    - Body JSON (Atividades): { "action": "create_assignments", ... }
+ *    - Body JSON (Mural): { "action": "create_announcements", "announcements": [{ "text": "Olá turma!" }] }
  * =====================================================================
  */
 
@@ -60,28 +58,22 @@ var CONFIG = {
  */
 function doGet(e) {
   var courseId = (e && e.parameter && e.parameter.courseId) ? e.parameter.courseId : CONFIG.DEFAULT_COURSE_ID;
+  var action = (e && e.parameter && e.parameter.action) ? e.parameter.action : 'list_assignments';
   
   try {
-    var resposta = Classroom.Courses.CourseWork.list(courseId, { courseWorkStates: ["PUBLISHED", "DRAFT"] });
-    var atividades = resposta.courseWork || [];
+    if (action === 'list_announcements') {
+      return buildJsonResponse({ status: 'success', data: listAnnouncements(courseId) });
+    } else if (action === 'list_students') {
+      return buildJsonResponse({ status: 'success', data: listStudents(courseId) });
+    } else if (action === 'get_course') {
+      return buildJsonResponse({ status: 'success', data: getCourseDetails(courseId) });
+    }
     
-    // Mapeamento limpo dos dados essenciais para tráfego em rede
-    var output = atividades.map(function(atv) {
-      return {
-        id: atv.id,
-        title: atv.title,
-        state: atv.state,
-        creationTime: atv.creationTime,
-        workType: atv.workType,
-        description: atv.description || '',
-        materials: atv.materials || []
-      };
-    });
-    
-    return criarRespostaJSON({ status: 'success', data: output });
+    // Fallback: list_assignments
+    return buildJsonResponse({ status: 'success', data: listAssignments(courseId) });
       
   } catch (err) {
-    return criarRespostaJSON({ status: 'error', message: err.message });
+    return buildJsonResponse({ status: 'error', message: err.message });
   }
 }
 
@@ -98,24 +90,49 @@ function doPost(e) {
     var courseId = payload.courseId || CONFIG.DEFAULT_COURSE_ID;
     
     if (payload.action === 'create_assignments') {
-      return criarRespostaJSON(criarAtividadesDinamicamente(courseId, payload));
+      return buildJsonResponse(createAssignments(courseId, payload));
+    } else if (payload.action === 'create_announcements') {
+      return buildJsonResponse(createAnnouncements(courseId, payload));
     }
     
     throw new Error("Ação não reconhecida: " + payload.action);
     
   } catch (err) {
-    return criarRespostaJSON({ status: 'error', message: err.message });
+    return buildJsonResponse({ status: 'error', message: err.message });
   }
+}
+
+// =====================================================================
+// MOTORES DE EXECUÇÃO (Serviços)
+// =====================================================================
+
+/**
+ * Motor de listagem de Atividades (Publicadas e Rascunhos).
+ */
+function listAssignments(courseId) {
+  var response = Classroom.Courses.CourseWork.list(courseId, { courseWorkStates: ["PUBLISHED", "DRAFT"] });
+  var assignments = response.courseWork || [];
+  
+  return assignments.map(function(atv) {
+    return {
+      id: atv.id,
+      title: atv.title,
+      state: atv.state,
+      creationTime: atv.creationTime,
+      workType: atv.workType,
+      description: atv.description || '',
+      materials: atv.materials || []
+    };
+  });
 }
 
 /**
  * Motor de criação dinâmica de atividades e templates orientado a dados.
  */
-function criarAtividadesDinamicamente(courseId, payloadData) {
+function createAssignments(courseId, payloadData) {
   var results = [];
   var templateId = null;
   
-  // Se a requisição pediu, gera o Template Base do Google Docs em tempo real baseado no CONFIG
   if (payloadData.includeTemplate) {
     var doc = DocumentApp.create(CONFIG.TEMPLATE_TITLE);
     doc.getBody().insertParagraph(0, CONFIG.TEMPLATE_CONTENT);
@@ -126,7 +143,6 @@ function criarAtividadesDinamicamente(courseId, payloadData) {
   
   var assignments = payloadData.assignments || [];
   
-  // Iteração de criação das atividades baseadas no JSON e no CONFIG
   assignments.forEach(function(lab) {
     var courseWork = {
       title: lab.title,
@@ -137,12 +153,10 @@ function criarAtividadesDinamicamente(courseId, payloadData) {
       materials: []
     };
     
-    // Adiciona o link do GitHub se fornecido no Payload
     if (lab.githubUrl) {
       courseWork.materials.push({ link: { url: lab.githubUrl } });
     }
     
-    // Anexa o Documento Template com Cópia Individual se o template foi gerado
     if (templateId) {
       courseWork.materials.push({
         driveFile: {
@@ -160,9 +174,79 @@ function criarAtividadesDinamicamente(courseId, payloadData) {
 }
 
 /**
+ * Motor de listagem do Mural.
+ */
+function listAnnouncements(courseId) {
+  var response = Classroom.Courses.Announcements.list(courseId);
+  var announcements = response.announcements || [];
+  
+  return announcements.map(function(aviso) {
+    return {
+      id: aviso.id,
+      text: aviso.text,
+      state: aviso.state,
+      creationTime: aviso.creationTime,
+      materials: aviso.materials || []
+    };
+  });
+}
+
+/**
+ * Motor de criação de anúncios no Mural.
+ */
+function createAnnouncements(courseId, payloadData) {
+  var results = [];
+  var announcements = payloadData.announcements || [];
+  
+  announcements.forEach(function(aviso) {
+    var announcement = {
+      text: aviso.text,
+      state: aviso.state || "PUBLISHED"
+    };
+    
+    var result = Classroom.Courses.Announcements.create(announcement, courseId);
+    results.push("Aviso publicado [" + result.state + "] ID: " + result.id);
+  });
+  
+  return { status: 'success', created: results };
+}
+
+/**
+ * Motor de listagem de alunos da turma.
+ */
+function listStudents(courseId) {
+  var response = Classroom.Courses.Students.list(courseId);
+  var students = response.students || [];
+  
+  return students.map(function(estudante) {
+    return {
+      id: estudante.userId,
+      name: estudante.profile ? estudante.profile.name.fullName : 'Desconhecido',
+      email: estudante.profile ? estudante.profile.emailAddress : 'Sem email'
+    };
+  });
+}
+
+/**
+ * Motor de busca de detalhes da turma.
+ */
+function getCourseDetails(courseId) {
+  var course = Classroom.Courses.get(courseId);
+  return {
+    id: course.id,
+    name: course.name,
+    section: course.section || '',
+    description: course.descriptionHeading || course.description || '',
+    enrollmentCode: course.enrollmentCode || 'Não disponível',
+    status: course.courseState,
+    url: course.alternateLink
+  };
+}
+
+/**
  * Utilitário padrão para envelopamento de respostas HTTP em JSON.
  */
-function criarRespostaJSON(objeto) {
+function buildJsonResponse(objeto) {
   return ContentService.createTextOutput(JSON.stringify(objeto))
     .setMimeType(ContentService.MimeType.JSON);
 }
