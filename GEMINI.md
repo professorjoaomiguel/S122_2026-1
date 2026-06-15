@@ -1,5 +1,13 @@
 # Projeto S122 - Internet das Coisas (2026/1)
 
+## Fonte Unica para Agentes
+
+Este arquivo e auxiliar. A fonte unica de instrucoes para agentes de IA neste repositorio e:
+
+- `AGENTS.md`
+
+Em caso de conflito de orientacoes, `AGENTS.md` prevalece.
+
 Este repositório contém o material de apoio, guias técnicos e roteiros da Unidade Curricular **S122 - Internet das Coisas** do SENAI Porto Alegre, sob coordenação do Prof. João Miguel Lac Roehe.
 
 ## 📂 Visão Geral do Diretório

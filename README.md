@@ -48,7 +48,7 @@ Este curso utiliza a **Filosofia de Aprendizado Ativo**:
 
 ## 🚀 Como Começar
 1. Faça o clone deste repositório.
-2. Leia o [GEMINI.md](./GEMINI.md) para entender como configurar seu ambiente de suporte.
+2. Leia o [AGENTS.md](./AGENTS.md) como fonte única de instruções para IA.
 3. Comece pelo `Guia_ESP32_MicroPython.md` na pasta de guias técnicos.
 
 ---
