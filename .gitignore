@@ -18,6 +18,7 @@ $RECYCLE.BIN/
 .LSOverride
 
 # --- IDE & Editor configurations ---
+.vscode/
 .vscode/tasks.json
 .vscode/launch.json
 .vscode/*.log
@@ -27,6 +28,9 @@ $RECYCLE.BIN/
 *.suo
 *.user
 *.sln
+
+# --- Agent tooling ---
+.antigravity/
 
 # --- Arduino, ESP32 & PlatformIO Builds ---
 build/
