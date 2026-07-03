@@ -1,87 +1,61 @@
 {
-  "version": 1,
+  "version": 2,
   "author": "Prof. Joao Miguel & Tutor Gemini",
   "editor": "wokwi",
   "parts": [
-    {
-      "type": "board-esp32-devkit-c-v4",
-      "id": "esp32",
-      "top": 0,
-      "left": 0,
-      "attrs": {}
-    },
-    {
-      "type": "wokwi-dht22",
-      "id": "dht",
-      "top": -150,
-      "left": -150,
-      "attrs": {}
-    },
+    { "type": "board-esp32-devkit-c-v4", "id": "esp32", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht", "top": -24, "left": -180.9, "rotate": 270, "attrs": {} },
     {
       "type": "wokwi-photoresistor-sensor",
       "id": "ldr",
-      "top": 100,
-      "left": -150,
+      "top": 108.8,
+      "left": -239.2,
       "attrs": {}
     },
     {
       "type": "wokwi-lcd1602",
       "id": "lcd",
-      "top": 120,
-      "left": 150,
-      "attrs": {
-        "pins": "i2c"
-      }
+      "top": 25.6,
+      "left": 149.6,
+      "attrs": { "pins": "i2c" }
     },
     {
       "type": "wokwi-led",
       "id": "led1",
-      "top": -100,
-      "left": 160,
-      "attrs": {
-        "color": "blue"
-      }
+      "top": 56.8,
+      "left": -171.4,
+      "rotate": 270,
+      "attrs": { "color": "blue" }
     },
     {
       "type": "wokwi-resistor",
       "id": "r1",
-      "top": -40,
-      "left": 160,
-      "rotate": 90,
-      "attrs": {
-        "value": "220"
-      }
+      "top": 80.75,
+      "left": -124.8,
+      "attrs": { "value": "220" }
     },
-    {
-      "type": "wokwi-piezo",
-      "id": "buzzer",
-      "top": 0,
-      "left": -260,
-      "attrs": {}
-    }
+    { "type": "wokwi-piezo", "id": "buzzer", "top": 0, "left": -260, "attrs": {} }
   ],
   "connections": [
-    [ "esp32:GND.1", "dht:GND", "black", [] ],
-    [ "esp32:3V3", "dht:VCC", "red", [] ],
-    [ "esp32:15", "dht:SDA", "green", [] ],
-    [ "esp32:GND.1", "ldr:GND", "black", [] ],
-    [ "esp32:3V3", "ldr:VCC", "red", [] ],
-    [ "ldr:AO", "esp32:34", "blue", [] ],
-    [ "esp32:GND.1", "lcd:GND", "black", [] ],
-    [ "esp32:5V", "lcd:VCC", "red", [] ],
-    [ "esp32:21", "lcd:SDA", "blue", [] ],
-    [ "esp32:22", "lcd:SCL", "yellow", [] ],
-    [ "esp32:12", "led1:A", "blue", [] ],
+    [ "esp32:GND.1", "dht:GND", "black", [ "h-14.21", "v-134.4" ] ],
+    [ "esp32:3V3", "dht:VCC", "red", [ "h-23.81", "v19.2" ] ],
+    [ "esp32:15", "dht:SDA", "green", [ "h33.64", "v67.2", "h-163.2", "v-201.5" ] ],
+    [ "esp32:GND.1", "ldr:GND", "black", [ "h-14.21", "v-19.2", "h-57.6" ] ],
+    [ "esp32:3V3", "ldr:VCC", "red", [ "h-23.81", "v96" ] ],
+    [ "ldr:AO", "esp32:34", "blue", [ "h28.8", "v-87.1" ] ],
+    [ "esp32:GND.1", "lcd:GND", "black", [ "h-14.21", "v67.2", "h124.8", "v-163.2" ] ],
+    [ "esp32:5V", "lcd:VCC", "red", [ "v28.8", "h120.19", "v-172.9" ] ],
+    [ "esp32:21", "lcd:SDA", "blue", [ "h14.44", "v-9.8" ] ],
+    [ "esp32:22", "lcd:SCL", "yellow", [ "h33.64", "v28.5" ] ],
+    [ "esp32:12", "led1:A", "blue", [ "h-52.61", "v-67.2" ] ],
     [ "led1:C", "r1:1", "black", [] ],
-    [ "r1:2", "esp32:GND.1", "black", [] ],
+    [ "r1:2", "esp32:GND.1", "black", [ "h56.4", "v67.2" ] ],
     [ "esp32:4", "buzzer:1", "purple", [] ],
     [ "buzzer:2", "esp32:GND.1", "black", [] ],
     [ "esp32:TX", "$serialMonitor:RX", "", [] ],
-    [ "esp32:RX", "$serialMonitor:TX", "", [] ]
+    [ "esp32:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp32:14", "esp32:27", "green", [ "h0" ] ]
   ],
-  "dependencies": {},
-  "serialMonitor": {
-    "display": "always",
-    "newline": "lf"
-  }
+  "serialMonitor": { "display": "always", "newline": "lf" },
+  "dependencies": {}
 }
