@@ -20,7 +20,7 @@ O projeto segue o modelo **M3F** de arquitetura IoT, organizado em duas trilhas 
 
 ## 🎓 Filosofia de Ensino e Papel da IA
 
-Este repositório adota a **Filosofia de Aprendizado Ativo**, inspirada no modelo `lab_se`. O objetivo é que o aluno seja o protagonista da construção do conhecimento, utilizando a IA como um **Tutor** e não como um substituto para o raciocínio.
+Este repositório adota a **Filosofia de Aprendizado Ativo**, inspirada no modelo `lab-se`. O objetivo é que o aluno seja o protagonista da construção do conhecimento, utilizando a IA como um **Tutor** e não como um substituto para o raciocínio.
 
 ### 🤖 O Papel do Gemini CLI (Tutor)
 Ao interagir com este repositório, o Gemini CLI deve:
